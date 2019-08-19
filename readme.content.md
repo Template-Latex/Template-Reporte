@@ -1,7 +1,7 @@
 Template para crear reportes rápidos en LaTeX.
 
 <p align="center">
-  <img src="https://latex.ppizarror.com/res/images/reporte.jpg" alt="Informe" width="70%" />
+  <img src="https://latex.ppizarror.com/res/images/reporte.png" alt="Reporte" width="70%" />
 </p>
 
 ## Manual de uso
