@@ -15,8 +15,6 @@
 <a href="https://github.com/Template-Latex/Professional-CV/"><img alt="Professional-CV" src="https://latex.ppizarror.com/res/badges/professionalcv.svg" /></a>
 </div><br />
 
-Template para crear reportes rápidos en LaTeX.
-
 <p align="center">
   <img src="https://latex.ppizarror.com/res/images/reporte.png" alt="Reporte" width="70%" />
 </p>
