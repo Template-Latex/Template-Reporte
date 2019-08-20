@@ -1,6 +1,6 @@
 % Template:     Template Reporte LaTeX
 % Documento:    Archivo de ejemplo
-% Versión:      1.0.0 (19/08/2019)
+% Versión:      1.0.4 (20/08/2019)
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R. @ppizarror
@@ -31,8 +31,8 @@
 		% Para insertar una imagen se puede usar la función \insertimage la cual
 		% toma un primer parámetro opcional para definir una etiqueta (dentro de
 		% los corchetes), luego toma la dirección de la imagen, sus parámetros
-		% (en este caso se definió la escala de 0.16) y una leyenda opcional
-		\insertimage[\label{img:testimage}]{ejemplos/test-image.png}{scale=0.16}{Where are you? de \quotes{Internet}.}
+		% (en este caso se definió la escala de 0.14) y una leyenda opcional
+		\insertimage[\label{img:testimage}]{ejemplos/test-image.png}{scale=0.14}{Where are you? de \quotes{Internet}.}
 
 		A continuación\footnote{Como se puede observar las funciones \texttt{\textbackslash insert...} añaden un párrafo automáticamente.} se muestra un ejemplo de inserción de ecuaciones simples con el comando \href{https://latex.ppizarror.com/informe.html#hlp-formulae}{\hreftext{\textbackslash insertequation}}:
 
@@ -100,14 +100,11 @@
 		% añaden un párrafo nuevo por defecto
 		\lipsum[115]
 
-		\newp \lipsum[4]
-
 	% Inserta un subtítulo sin número
 	\subsection{Otros párrafos más normales}
 
 		% Párrafos
 		\lipsum[7]
-		\newp \lipsum[2]
 
 		% Se inserta una ecuación larga con el entorno gathered (1 solo número de ecuación)
 		\insertgathered[\label{eqn:eqn-larga}]{
@@ -128,7 +125,7 @@
 			\insertequation[]{ \boxed{f(x) = \fracdpartial{u}{t}} }
 
 			% Párrafo 2 del multicols
-			\lipsum[1]
+			\lipsum[2]
 
 		\end{multicols}
 
@@ -177,14 +174,6 @@ public class Hola extends GenericServlet {
 f = figure(1); hold on; movegui(f, 'center');
 xlabel('td/Tn'); ylabel('FAD=Umax/Uf0');
 title('Espectro de pulso de desplazamiento');
-
-for j = 1:length(BETA)
-	fad = ones(1, NDATOS); % Arreglo para el FAD
-	for i = 1:NDATOS
-		[t, u_t, ~, ~] = main(BETA(j), r(i), M, K, F0, 0);
-		fad(i) = max(abs(u_t)) / uf0;
-	end
-end
 \end{sourcecode}
 
 	% SUB-SECCIÓN
@@ -195,9 +184,9 @@ end
 \begin{sourcecode}{latex}{}
 \begin{images}[\label{imagenmultiple}]{Ejemplo de imagen múltiple.}
 	\addimage{ejemplos/test-image}{width=6.5cm}{Ciudad.}
-	\addimage{ejemplos/test-image-wrap}{width=5cm}{Apolo.}
+	\addimage{ejemplos/test-image-wrap}{height=4cm}{Apolo.}
 	\imagesnewline
-	\addimage{ejemplos/test-image}{width=12cm}{Ciudad más grande.}
+	\addimage{ejemplos/test-image}{width=10cm}{Ciudad más grande.}
 \end{images}
 \end{sourcecode}
 
@@ -205,9 +194,9 @@ end
 
 	\begin{images}{Ejemplo de imagen múltiple.}
 		\addimage{ejemplos/test-image}{width=6.5cm}{Ciudad.}
-		\addimage{ejemplos/test-image-wrap}{width=5cm}{Apolo.}
+		\addimage{ejemplos/test-image-wrap}{height=4cm}{Apolo.}
 		\imagesnewline
-		\addimage{ejemplos/test-image}{width=12cm}{Ciudad más grande.}
+		\addimage{ejemplos/test-image}{width=10cm}{Ciudad más grande.}
 	\end{images}
 
 
