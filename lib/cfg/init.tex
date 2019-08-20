@@ -1,6 +1,6 @@
 % Template:     Template Reporte LaTeX
 % Documento:    Configuración inicial del template
-% Versión:      1.0.5 (20/08/2019)
+% Versión:      1.1.0 (20/08/2019)
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R. @ppizarror
@@ -11,8 +11,8 @@
 % Sitio web:    [https://latex.ppizarror.com/Template-Reporte/]
 % Licencia MIT: [https://opensource.org/licenses/MIT]
 
+\def\titulodelinforme{\titulodelreporte}
 \checkvardefined{\autordeldocumento}
-\checkvardefined{\codigodelcurso}
 \checkvardefined{\departamentouniversidad}
 \checkvardefined{\localizacionuniversidad}
 \checkvardefined{\nombredelcurso}
@@ -67,9 +67,9 @@
 		Template.Licencia.Web={https://opensource.org/licenses/MIT/},
 		Template.Nombre={Template-Informe},
 		Template.Tipo={Normal},
-		Template.Version.Dev={1.0.5-N},
-		Template.Version.Hash={9582C98A3221FF6B305BE34354C233B9},
-		Template.Version.Release={1.0.5},
+		Template.Version.Dev={1.1.0-N},
+		Template.Version.Hash={A0139FF01DC32CCA8DADAE44FA3D77AA},
+		Template.Version.Release={1.1.0},
 		Template.Web.Dev={https://github.com/Template-Latex/Template-Informe/},
 		Template.Web.Manual={https://latex.ppizarror.com/Template-Informe/},
 		Universidad.Departamento={\departamentouniversidad},
@@ -81,7 +81,7 @@
 	pdfmenubar={\cfgpdfmenubar},
 	pdfpagelayout={\cfgpdfpagemode},
 	pdfpagemode={\cdfpagemodepdf},
-	pdfproducer={Template-Informe v1.0.5 | (Pablo Pizarro R.) ppizarror.com},
+	pdfproducer={Template-Informe v1.1.0 | (Pablo Pizarro R.) ppizarror.com},
 	pdfremotestartview={Fit},
 	pdfstartpage={1},
 	pdfstartview={\cfgpdfpageview},
@@ -346,25 +346,30 @@
 }
 \title{\titulodelinforme}
 \author{\autordeldocumento}
+\date{\fechadeldeporte}
 \def\predocpageromannumber{false}
 \def\predocresetpagenumber{false}
 \def\tablaintegrantes{}
 \makeatletter
 \def\inserttitle{
 	\null
-	\vskip 2em
+	\vskip \titlesupmargin
 	\begin{center}
 		\let \footnote \thanks
-		{\LARGE \@title \par}
-		\vskip 1.5em
-		{\large
-			\lineskip .5em
-			\begin{tabular}[t]{c}
-				\@author
-			\end{tabular}\par}
-		\vskip 1em
-		{\large \@date}
+		{\titlefontsize \titlefontstyle \@title \par}
+		\ifthenelse{\equal{\titleshowauthor}{true}}{
+			\vskip \titlelinemargin
+			{\large
+				\lineskip 0.5em
+				\begin{tabular}[t]{c}
+					\@author
+				\end{tabular}\par}
+		}{}
+		\ifthenelse{\equal{\titleshowdate}{true}}{
+			\vskip 1em
+			{\large \@date}
+		}{}
 	\end{center}
 	\par
-	\vskip 1.5em}
+	\vskip \titlelinemargin}
 \makeatother
