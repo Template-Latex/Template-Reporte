@@ -1,5 +1,5 @@
 <h1 align="center">
-  <a href="https://latex.ppizarror.com/Template-Reporte/" title="Template-Reporte">
+  <a href="https://latex.ppizarror.com/reporte.html" title="Template-Reporte">
     <img alt="Template-Reporte" src="https://latex.ppizarror.com/res/favicon-informe/icon.png" width="200px" height="200px" />
   </a>
   <br /><br />
