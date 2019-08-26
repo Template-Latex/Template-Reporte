@@ -1,5 +1,5 @@
 <h1 align="center">
-  <a href="https://latex.ppizarror.com/reporte.html" title="Template-Reporte">
+  <a href="https://latex.ppizarror.com/reporte" title="Template-Reporte">
     <img alt="Template-Reporte" src="https://latex.ppizarror.com/res/favicon-informe/icon.png" width="200px" height="200px" />
   </a>
   <br /><br />
@@ -17,7 +17,7 @@
 </div><br />
 
 <p align="center">
-  <img src="https://latex.ppizarror.com/res/images/reporte.png" alt="Reporte" width="70%" />
+  <img src="https://latex.ppizarror.com/res/images/collage_reporte.png" alt="Reporte" width="70%" />
 </p>
 
 ## Manual de uso
