@@ -1,6 +1,6 @@
 % Template:     Template Reporte LaTeX
 % Documento:    Configuración inicial del template
-% Versión:      1.1.9 (19/09/2019)
+% Versión:      1.2.0 (02/10/2019)
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R.
@@ -61,15 +61,15 @@
 		Template.Autor.Nombre={Pablo Pizarro R.},
 		Template.Autor.Web={https://ppizarror.com/},
 		Template.Codificacion={UTF-8},
-		Template.Fecha={19/09/2019},
+		Template.Fecha={02/10/2019},
 		Template.Latex.Compilador={pdflatex},
 		Template.Licencia.Tipo={MIT},
 		Template.Licencia.Web={https://opensource.org/licenses/MIT/},
 		Template.Nombre={Template-Reporte},
 		Template.Tipo={Normal},
-		Template.Version.Dev={1.1.9-REPT-N},
-		Template.Version.Hash={6079530DA8A5584A8899AE05CA7D0D2C},
-		Template.Version.Release={1.1.9},
+		Template.Version.Dev={1.2.0-REPT-N},
+		Template.Version.Hash={43110889730E05E45DEA03F3C62923EA},
+		Template.Version.Release={1.2.0},
 		Template.Web.Dev={https://github.com/Template-Latex/Template-Reporte/},
 		Template.Web.Manual={https://latex.ppizarror.com/reporte},
 		Universidad.Departamento={\departamentouniversidad},
@@ -81,7 +81,7 @@
 	pdfmenubar={\cfgpdfmenubar},
 	pdfpagelayout={\cfgpdfpagemode},
 	pdfpagemode={\cdfpagemodepdf},
-	pdfproducer={Template-Reporte v1.1.9 | (Pablo Pizarro R.) ppizarror.com},
+	pdfproducer={Template-Reporte v1.2.0 | (Pablo Pizarro R.) ppizarror.com},
 	pdfremotestartview={Fit},
 	pdfstartpage={1},
 	pdfstartview={\cfgpdfpageview},
@@ -219,6 +219,15 @@
 }{
 	\throwbadconfig{Estilo citas desconocido}{\stylecitereferences}{bibtex,apacite,natbib}}}
 }
+\newcounter{apaciteNumberCounter}
+\addtocounter{apaciteNumberCounter}{-1}
+\makeatletter
+\ifthenelse{\equal{\stylecitereferences}{apacite}}{
+	\ifthenelse{\equal{\apaciterefnumber}{true}}{
+		\renewcommand{\@biblabel}[1]{\apaciterefnumberinit\stepcounter{apaciteNumberCounter}\theapaciteNumberCounter\apaciterefnumberfinal}
+	}{}
+}{}
+\makeatother
 \makeatletter
 \ifthenelse{\equal{\twocolumnreferences}{true}}{
 	\renewenvironment{thebibliography}[1]
