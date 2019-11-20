@@ -1,6 +1,6 @@
 % Template:     Template Reporte LaTeX
 % Documento:    Configuración inicial del template
-% Versión:      1.2.1 (18/11/2019)
+% Versión:      1.2.2 (20/11/2019)
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R.
@@ -61,15 +61,15 @@
 		Template.Autor.Nombre={Pablo Pizarro R.},
 		Template.Autor.Web={https://ppizarror.com/},
 		Template.Codificacion={UTF-8},
-		Template.Fecha={18/11/2019},
+		Template.Fecha={20/11/2019},
 		Template.Latex.Compilador={pdflatex},
 		Template.Licencia.Tipo={MIT},
 		Template.Licencia.Web={https://opensource.org/licenses/MIT/},
 		Template.Nombre={Template-Reporte},
 		Template.Tipo={Normal},
-		Template.Version.Dev={1.2.1-REPT-N},
-		Template.Version.Hash={545174C6C8858117ADF212EC6BCD40F3},
-		Template.Version.Release={1.2.1},
+		Template.Version.Dev={1.2.2-REPT-N},
+		Template.Version.Hash={36F8A777C91F381AF48BD00C98117348},
+		Template.Version.Release={1.2.2},
 		Template.Web.Dev={https://github.com/Template-Latex/Template-Reporte/},
 		Template.Web.Manual={https://latex.ppizarror.com/reporte},
 		Universidad.Departamento={\departamentouniversidad},
@@ -81,7 +81,7 @@
 	pdfmenubar={\cfgpdfmenubar},
 	pdfpagelayout={\cfgpdfpagemode},
 	pdfpagemode={\cdfpagemodepdf},
-	pdfproducer={Template-Reporte v1.2.1 | (Pablo Pizarro R.) ppizarror.com},
+	pdfproducer={Template-Reporte v1.2.2 | (Pablo Pizarro R.) ppizarror.com},
 	pdfremotestartview={Fit},
 	pdfstartpage={1},
 	pdfstartview={\cfgpdfpageview},
@@ -281,11 +281,13 @@
 \titlespacing{\subsection}{0pt}{15pt}{10pt}
 \ttfamily \hyphenchar\the\font=`\-
 \urlstyle{\fonturl}
-\pdfcompresslevel=\pdfcompilecompression
-\pdfdecimaldigits=2
-\pdfinclusionerrorlevel=0
-\pdfminorversion=\pdfcompileversion
-\pdfobjcompresslevel=\pdfcompileobjcompression
+\ifthenelse{\equal{\compilertype}{pdf2latex}}{
+	\pdfcompresslevel=\pdfcompilecompression
+	\pdfdecimaldigits=2
+	\pdfinclusionerrorlevel=0
+	\pdfminorversion=\pdfcompileversion
+	\pdfobjcompresslevel=\pdfcompileobjcompression
+}{}
 \setcounter{secnumdepth}{4}
 \newcounter{subsubsubsection}[subsubsection]
 \ifthenelse{\equal{\showdotaftersnum}{true}}{
