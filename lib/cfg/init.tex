@@ -67,8 +67,8 @@
 		Template.Licencia.Web={https://opensource.org/licenses/MIT/},
 		Template.Nombre={Template-Reporte},
 		Template.Tipo={Normal},
-		Template.Version.Dev={1.2.7-1-REPT-N},
-		Template.Version.Hash={C7791BE43808EB56C038B101E7C6AE66},
+		Template.Version.Dev={1.2.7-2-REPT-N},
+		Template.Version.Hash={9E13A4F6DAEA73F3EA5185F6A1CA6F54},
 		Template.Version.Release={1.2.7},
 		Template.Web.Dev={https://github.com/Template-Latex/Template-Reporte/},
 		Template.Web.Manual={https://latex.ppizarror.com/reporte},
@@ -294,7 +294,13 @@
 	\pdfinclusionerrorlevel=0
 	\pdfminorversion=\pdfcompileversion
 	\pdfobjcompresslevel=\pdfcompileobjcompression
-}{}
+}{
+\ifthenelse{\equal{\compilertype}{xelatex}}{
+}{
+\ifthenelse{\equal{\compilertype}{lualatex}}{
+}{
+	\throwbadconfig{Compilador desconocido}{\compilertype}{pdf2latex,xelatex,lualatex}}}
+}
 \setcounter{secnumdepth}{4}
 \newcounter{subsubsubsection}[subsubsection]
 \ifthenelse{\equal{\showdotaftersnum}{true}}{
