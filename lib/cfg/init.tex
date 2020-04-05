@@ -1,6 +1,6 @@
 % Template:     Template Reporte LaTeX
 % Documento:    Configuración inicial del template
-% Versión:      1.2.5 (02/04/2020)
+% Versión:      1.2.7 (05/04/2020)
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R.
@@ -61,15 +61,15 @@
 		Template.Autor.Nombre={Pablo Pizarro R.},
 		Template.Autor.Web={https://ppizarror.com/},
 		Template.Codificacion={UTF-8},
-		Template.Fecha={02/04/2020},
+		Template.Fecha={05/04/2020},
 		Template.Latex.Compilador={pdflatex},
 		Template.Licencia.Tipo={MIT},
 		Template.Licencia.Web={https://opensource.org/licenses/MIT/},
 		Template.Nombre={Template-Reporte},
 		Template.Tipo={Normal},
-		Template.Version.Dev={1.2.5-REPT-N},
-		Template.Version.Hash={75ACF648F621BDB038838B9F4C2AA53C},
-		Template.Version.Release={1.2.5},
+		Template.Version.Dev={1.2.7-REPT-N},
+		Template.Version.Hash={43112152586B59EFD0E73EA7ABA5BD22},
+		Template.Version.Release={1.2.7},
 		Template.Web.Dev={https://github.com/Template-Latex/Template-Reporte/},
 		Template.Web.Manual={https://latex.ppizarror.com/reporte},
 		Universidad.Departamento={\departamentouniversidad},
@@ -81,7 +81,7 @@
 	pdfmenubar={\cfgpdfmenubar},
 	pdfpagelayout={\cfgpdfpagemode},
 	pdfpagemode={\cdfpagemodepdf},
-	pdfproducer={Template-Reporte v1.2.5 | (Pablo Pizarro R.) ppizarror.com},
+	pdfproducer={Template-Reporte v1.2.7 | (Pablo Pizarro R.) ppizarror.com},
 	pdfremotestartview={Fit},
 	pdfstartpage={1},
 	pdfstartview={\cfgpdfpageview},
@@ -259,6 +259,13 @@
 	\newlistentry{lstlisting}{lol}{0}
 	\makeatother
 \endgroup
+\newcommand{\listindexequationsname}{\nomlteqn}
+\newlistof{myindexequations}{equ}{\listindexequationsname}
+\newcommand{\myindexequations}[1]{
+	\addcontentsline{equ}{myindexequations}{\protect\numberline{\theequation}#1}
+}
+\setcounter{templateIndexEquations}{0}
+\DeclareTotalCounter{templateIndexEquations}
 \makeatletter
 	\def\ifGm@preamble#1{\@firstofone}
 	\appto\restoregeometry{
