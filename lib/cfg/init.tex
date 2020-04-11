@@ -1,6 +1,6 @@
 % Template:     Template Reporte LaTeX
 % Documento:    Configuración inicial del template
-% Versión:      1.2.7 (05/04/2020)
+% Versión:      1.2.8 (11/04/2020)
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R.
@@ -61,15 +61,15 @@
 		Template.Autor.Nombre={Pablo Pizarro R.},
 		Template.Autor.Web={https://ppizarror.com/},
 		Template.Codificacion={UTF-8},
-		Template.Fecha={05/04/2020},
+		Template.Fecha={11/04/2020},
 		Template.Latex.Compilador={pdflatex},
 		Template.Licencia.Tipo={MIT},
 		Template.Licencia.Web={https://opensource.org/licenses/MIT/},
 		Template.Nombre={Template-Reporte},
 		Template.Tipo={Normal},
-		Template.Version.Dev={1.2.7-2-REPT-N},
-		Template.Version.Hash={9E13A4F6DAEA73F3EA5185F6A1CA6F54},
-		Template.Version.Release={1.2.7},
+		Template.Version.Dev={1.2.8-REPT-N},
+		Template.Version.Hash={EDB5D2D69EE3BC0A782BFF82C373E261},
+		Template.Version.Release={1.2.8},
 		Template.Web.Dev={https://github.com/Template-Latex/Template-Reporte/},
 		Template.Web.Manual={https://latex.ppizarror.com/reporte},
 		Universidad.Departamento={\departamentouniversidad},
@@ -81,7 +81,7 @@
 	pdfmenubar={\cfgpdfmenubar},
 	pdfpagelayout={\cfgpdfpagemode},
 	pdfpagemode={\cdfpagemodepdf},
-	pdfproducer={Template-Reporte v1.2.7 | (Pablo Pizarro R.) ppizarror.com},
+	pdfproducer={Template-Reporte v1.2.8 | (Pablo Pizarro R.) ppizarror.com},
 	pdfremotestartview={Fit},
 	pdfstartpage={1},
 	pdfstartview={\cfgpdfpageview},
@@ -280,6 +280,9 @@
 \hbadness=\maxdimen
 \vbadness=\maxdimen
 \makeatletter
+\def\Hv@scale{.95}
+\makeatother
+\makeatletter
 \preto\tabular{\global\rownum=\z@}
 \preto\tabularx{\global\rownum=\z@}
 \makeatother
@@ -287,6 +290,9 @@
 \titlespacing{\section}{0pt}{20pt}{10pt}
 \titlespacing{\subsection}{0pt}{15pt}{10pt}
 \ttfamily \hyphenchar\the\font=`\-
+\makeatletter
+\g@addto@macro{\UrlBreaks}{\UrlOrds}
+\makeatother
 \urlstyle{\fonturl}
 \ifthenelse{\equal{\compilertype}{pdf2latex}}{
 	\pdfcompresslevel=\pdfcompilecompression
@@ -426,6 +432,10 @@
 	\addtocounter{lstlisting}{\value{templateListings}}
 	\addtocounter{table}{\value{templateTables}}
 }
+\newcolumntype{C}[1]{>{\centering\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+\newcolumntype{L}[1]{>{\raggedright\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+\newcolumntype{P}[1]{>{\centering\arraybackslash}p{#1}}
+\newcolumntype{R}[1]{>{\raggedleft\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
 \title{\titulodelinforme}
 \author{\autordeldocumento}
 \date{\fechadelreporte}
