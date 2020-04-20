@@ -88,8 +88,8 @@
 		Template.Licencia.Web={https://opensource.org/licenses/MIT/},
 		Template.Nombre={Template-Reporte},
 		Template.Tipo={Normal},
-		Template.Version.Dev={1.2.8-2-REPT-N},
-		Template.Version.Hash={1D04A07EB19380E99A8F4BC37BFCBCB6},
+		Template.Version.Dev={1.2.8-3-REPT-N},
+		Template.Version.Hash={31EE26E5BED6E0AAF1BE16B5F2A10BFE},
 		Template.Version.Release={1.2.8},
 		Template.Web.Dev={https://github.com/Template-Latex/Template-Reporte/},
 		Template.Web.Manual={https://latex.ppizarror.com/reporte},
@@ -477,6 +477,10 @@
 				\begin{tabular}[t]{c}
 					\@author
 				\end{tabular}\par}
+		}{}
+		\ifthenelse{\equal{\titleshowcourse}{true}}{
+			\vskip 0.5em
+			{\normalsize \codigodelcurso\ - \nombredelcurso}
 		}{}
 		\ifthenelse{\equal{\titleshowdate}{true}}{
 			\vskip 1em
