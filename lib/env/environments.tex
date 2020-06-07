@@ -24,18 +24,18 @@
 	}
 	\renewcommand{\section}[2]{}
 \begin{thebibliography}{}
-\ifthenelse{\equal{\natbibtextalign}{justify}}{
+\ifthenelse{\equal{\bibtextextalign}{justify}}{
 		}{
-		\ifthenelse{\equal{\natbibtextalign}{left}}{
+		\ifthenelse{\equal{\bibtextextalign}{left}}{
 			\raggedright
 		}{
-		\ifthenelse{\equal{\natbibtextalign}{right}}{
+		\ifthenelse{\equal{\bibtextextalign}{right}}{
 			\raggedleft
 		}{
-		\ifthenelse{\equal{\natbibtextalign}{center}}{
+		\ifthenelse{\equal{\bibtextextalign}{center}}{
 			\centering
 		}{
-			\throwbadconfig{Ajuste de linea referencias desconocido}{\natbibtextalign}{justified,left,right,center}}}}
+			\throwbadconfig{Ajuste de linea referencias bibtex desconocido}{\bibtextextalign}{justified,left,right,center}}}}
 		}
 	}
 	{
