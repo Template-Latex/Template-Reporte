@@ -1195,11 +1195,7 @@
 			\vspace{\captionlessmarginimage cm}
 		\else
 			\hspace{0cm}
-			\ifthenelse{\equal{\GLOBALcaptiondefn}{EMPTY-VAR}}{
-				\caption{#5 #1}
-			}{
-				\caption[\GLOBALcaptiondefn]{#5 #1}
-			}
+			\ifthenelse{\equal{\GLOBALcaptiondefn}{EMPTY-VAR}}{\caption{#5 #1}}{\caption[\GLOBALcaptiondefn]{#5 #1}}
 		\fi
 	\end{figure}
 	\vspace{\marginimagebottom cm}
@@ -1232,11 +1228,7 @@
 		\ifx\hfuzz#5\hfuzz
 			\vspace{\captionlessmarginimage cm}
 		\else
-			\ifthenelse{\equal{\GLOBALcaptiondefn}{EMPTY-VAR}}{
-				\caption{#5 #1}
-			}{
-				\caption[\GLOBALcaptiondefn]{#5 #1}
-			}
+			\ifthenelse{\equal{\GLOBALcaptiondefn}{EMPTY-VAR}}{\caption{#5 #1}}{\caption[\GLOBALcaptiondefn]{#5 #1}}
 		\fi
 	\end{wrapfigure}
 	\setcaptionmargincm{\captionlrmargin}
@@ -1267,11 +1259,7 @@
 		\ifx\hfuzz#6\hfuzz
 			\vspace{\captionlessmarginimage cm}
 		\else
-			\ifthenelse{\equal{\GLOBALcaptiondefn}{EMPTY-VAR}}{
-				\caption{#6 #1}
-			}{
-				\caption[\GLOBALcaptiondefn]{#6 #1}
-			}
+			\ifthenelse{\equal{\GLOBALcaptiondefn}{EMPTY-VAR}}{\caption{#6 #1}}{\caption[\GLOBALcaptiondefn]{#6 #1}}
 		\fi
 	\end{wrapfigure}
 	\setcaptionmargincm{\captionlrmargin}
@@ -1302,11 +1290,7 @@
 		\ifx\hfuzz#5\hfuzz
 			\vspace{\captionlessmarginimage cm}
 		\else
-			\ifthenelse{\equal{\GLOBALcaptiondefn}{EMPTY-VAR}}{
-				\caption{#5 #1}
-			}{
-				\caption[\GLOBALcaptiondefn]{#5 #1}
-			}
+			\ifthenelse{\equal{\GLOBALcaptiondefn}{EMPTY-VAR}}{\caption{#5 #1}}{\caption[\GLOBALcaptiondefn]{#5 #1}}
 		\fi
 	\end{wrapfigure}
 	\setcaptionmargincm{\captionlrmargin}
@@ -1338,11 +1322,7 @@
 		\ifx\hfuzz#6\hfuzz
 			\vspace{\captionlessmarginimage cm}
 		\else
-			\ifthenelse{\equal{\GLOBALcaptiondefn}{EMPTY-VAR}}{
-				\caption{#6 #1}
-			}{
-				\caption[\GLOBALcaptiondefn]{#6 #1}
-			}
+			\ifthenelse{\equal{\GLOBALcaptiondefn}{EMPTY-VAR}}{\caption{#6 #1}}{\caption[\GLOBALcaptiondefn]{#6 #1}}
 		\fi
 	\end{wrapfigure}
 	\setcaptionmargincm{\captionlrmargin}
@@ -1377,11 +1357,7 @@
 		\ifx\hfuzz#6\hfuzz
 			\vspace{\captionlessmarginimage cm}
 		\else
-			\ifthenelse{\equal{\GLOBALcaptiondefn}{EMPTY-VAR}}{
-				\caption{#6 #1}
-			}{
-				\caption[\GLOBALcaptiondefn]{#6 #1}
-			}
+			\ifthenelse{\equal{\GLOBALcaptiondefn}{EMPTY-VAR}}{\caption{#6 #1}}{\caption[\GLOBALcaptiondefn]{#6 #1}}
 		\fi
 	\end{wrapfigure}
 	\setcaptionmargincm{\captionlrmargin}
@@ -1414,11 +1390,7 @@
 		\ifx\hfuzz#7\hfuzz
 			\vspace{\captionlessmarginimage cm}
 		\else
-			\ifthenelse{\equal{\GLOBALcaptiondefn}{EMPTY-VAR}}{
-				\caption{#7 #1}
-			}{
-				\caption[\GLOBALcaptiondefn]{#7 #1}
-			}
+			\ifthenelse{\equal{\GLOBALcaptiondefn}{EMPTY-VAR}}{\caption{#7 #1}}{\caption[\GLOBALcaptiondefn]{#7 #1}}
 		\fi
 	\end{wrapfigure}
 	\setcaptionmargincm{\captionlrmargin}
@@ -1453,11 +1425,7 @@
 		\ifx\hfuzz#6\hfuzz
 			\vspace{\captionlessmarginimage cm}
 		\else
-			\ifthenelse{\equal{\GLOBALcaptiondefn}{EMPTY-VAR}}{
-				\caption{#6 #1}
-			}{
-				\caption[\GLOBALcaptiondefn]{#6 #1}
-			}
+			\ifthenelse{\equal{\GLOBALcaptiondefn}{EMPTY-VAR}}{\caption{#6 #1}}{\caption[\GLOBALcaptiondefn]{#6 #1}}
 		\fi
 	\end{wrapfigure}
 	\setcaptionmargincm{\captionlrmargin}
@@ -1490,11 +1458,7 @@
 		\ifx\hfuzz#7\hfuzz
 			\vspace{\captionlessmarginimage cm}
 		\else
-			\ifthenelse{\equal{\GLOBALcaptiondefn}{EMPTY-VAR}}{
-				\caption{#7 #1}
-			}{
-				\caption[\GLOBALcaptiondefn]{#7 #1}
-			}
+			\ifthenelse{\equal{\GLOBALcaptiondefn}{EMPTY-VAR}}{\caption{#7 #1}}{\caption[\GLOBALcaptiondefn]{#7 #1}}
 		\fi
 	\end{wrapfigure}
 	\setcaptionmargincm{\captionlrmargin}
@@ -2896,8 +2860,8 @@
 		Template.Licencia.Web={https://opensource.org/licenses/MIT/},
 		Template.Nombre={Template-Reporte},
 		Template.Tipo={Normal},
-		Template.Version.Dev={2.0.0-alpha-1-REPT-N},
-		Template.Version.Hash={9A9819E48BF8B895BD82C57BE1F8C366},
+		Template.Version.Dev={2.0.0-alpha-2-REPT-N},
+		Template.Version.Hash={096261AD86153A03C3C2A9C5B722E9FA},
 		Template.Version.Release={2.0.0},
 		Template.Web.Dev={https://github.com/Template-Latex/Template-Reporte/},
 		Template.Web.Manual={https://latex.ppizarror.com/reporte},
