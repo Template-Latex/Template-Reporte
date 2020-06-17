@@ -1595,29 +1595,39 @@
 	\resetindexcaption
 }
 
+% Insertar una imagen en un entorno multicol
+% 	#1	Label (opcional)
+%	#2	Dirección de la imagen
+%	#3	Parámetros de la imagen
+%	#4	Leyenda de la imagen (opcional)
+\newcommand{\insertimagemc}[5][]{
+	\setcaptionmargincm{\captionlrmarginmc}
+	\insertimageboxed[#1]{#2}{#3}{0}{#4}
+	\setcaptionmargincm{\captionlrmargin}
+}
+
 % Insertar una imagen completa en un entorno multicol
 % 	#1	Label (opcional)
 %	#2	Dirección de la imagen
 %	#3	Parámetros de la imagen
-%	#4	Posición, "top" o "bottom"
+%	#4	Posición, "bottom" o "top"
 %	#5	Leyenda de la imagen (opcional)
-\newcommand{\insertimagemc}[5][]{
-	\insertimageboxedmc[#1]{#2}{#3}{0}{#4}{#5}
+\newcommand{\insertimagemcfull}[5][]{
+	\insertimageboxedmcfull[#1]{#2}{#3}{0}{#4}{#5}
 }
-
 
 % Insertar una imagen completa con recuadro en un entorno multicol
 % 	#1	Label (opcional)
 %	#2	Dirección de la imagen
 %	#3	Parámetros de la imagen
 %	#4	Ancho de la línea (en pt)
-%	#5	Posición, "top" o "bottom"
+%	#5	Posición, "bottom" o "top"
 %	#6	Leyenda de la imagen (opcional)
-\newcommand{\insertimageboxedmc}[6][]{
-	\emptyvarerr{\insertimageboxedmc}{#2}{Direccion de la imagen no definida}
-	\emptyvarerr{\insertimageboxedmc}{#3}{Parametros de la imagen no definidos}
-	\emptyvarerr{\insertimageboxedmc}{#4}{Ancho de la linea no definido}
-	\emptyvarerr{\insertimageboxedmc}{#5}{Posicion de la imagen no definida}
+\newcommand{\insertimageboxedmcfull}[6][]{
+	\emptyvarerr{\insertimageboxedmcfull}{#2}{Direccion de la imagen no definida}
+	\emptyvarerr{\insertimageboxedmcfull}{#3}{Parametros de la imagen no definidos}
+	\emptyvarerr{\insertimageboxedmcfull}{#4}{Ancho de la linea no definido}
+	\emptyvarerr{\insertimageboxedmcfull}{#5}{Posicion de la imagen no definida}
 	\checkoutsideenvimage
 	\setcaptionmargincm{\captionlrmarginmc}
 	\ifthenelse{\equal{#5}{bottom}}{
@@ -2995,6 +3005,46 @@
 	\def\GLOBALenvimageinitialized {false}
 }
 
+% Crea una sección de imágenes múltiples dentro de un multicol
+%	#1	Label (opcional)
+%	#2	Posición de la imagen, "bottom" o "top"
+%	#3	Caption
+\newenvironment{imagesmc}[3][]{
+	% Modifica globales
+	\def\envimageslabelvar {#1}
+	\def\envimagescaptionvar {#3}
+	\def\GLOBALenvimageinitialized {true}
+	\def\GLOBALenvimageadded {false}
+	
+	% Configura caption y márgenes
+	\setcaptionmargincm{\captionmarginmultimg}
+	
+	% Inicia la figura
+	\ifthenelse{\equal{#2}{bottom}}{
+		\begin{figure*}[b!] \centering
+		}{
+	\ifthenelse{\equal{#2}{top}}{
+		\begin{figure*}[t!] \centering
+	}{
+		\errmessage{LaTeX Warning: Posicion de imagen invalida, valores esperados: bottom,top}
+	}}
+		\vspace{\marginimagemulttop cm}
+	}{
+		\setcaptionmargincm{\captionlrmargin}
+		\ifthenelse{\equal{\envimagescaptionvar}{}}{ % \ifx\hfuzz no sirve
+			\vspace{\captionlessmarginimage cm}
+		}{
+			\caption{\envimagescaptionvar\envimageslabelvar}
+		}
+	\end{figure*}
+	
+	% Reestablece caption y márgenes
+	\setcaptionmargincm{\captionlrmargin}
+	
+	% Reestablece globales
+	\def\GLOBALenvimageinitialized {false}
+}
+
 % IMPORTACIÓN DE ESTILOS
 \colorlet{numb}{magenta!60!black}
 \colorlet{punct}{red!60!black}
@@ -3836,8 +3886,8 @@
 		Template.Licencia.Web={https://opensource.org/licenses/MIT/},
 		Template.Nombre={Template-Reporte},
 		Template.Tipo={Normal},
-		Template.Version.Dev={2.0.0-beta-6-REPT},
-		Template.Version.Hash={0699B82DB1F3756AFBC0A82C52836273},
+		Template.Version.Dev={2.0.0-beta-7-REPT},
+		Template.Version.Hash={6FF1F884CB3F50F05094DA3326AE2732},
 		Template.Version.Release={2.0.0},
 		Template.Web.Dev={https://github.com/Template-Latex/Template-Reporte/},
 		Template.Web.Manual={https://latex.ppizarror.com/reporte},

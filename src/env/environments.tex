@@ -240,3 +240,29 @@
 	\vspace{\marginimagebottom cm}
 	\def\GLOBALenvimageinitialized {false}
 }
+\newenvironment{imagesmc}[3][]{
+	\def\envimageslabelvar {#1}
+	\def\envimagescaptionvar {#3}
+	\def\GLOBALenvimageinitialized {true}
+	\def\GLOBALenvimageadded {false}
+	\setcaptionmargincm{\captionmarginmultimg}
+	\ifthenelse{\equal{#2}{bottom}}{
+		\begin{figure*}[b!] \centering
+		}{
+	\ifthenelse{\equal{#2}{top}}{
+		\begin{figure*}[t!] \centering
+	}{
+		\errmessage{LaTeX Warning: Posicion de imagen invalida, valores esperados: bottom,top}
+	}}
+		\vspace{\marginimagemulttop cm}
+	}{
+		\setcaptionmargincm{\captionlrmargin}
+\ifthenelse{\equal{\envimagescaptionvar}{}}{
+			\vspace{\captionlessmarginimage cm}
+		}{
+			\caption{\envimagescaptionvar\envimageslabelvar}
+		}
+	\end{figure*}
+	\setcaptionmargincm{\captionlrmargin}
+	\def\GLOBALenvimageinitialized {false}
+}
