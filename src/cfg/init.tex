@@ -1,6 +1,6 @@
 % Template:     Template Reporte LaTeX
 % Documento:    Configuración inicial del template
-% Versión:      2.0.0 (16/06/2020)
+% Versión:      2.0.0 (17/06/2020)
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R.
@@ -82,14 +82,14 @@
 		Template.Autor.Nombre={Pablo Pizarro R.},
 		Template.Autor.Web={https://ppizarror.com/},
 		Template.Codificacion={UTF-8},
-		Template.Fecha={16/06/2020},
+		Template.Fecha={17/06/2020},
 		Template.Latex.Compilador={pdflatex},
 		Template.Licencia.Tipo={MIT},
 		Template.Licencia.Web={https://opensource.org/licenses/MIT/},
 		Template.Nombre={Template-Reporte},
 		Template.Tipo={Normal},
-		Template.Version.Dev={2.0.0-beta-5-REPT},
-		Template.Version.Hash={519FA3ADC37F82C82EF0FC8BEDEC296E},
+		Template.Version.Dev={2.0.0-beta-6-REPT},
+		Template.Version.Hash={0699B82DB1F3756AFBC0A82C52836273},
 		Template.Version.Release={2.0.0},
 		Template.Web.Dev={https://github.com/Template-Latex/Template-Reporte/},
 		Template.Web.Manual={https://latex.ppizarror.com/reporte},
@@ -111,7 +111,7 @@
 	pdftoolbar={\cfgpdftoolbar}
 }
 \graphicspath{{./\defaultimagefolder}{./\defaultimagefolder/departamentos/}}
-\renewcommand{\baselinestretch}{\defaultinterline}
+\renewcommand{\baselinestretch}{\documentinterline}
 \setlength{\headheight}{64 pt}
 \setlength{\footnotemargin}{\marginfootnote pt}
 \setlength{\columnsep}{\columnsepwidth em}
@@ -225,7 +225,7 @@
 	\bibliographystyle{\apacitestyle}
 	\setlength{\bibitemsep}{\apaciterefsep pt}
 	\newcommand{\citet}[1]{\texttt{\textbackslash citet\{#1\}}}
-	\newcommand{\citep}[1]{\texttt{\textbackslash citep\{#1\}}}
+	\newcommand{\citep}[1]{\texttt{\textbackslash citep\{#1\}}}	
 }{
 \ifthenelse{\equal{\stylecitereferences}{bibtex}}{
 	\def\twocolumnreferencesmargin{-0.35cm}
@@ -254,6 +254,13 @@
 	}{}
 }{}
 \makeatother
+\ifthenelse{\equal{\stylecitereferences}{apacite}}{
+	\ifthenelse{\equal{\apaciteshowurl}{false}}{
+		\renewenvironment{APACrefURL}[1][]{}{}
+		\AtBeginEnvironment{APACrefURL}{\renewcommand{\url}[1]{}}
+		\renewcommand{\doiprefix}{doi:~\kern-1pt}
+	}{}
+}{}
 \makeatletter
 \ifthenelse{\equal{\twocolumnreferences}{true}}{
 	\renewenvironment{thebibliography}[1]
