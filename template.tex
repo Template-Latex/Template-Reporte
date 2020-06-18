@@ -810,6 +810,25 @@
 \makeatletter
 \newcommand\addpathimage[1]{\gappto\Ginput@path{{#1}}}
 \makeatother
+
+% Verifica que un tamaño de fuente sea correcto
+%	#1	Tamaño de fuente
+\newcommand{\corecheckfontsize}[1]{
+	\ifthenelse{\equal{#1}{normalsize}}{}{
+	\ifthenelse{\equal{#1}{small}}{}{
+	\ifthenelse{\equal{#1}{large}}{}{
+	\ifthenelse{\equal{#1}{Large}}{}{
+	\ifthenelse{\equal{#1}{LARGE}}{}{
+	\ifthenelse{\equal{#1}{huge}}{}{
+	\ifthenelse{\equal{#1}{Huge}}{}{
+	\ifthenelse{\equal{#1}{HUGE}}{}{
+	\ifthenelse{\equal{#1}{footnotesize}}{}{
+	\ifthenelse{\equal{#1}{scriptsize}}{}{
+		\errmessage{LaTeX Warning: Tamano de fuente incorrecto (\noexpand #1= #1). Valores esperados: scriptsize,footnotesize,small,normalisize,large,Large,LARGE,huge,Huge,HUGE}
+		\stop
+		}}}}}}}}}
+	}
+}
 % Insertar sub-índice, a_b
 % 	#1	Elemento inferior (a)
 %	#2	Elemento superior (b)
@@ -1182,7 +1201,7 @@
 			\end{equation}
 			\vspace{\margineqncaptiontop cm}
 			\begin{changemargin}{\captionlrmargin cm}{\captionlrmargin cm}
-				\centering \textcolor{\captiontextcolor}{#3}
+				\centering \textcolor{\captiontextcolor}{\begin{\captionfontsize}#3\end{\captionfontsize}}
 				\vspace{\margineqncaptionbottom cm}
 			\end{changemargin}
 			\vspace{\margineqncaptionbottom cm}
@@ -1210,7 +1229,7 @@
 		\end{equation*}
 		\vspace{\margineqncaptiontop cm}
 		\begin{changemargin}{\captionlrmargin cm}{\captionlrmargin cm}
-			\centering \textcolor{\captiontextcolor}{#2}
+			\centering \textcolor{\captiontextcolor}{\begin{\captionfontsize}#2\end{\captionfontsize}}
 			\vspace{\margineqncaptionbottom cm}
 		\end{changemargin}
 		\vspace{\margineqncaptionbottom cm}
@@ -1258,7 +1277,7 @@
 			\end{gather}
 			\vspace{\margingathercapttop cm}
 			\begin{changemargin}{\captionlrmargin cm}{\captionlrmargin cm}
-				\centering \textcolor{\captiontextcolor}{#2}
+				\centering \textcolor{\captiontextcolor}{\begin{\captionfontsize}#2\end{\captionfontsize}}
 				\vspace{\margingathercaptbottom cm}
 			\end{changemargin}
 			\vspace{\margingathercaptbottom cm}
@@ -1282,7 +1301,7 @@
 		\end{gather*}
 		\vspace{\margingathercapttop cm}
 		\begin{changemargin}{\captionlrmargin cm}{\captionlrmargin cm}
-			\centering \textcolor{\captiontextcolor}{#2}
+			\centering \textcolor{\captiontextcolor}{\begin{\captionfontsize}#2\end{\captionfontsize}}
 			\vspace{\margingathercaptbottom cm}
 		\end{changemargin}
 		\vspace{\margingathercaptbottom cm}
@@ -1344,7 +1363,7 @@
 			\end{equation}
 			\vspace{\margingatheredcapttop cm}
 			\begin{changemargin}{\captionlrmargin cm}{\captionlrmargin cm}
-				\centering \textcolor{\captiontextcolor}{#3}
+				\centering \textcolor{\captiontextcolor}{\begin{\captionfontsize}#3\end{\captionfontsize}}
 				\vspace{\margingatheredcaptbottom cm}
 			\end{changemargin}
 			\vspace{\margingatheredcaptbottom cm}
@@ -1372,7 +1391,7 @@
 		\end{gather*}
 		\vspace{\margingatheredcapttop cm}
 		\begin{changemargin}{\captionlrmargin cm}{\captionlrmargin cm}
-			\centering \textcolor{\captiontextcolor}{#2}
+			\centering \textcolor{\captiontextcolor}{\begin{\captionfontsize}#2\end{\captionfontsize}}
 			\vspace{\margingatheredcaptbottom cm}
 		\end{changemargin}
 		\vspace{\margingathercaptbottom cm}
@@ -1420,7 +1439,7 @@
 			\end{align}
 			\vspace{\marginaligncapttop cm}
 			\begin{changemargin}{\captionlrmargin cm}{\captionlrmargin cm}
-				\centering \textcolor{\captiontextcolor}{#2}
+				\centering \textcolor{\captiontextcolor}{\begin{\captionfontsize}#2\end{\captionfontsize}}
 				\vspace{\marginaligncaptbottom cm}
 			\end{changemargin}
 			\vspace{\marginaligncaptbottom cm}
@@ -1444,7 +1463,7 @@
 		\end{align*}
 		\vspace{\marginaligncapttop cm}
 		\begin{changemargin}{\captionlrmargin cm}{\captionlrmargin cm}
-			\centering \textcolor{\captiontextcolor}{#2}
+			\centering \textcolor{\captiontextcolor}{\begin{\captionfontsize}#2\end{\captionfontsize}}
 			\vspace{\marginaligncaptbottom cm}
 		\end{changemargin}
 		\vspace{\marginaligncaptbottom cm}
@@ -1502,7 +1521,7 @@
 			\end{equation}
 			\vspace{\marginalignedcapttop cm}
 			\begin{changemargin}{\captionlrmargin cm}{\captionlrmargin cm}
-				\centering \textcolor{\captiontextcolor}{#3}
+				\centering \textcolor{\captiontextcolor}{\begin{\captionfontsize}#3\end{\captionfontsize}}
 				\vspace{\marginalignedcaptbottom cm}
 			\end{changemargin}
 			\vspace{\marginalignedcaptbottom cm}
@@ -1532,7 +1551,7 @@
 		\end{equation}
 		\vspace{\marginalignedcapttop cm}
 		\begin{changemargin}{\captionlrmargin cm}{\captionlrmargin cm}
-			\centering \textcolor{\captiontextcolor}{#2}
+			\centering \textcolor{\captiontextcolor}{\begin{\captionfontsize}#2\end{\captionfontsize}}
 			\vspace{\marginalignedcaptbottom cm}
 		\end{changemargin}
 		\vspace{\marginalignedcaptbottom cm}
@@ -3841,6 +3860,12 @@
 
 % -----------------------------------------------------------------------------
 % -----------------------------------------------------------------------------
+% Verifica tamaños de fuentes
+% -----------------------------------------------------------------------------
+\corecheckfontsize{\captionfontsize}
+\corecheckfontsize{\subcaptionfsize}
+
+% -----------------------------------------------------------------------------
 % Se activan números en menú marcadores del pdf
 % -----------------------------------------------------------------------------
 \ifthenelse{\equal{\cfgpdfsecnumbookmarks}{true}}{
@@ -3904,8 +3929,8 @@
 		Template.Licencia.Web={https://opensource.org/licenses/MIT/},
 		Template.Nombre={Template-Reporte},
 		Template.Tipo={Normal},
-		Template.Version.Dev={2.0.0-beta-2-REPT},
-		Template.Version.Hash={59CB575742B1F913E6F0DEF157FF9BFA},
+		Template.Version.Dev={2.0.0-beta-4-REPT},
+		Template.Version.Hash={CA37BAB4DA67B04930C7AFF602495429},
 		Template.Version.Release={2.0.0},
 		Template.Web.Dev={https://github.com/Template-Latex/Template-Reporte/},
 		Template.Web.Manual={https://latex.ppizarror.com/reporte},
@@ -4007,6 +4032,7 @@
 
 % Se configura el texto de los caption
 \captionsetup{
+	font={\captionfontsize},
 	labelfont={color=\captioncolor, \captiontextbold},
 	labelformat={\captionlabelformat},
 	labelsep={\captionlabelsep},
@@ -4016,6 +4042,7 @@
 
 % Configura texto de los subcaption
 \captionsetup*[subfigure]{
+	font={\subcaptionfsize},
 	labelfont={color=\captioncolor, \captiontextsubnumbold},
 	labelformat={\subcaptionlabelformat},
 	labelsep={\subcaptionlabelsep},
@@ -4023,6 +4050,7 @@
 	singlelinecheck=on
 }
 \captionsetup*[subtable]{
+	font={\subcaptionfsize},
 	labelfont={color=\captioncolor, \captiontextsubnumbold},
 	labelformat={\subcaptionlabelformat},
 	labelsep={\subcaptionlabelsep},
@@ -4465,7 +4493,7 @@
 		{\titlefontsize \titlefontstyle \@title \par}
 		\ifthenelse{\equal{\titleshowauthor}{true}}{
 			\vskip \titlelinemargin
-			{\large
+			{\normalsize
 				\lineskip 0.5em
 				\begin{tabular}[t]{c}
 					\@author
@@ -4477,7 +4505,7 @@
 		}{}
 		\ifthenelse{\equal{\titleshowdate}{true}}{
 			\vskip 1em
-			{\large \@date}
+			{\normalsize \@date}
 		}{}
 	\end{center}
 	\par

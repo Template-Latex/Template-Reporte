@@ -31,6 +31,8 @@
 	\g@addto@macro\temaatratar\xspace
 	\g@addto@macro\titulodelinforme\xspace
 \makeatother
+\corecheckfontsize{\captionfontsize}
+\corecheckfontsize{\subcaptionfsize}
 \ifthenelse{\equal{\cfgpdfsecnumbookmarks}{true}}{
 	\bookmarksetup{numbered}}{
 }
@@ -88,8 +90,8 @@
 		Template.Licencia.Web={https://opensource.org/licenses/MIT/},
 		Template.Nombre={Template-Reporte},
 		Template.Tipo={Normal},
-		Template.Version.Dev={2.0.0-beta-2-REPT},
-		Template.Version.Hash={59CB575742B1F913E6F0DEF157FF9BFA},
+		Template.Version.Dev={2.0.0-beta-4-REPT},
+		Template.Version.Hash={CA37BAB4DA67B04930C7AFF602495429},
 		Template.Version.Release={2.0.0},
 		Template.Web.Dev={https://github.com/Template-Latex/Template-Reporte/},
 		Template.Web.Manual={https://latex.ppizarror.com/reporte},
@@ -160,6 +162,7 @@
 	\renewcommand{\captiontextsubnumbold}{}
 }
 \captionsetup{
+	font={\captionfontsize},
 	labelfont={color=\captioncolor, \captiontextbold},
 	labelformat={\captionlabelformat},
 	labelsep={\captionlabelsep},
@@ -167,6 +170,7 @@
 	singlelinecheck=on
 }
 \captionsetup*[subfigure]{
+	font={\subcaptionfsize},
 	labelfont={color=\captioncolor, \captiontextsubnumbold},
 	labelformat={\subcaptionlabelformat},
 	labelsep={\subcaptionlabelsep},
@@ -174,6 +178,7 @@
 	singlelinecheck=on
 }
 \captionsetup*[subtable]{
+	font={\subcaptionfsize},
 	labelfont={color=\captioncolor, \captiontextsubnumbold},
 	labelformat={\subcaptionlabelformat},
 	labelsep={\subcaptionlabelsep},
@@ -490,7 +495,7 @@
 		{\titlefontsize \titlefontstyle \@title \par}
 		\ifthenelse{\equal{\titleshowauthor}{true}}{
 			\vskip \titlelinemargin
-			{\large
+			{\normalsize
 				\lineskip 0.5em
 				\begin{tabular}[t]{c}
 					\@author
@@ -502,7 +507,7 @@
 		}{}
 		\ifthenelse{\equal{\titleshowdate}{true}}{
 			\vskip 1em
-			{\large \@date}
+			{\normalsize \@date}
 		}{}
 	\end{center}
 	\par
