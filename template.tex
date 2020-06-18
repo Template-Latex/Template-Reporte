@@ -3023,45 +3023,11 @@
 	\def\GLOBALenvimageinitialized {false}
 }
 
-% Crea una sección de imágenes múltiples en un entorno multicol
-%	#1	Label (opcional)
-%	#2	Caption
-\newenvironment{imagesmc}[2][]{
-	% Modifica globales
-	\def\envimageslabelvar {#1}
-	\def\envimagescaptionvar {#2}
-	\def\GLOBALenvimageinitialized {true}
-	\def\GLOBALenvimageadded {false}
-	
-	% Configura caption y márgenes
-	\vspace{\marginimagetop cm}
-	\setcaptionmargincm{\captionlrmarginmc}
-	
-	% Inicia la figura
-	\begin{figure}[H] \centering
-		\vspace{\marginimagemulttop cm}
-	}{
-		\setcaptionmargincm{\captionlrmargin}
-		\ifthenelse{\equal{\envimagescaptionvar}{}}{ % \ifx\hfuzz no sirve
-			\vspace{\captionlessmarginimage cm}
-		}{
-			\caption{\envimagescaptionvar\envimageslabelvar}
-		}
-	\end{figure}
-	
-	% Reestablece caption y márgenes
-	\setcaptionmargincm{\captionlrmargin}
-	\vspace{\marginimagebottom cm}
-	
-	% Reestablece globales
-	\def\GLOBALenvimageinitialized {false}
-}
-
 % Crea una sección de imágenes múltiples completa dentro de un multicol
 %	#1	Label (opcional)
 %	#2	Posición de la imagen, "bottom" o "top"
 %	#3	Caption
-\newenvironment{imagesmcfull}[3][]{
+\newenvironment{imagesmc}[3][]{
 	% Modifica globales
 	\def\envimageslabelvar {#1}
 	\def\envimagescaptionvar {#3}
@@ -3938,8 +3904,8 @@
 		Template.Licencia.Web={https://opensource.org/licenses/MIT/},
 		Template.Nombre={Template-Reporte},
 		Template.Tipo={Normal},
-		Template.Version.Dev={2.0.0-beta-9-REPT},
-		Template.Version.Hash={ED669F1C53B53DBDC471867DA6856C77},
+		Template.Version.Dev={2.0.0-beta-2-REPT},
+		Template.Version.Hash={59CB575742B1F913E6F0DEF157FF9BFA},
 		Template.Version.Release={2.0.0},
 		Template.Web.Dev={https://github.com/Template-Latex/Template-Reporte/},
 		Template.Web.Manual={https://latex.ppizarror.com/reporte},
