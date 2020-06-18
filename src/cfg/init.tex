@@ -1,6 +1,6 @@
 % Template:     Template Reporte LaTeX
 % Documento:    Configuración inicial del template
-% Versión:      2.0.0 (17/06/2020)
+% Versión:      2.0.0 (18/06/2020)
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R.
@@ -82,14 +82,14 @@
 		Template.Autor.Nombre={Pablo Pizarro R.},
 		Template.Autor.Web={https://ppizarror.com/},
 		Template.Codificacion={UTF-8},
-		Template.Fecha={17/06/2020},
+		Template.Fecha={18/06/2020},
 		Template.Latex.Compilador={pdflatex},
 		Template.Licencia.Tipo={MIT},
 		Template.Licencia.Web={https://opensource.org/licenses/MIT/},
 		Template.Nombre={Template-Reporte},
 		Template.Tipo={Normal},
-		Template.Version.Dev={2.0.0-beta-7-REPT},
-		Template.Version.Hash={6FF1F884CB3F50F05094DA3326AE2732},
+		Template.Version.Dev={2.0.0-beta-8-REPT},
+		Template.Version.Hash={AB26F12975943508E14D99BDBE512C20},
 		Template.Version.Release={2.0.0},
 		Template.Web.Dev={https://github.com/Template-Latex/Template-Reporte/},
 		Template.Web.Manual={https://latex.ppizarror.com/reporte},
@@ -110,7 +110,13 @@
 	pdftitle={\pdfmetainfotitulo},
 	pdftoolbar={\cfgpdftoolbar}
 }
-\graphicspath{{./\defaultimagefolder}{./\defaultimagefolder/departamentos/}}
+\graphicspath{{./\defaultimagefolder}}
+\makeatletter
+\ifthenelse{\equal{\fpremovetopbottomcenter}{true}}{
+	\setlength{\@fptop}{0pt}
+	\setlength{\@fpbot}{0pt}
+}{}
+\makeatother
 \renewcommand{\baselinestretch}{\documentinterline}
 \setlength{\headheight}{64 pt}
 \setlength{\footnotemargin}{\marginfootnote pt}
