@@ -3976,8 +3976,8 @@
 		Template.Licencia.Web={https://opensource.org/licenses/MIT/},
 		Template.Nombre={Template-Reporte},
 		Template.Tipo={Normal},
-		Template.Version.Dev={2.0.0-beta-3-REPT},
-		Template.Version.Hash={CAA1BBDD0124DEE60F48329E16ECF689},
+		Template.Version.Dev={2.0.0-beta-4-REPT},
+		Template.Version.Hash={A8A5FFD30E8E613E0300F7AC70575E3A},
 		Template.Version.Release={2.0.0},
 		Template.Web.Dev={https://github.com/Template-Latex/Template-Reporte/},
 		Template.Web.Manual={https://latex.ppizarror.com/reporte},
@@ -4161,15 +4161,15 @@
 	\def\twocolumnreferencesmargin{-0.35cm}
 	\bibliographystyle{\natbibrefstyle}
 	\setlength{\bibsep}{\natbibrefsep pt}
-	\newcommand{\shortcite}[1]{\texttt{\textbackslash shortcite\{#1\}}}
-	\newcommand{\fullcite}[1]{\texttt{\textbackslash fullcite\{#1\}}}
+	\newcommand{\shortcite}[1]{\citep{#1}}
+	\newcommand{\fullcite}[1]{\citet{#1}}
 }{
 \ifthenelse{\equal{\stylecitereferences}{apacite}}{
 	\def\twocolumnreferencesmargin{-0.39cm}
 	\bibliographystyle{\apacitestyle}
 	\setlength{\bibitemsep}{\apaciterefsep pt}
-	\newcommand{\citet}[1]{\texttt{\textbackslash citet\{#1\}}}
-	\newcommand{\citep}[1]{\texttt{\textbackslash citep\{#1\}}}	
+	\newcommand{\citep}[1]{\fullcite{#1}}
+	\newcommand{\citet}[1]{\shortcite{#1}}
 }{
 \ifthenelse{\equal{\stylecitereferences}{bibtex}}{
 	\def\twocolumnreferencesmargin{-0.35cm}
