@@ -1607,7 +1607,7 @@
 			\setlength{\fboxsep}{0 pt}
 			\setlength{\fboxrule}{#4 pt}
 			\centering
-			\fbox{\includegraphics[#3]{#2}}
+			\fbox{\includegraphics[#3]{#2}}%
 		\endgroup
 		\ifx\hfuzz#5\hfuzz
 			\vspace{\captionlessmarginimage cm}
@@ -1679,7 +1679,7 @@
 			\setlength{\fboxsep}{0 pt}
 			\setlength{\fboxrule}{#4 pt}
 			\centering
-			\fbox{\includegraphics[#3]{#2}}
+			\fbox{\includegraphics[#3]{#2}}%
 		\endgroup
 		\ifx\hfuzz#6\hfuzz
 			\vspace{\captionlessmarginimage cm}
@@ -1735,7 +1735,7 @@
 			\setlength{\fboxsep}{0 pt}
 			\setlength{\fboxrule}{#4 pt}
 			\centering
-			\fbox{\includegraphics[width=\linewidth]{#2}}
+			\fbox{\includegraphics[width=\linewidth]{#2}}%
 		\endgroup
 		\ifx\hfuzz#5\hfuzz
 			\vspace{\captionlessmarginimage cm}
@@ -1781,7 +1781,7 @@
 			\setlength{\fboxsep}{0 pt}
 			\setlength{\fboxrule}{#4 pt}
 			\centering
-			\fbox{\includegraphics[width=\linewidth]{#2}}
+			\fbox{\includegraphics[width=\linewidth]{#2}}%
 		\endgroup
 		\ifx\hfuzz#6\hfuzz
 			\vspace{\captionlessmarginimage cm}
@@ -1825,7 +1825,7 @@
 			\setlength{\fboxsep}{0 pt}
 			\setlength{\fboxrule}{#4 pt}
 			\centering
-			\fbox{\includegraphics[width=\linewidth]{#2}}
+			\fbox{\includegraphics[width=\linewidth]{#2}}%
 		\endgroup
 		\ifx\hfuzz#5\hfuzz
 			\vspace{\captionlessmarginimage cm}
@@ -1872,7 +1872,7 @@
 			\setlength{\fboxsep}{0 pt}
 			\setlength{\fboxrule}{#4 pt}
 			\centering
-			\fbox{\includegraphics[width=\linewidth]{#2}}
+			\fbox{\includegraphics[width=\linewidth]{#2}}%
 		\endgroup
 		\ifx\hfuzz#6\hfuzz
 			\vspace{\captionlessmarginimage cm}
@@ -1922,7 +1922,7 @@
 			\setlength{\fboxsep}{0 pt}
 			\setlength{\fboxrule}{#5 pt}
 			\centering
-			\fbox{\includegraphics[#4]{#2}}
+			\fbox{\includegraphics[#4]{#2}}%
 		\endgroup
 		\ifx\hfuzz#6\hfuzz
 			\vspace{\captionlessmarginimage cm}
@@ -1972,7 +1972,7 @@
 			\setlength{\fboxsep}{0 pt}
 			\setlength{\fboxrule}{#5 pt}
 			\centering
-			\fbox{\includegraphics[#4]{#2}}
+			\fbox{\includegraphics[#4]{#2}}%
 		\endgroup
 		\ifx\hfuzz#7\hfuzz
 			\vspace{\captionlessmarginimage cm}
@@ -2022,7 +2022,7 @@
 			\setlength{\fboxsep}{0 pt}
 			\setlength{\fboxrule}{#5 pt}
 			\centering
-			\fbox{\includegraphics[#4]{#2}}
+			\fbox{\includegraphics[#4]{#2}}%
 		\endgroup
 		\ifx\hfuzz#6\hfuzz
 			\vspace{\captionlessmarginimage cm}
@@ -2072,7 +2072,7 @@
 			\setlength{\fboxsep}{0 pt}
 			\setlength{\fboxrule}{#5 pt}
 			\centering
-			\fbox{\includegraphics[#4]{#2}}
+			\fbox{\includegraphics[#4]{#2}}%
 		\endgroup
 		\ifx\hfuzz#7\hfuzz
 			\vspace{\captionlessmarginimage cm}
@@ -3025,7 +3025,7 @@
 	% Inicia la figura
 	\begin{figure}[H] \centering
 		\vspace{\marginimagemulttop cm}
-		}{
+		}{%
 		\setcaptionmargincm{\captionlrmargin}
 		\ifthenelse{\equal{\envimagescaptionvar}{}}{ % \ifx\hfuzz no sirve
 			\vspace{\captionlessmarginimage cm}
@@ -3059,10 +3059,10 @@
 	% Inicia la figura
 	\ifthenelse{\equal{#2}{bottom}}{
 		\begin{figure*}[b!] \centering \thisfloatpagestyle{fancy}
-		}{
+		}{%
 	\ifthenelse{\equal{#2}{top}}{
 		\begin{figure*}[t!] \centering \thisfloatpagestyle{fancy}
-	}{
+	}{%
 		\errmessage{LaTeX Warning: Posicion de imagen invalida, valores esperados: bottom,top}
 	}}
 		\vspace{\marginimagemulttop cm}
@@ -3929,8 +3929,8 @@
 		Template.Licencia.Web={https://opensource.org/licenses/MIT/},
 		Template.Nombre={Template-Reporte},
 		Template.Tipo={Normal},
-		Template.Version.Dev={2.0.0-beta-4-REPT},
-		Template.Version.Hash={CA37BAB4DA67B04930C7AFF602495429},
+		Template.Version.Dev={2.0.0-beta-6-REPT},
+		Template.Version.Hash={4DDCCC043ADCFD3F44637137494D0016},
 		Template.Version.Release={2.0.0},
 		Template.Web.Dev={https://github.com/Template-Latex/Template-Reporte/},
 		Template.Web.Manual={https://latex.ppizarror.com/reporte},
