@@ -1,6 +1,6 @@
 % Template:     Template Reporte LaTeX
 % Documento:    Núcleo del template
-% Versión:      2.0.1 (28/06/2020)
+% Versión:      2.0.2 (21/07/2020)
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R.
@@ -1011,6 +1011,11 @@
 % Expresión automorfismo
 \newcommand{\Autexp}{
 	\ensuremath{\rm{Aut}}
+}
+
+% Negrita introducida por word
+\newcommand{\mathbit}[1]{
+	\bm{#1}
 }
 
 % Expresión diff
@@ -3920,15 +3925,15 @@
 		Template.Autor.Nombre={Pablo Pizarro R.},
 		Template.Autor.Web={https://ppizarror.com/},
 		Template.Codificacion={UTF-8},
-		Template.Fecha={28/06/2020},
+		Template.Fecha={21/07/2020},
 		Template.Latex.Compilador={pdflatex},
 		Template.Licencia.Tipo={MIT},
 		Template.Licencia.Web={https://opensource.org/licenses/MIT/},
 		Template.Nombre={Template-Reporte},
 		Template.Tipo={Normal},
-		Template.Version.Dev={2.0.1-REPT},
-		Template.Version.Hash={3E30455CA246DFEC02C8F7224C4513DB},
-		Template.Version.Release={2.0.1},
+		Template.Version.Dev={2.0.2-REPT},
+		Template.Version.Hash={E12093A0B3CF8EE8B8F9C99E55D67EAC},
+		Template.Version.Release={2.0.2},
 		Template.Web.Dev={https://github.com/Template-Latex/Template-Reporte/},
 		Template.Web.Manual={https://latex.ppizarror.com/reporte},
 		Universidad.Departamento={\pdfmetainfounidepto},
@@ -3940,7 +3945,7 @@
 	pdfmenubar={\cfgpdfmenubar},
 	pdfpagelayout={\cfgpdflayout},
 	pdfpagemode={\cfgpdfpagemode},
-	pdfproducer={Template-Reporte v2.0.1 | (Pablo Pizarro R.) ppizarror.com},
+	pdfproducer={Template-Reporte v2.0.2 | (Pablo Pizarro R.) ppizarror.com},
 	pdfremotestartview={Fit},
 	pdfstartpage={1},
 	pdfstartview={\cfgpdfpageview},
@@ -5268,6 +5273,11 @@
 		\linenumbers}{
 	}
 
+	% -----------------------------------------------------------------------------
+	% Configura el nombre del abstract
+	% -----------------------------------------------------------------------------
+	\renewcommand{\abstractname}{\nameabstract}
+
 }
 
 % CONFIGURACIONES FINALES
@@ -5670,6 +5680,5 @@
 	% -----------------------------------------------------------------------------
 
 }
-\renewcommand{\abstractname}{\nameabstract}
 
 \titleclass{\subsubsubsection}{straight}[\subsection]
