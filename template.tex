@@ -1,6 +1,6 @@
 % Template:     Template Reporte LaTeX
 % Documento:    Núcleo del template
-% Versión:      2.0.2 (21/07/2020)
+% Versión:      2.0.2 (23/07/2020)
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R.
@@ -1076,13 +1076,13 @@
 \makeatletter
 	\renewenvironment{proof}[1][\proofname] {\par\pushQED{\qed}\normalfont\topsep6\p@\@plus6\p@\relax\trivlist\item[\hskip\labelsep\scshape\footnotesize#1\@addpunct{.}]\ignorespaces}{\popQED\endtrivlist\@endpefalse}
 \makeatother
-% Redimensiona una ecuación en textwidth
-% 	#1	Tamaño del nuevo objeto (En textwidth)
+% Redimensiona una ecuación en linewidth
+% 	#1	Tamaño del nuevo objeto (En linewidth)
 %	#2	Ecuación a redimensionar
 \newcommand{\equationresize}[2]{
 	\emptyvarerr{\equationresize}{#1}{Dimension no definida}
 	\emptyvarerr{\equationresize}{#2}{Ecuacion a redimensionar no definida}
-	\resizebox{#1\textwidth}{!}{$#2$}
+	\resizebox{#1\linewidth}{!}{$#2$}
 }
 
 % Insertar una ecuación
@@ -1644,7 +1644,7 @@
 %	#2	Dirección de la imagen
 %	#3	Parámetros de la imagen
 %	#4	Ancho de la línea (en pt)
-%	#5	Posición, "bottom" o "top"
+%	#5	Posición, "bottom", "top", "fixed2", "fixed3", "fixed4"
 %	#6	Leyenda de la imagen (opcional)
 \newcommand{\insertimageboxedmc}[6][]{%
 	\emptyvarerr{\insertimageboxedmc}{#2}{Direccion de la imagen no definida}
@@ -1654,14 +1654,51 @@
 	\checkoutsideenvimage
 	\checkinsidemulticol
 	\setcaptionmargincm{\captionlrmarginmc}
-	\ifthenelse{\equal{#5}{bottom}}{
-		\begin{figure*}[b!]
+	\ifthenelse{\equal{#5}{bottom}}{%
+		\begin{figure*}[hb]
 	}{
-	\ifthenelse{\equal{#5}{top}}{
-		\begin{figure*}[t!]
+	\ifthenelse{\equal{#5}{top}}{%
+		\begin{figure*}[ht]
 	}{
-		\errmessage{LaTeX Warning: Posicion de imagen invalida, valores esperados: bottom,top}
-	}}
+	\ifthenelse{\equal{#5}{fixed2}}{%
+		\end{multicols}
+		\begin{figure*}[h]
+	}{
+	\ifthenelse{\equal{#5}{fixed2b}}{%
+		\end{multicols}
+		\begin{figure*}[b]
+	}{
+	\ifthenelse{\equal{#5}{fixed2t}}{%
+		\end{multicols}
+		\begin{figure*}[t]
+	}{
+	\ifthenelse{\equal{#5}{fixed3}}{%
+		\end{multicols}
+		\begin{figure*}[h]
+	}{
+	\ifthenelse{\equal{#5}{fixed3b}}{%
+		\end{multicols}
+		\begin{figure*}[b]
+	}{
+	\ifthenelse{\equal{#5}{fixed3t}}{%
+		\end{multicols}
+		\begin{figure*}[t]
+	}{
+	\ifthenelse{\equal{#5}{fixed4}}{%
+		\end{multicols}
+		\begin{figure*}[h]
+	}{
+	\ifthenelse{\equal{#5}{fixed4b}}{%
+		\end{multicols}
+		\begin{figure*}[h]
+	}{
+	\ifthenelse{\equal{#5}{fixed4t}}{%
+		\end{multicols}
+		\begin{figure*}[h]
+	}{
+		\errmessage{LaTeX Warning: Posicion de imagen invalida, valores esperados: bottom,top,fixed2,fixed2b,fixed2t,fixed3,fixed3b,fixed3t,fixed4,fixed4b,fixed4t}
+		\stop}}}}}}}}}}
+	}
 		\thisfloatpagestyle{fancy}
 		\begingroup
 			\setlength{\fboxsep}{0 pt}
@@ -1676,6 +1713,34 @@
 			\ifthenelse{\equal{\GLOBALcaptiondefn}{EMPTY-VAR}}{\caption{#6 #1}}{\caption[\GLOBALcaptiondefn]{#6 #1}}
 		\fi
 	\end{figure*}
+	\ifthenelse{\equal{#5}{fixed2}}{%
+		\begin{multicols}{2}
+	}{
+	\ifthenelse{\equal{#5}{fixed2b}}{%
+		\begin{multicols}{2}
+	}{
+	\ifthenelse{\equal{#5}{fixed2t}}{%
+		\begin{multicols}{2}
+	}{
+	\ifthenelse{\equal{#5}{fixed3}}{%
+		\begin{multicols}{3}
+	}{
+	\ifthenelse{\equal{#5}{fixed3b}}{%
+		\begin{multicols}{3}
+	}{
+	\ifthenelse{\equal{#5}{fixed3t}}{%
+		\begin{multicols}{3}
+	}{
+	\ifthenelse{\equal{#5}{fixed4}}{%
+		\begin{multicols}{4}
+	}{
+	\ifthenelse{\equal{#5}{fixed4b}}{%
+		\begin{multicols}{4}
+	}{
+	\ifthenelse{\equal{#5}{fixed4t}}{%
+		\begin{multicols}{4}
+	}{
+	}}}}}}}}}
 	\setcaptionmargincm{\captionlrmargin}
 	\resetindexcaption
 }
@@ -1694,7 +1759,7 @@
 % Insertar una imagen a la izquierda, escalada, ancho fijo
 % 	#1	Label (opcional)
 %	#2	Dirección de la imagen
-%	#3	Ancho de la imagen (en textwidth)
+%	#3	Ancho de la imagen (en linewidth)
 %	#4	Leyenda de la imagen (opcional)
 \newcommand{\insertimageleft}[4][]{%
 	\insertimageleftboxed[#1]{#2}{#3}{0}{#4}
@@ -1703,7 +1768,7 @@
 % Insertar una imagen a la izquierda, escalada, ancho fijo
 % 	#1	Label (opcional)
 %	#2	Dirección de la imagen
-%	#3	Ancho de la imagen (en textwidth)
+%	#3	Ancho de la imagen (en linewidth)
 %	#4	Ancho de la línea (en pt)
 %	#5	Leyenda de la imagen (opcional)
 \newcommand{\insertimageleftboxed}[5][]{%
@@ -1714,7 +1779,7 @@
 	~
 	\vspace{-\baselineskip}
 	\par%
-	\begin{wrapfigure}{l}{#3\textwidth}%
+	\begin{wrapfigure}{l}{#3\linewidth}%
 		% \thisfloatpagestyle{fancy} no funciona bien
 		\setcaptionmargincm{0}
 		\ifthenelse{\equal{\figurecaptiontop}{true}}{}{
@@ -1739,7 +1804,7 @@
 % Insertar una imagen a la izquierda, ajustada en un número de líneas, escalada, ancho fijo
 % 	#1	Label (opcional)
 %	#2	Dirección de la imagen
-%	#3	Ancho de la imagen (en textwidth)
+%	#3	Ancho de la imagen (en linewidth)
 %	#4	Altura en líneas de la imagen
 %	#5	Leyenda de la imagen (opcional)
 \newcommand{\insertimageleftline}[5][]{%
@@ -1749,7 +1814,7 @@
 % Insertar una imagen recuadrada a la izquierda, ajustada en un número de líneas, escalada, ancho fijo
 % 	#1	Label (opcional)
 %	#2	Dirección de la imagen
-%	#3	Ancho de la imagen (en textwidth)
+%	#3	Ancho de la imagen (en linewidth)
 %	#4	Ancho de la línea (en pt)
 %	#5	Altura en líneas de la imagen
 %	#6	Leyenda de la imagen (opcional)
@@ -1762,7 +1827,7 @@
 	~
 	\vspace{-\baselineskip}
 	\par%
-	\begin{wrapfigure}[#5]{l}{#3\textwidth}%
+	\begin{wrapfigure}[#5]{l}{#3\linewidth}%
 		% \thisfloatpagestyle{fancy} no funciona bien
 		\setcaptionmargincm{0}
 		\ifthenelse{\equal{\figurecaptiontop}{true}}{}{
@@ -1786,7 +1851,7 @@
 % Insertar una imagen a la derecha, escalada, ancho fijo
 % 	#1	Label (opcional)
 %	#2	Dirección de la imagen
-%	#3	Ancho de la imagen (en textwidth)
+%	#3	Ancho de la imagen (en linewidth)
 %	#4	Leyenda de la imagen (opcional)
 \newcommand{\insertimageright}[4][]{%
 	\insertimagerightboxed[#1]{#2}{#3}{0}{#4}
@@ -1795,7 +1860,7 @@
 % Insertar una imagen recuadrada a la derecha, escalada, ancho fijo
 % 	#1	Label (opcional)
 %	#2	Dirección de la imagen
-%	#3	Ancho de la imagen (en textwidth)
+%	#3	Ancho de la imagen (en linewidth)
 %	#4	Ancho de la línea (en pt)
 %	#5	Leyenda de la imagen (opcional)
 \newcommand{\insertimagerightboxed}[5][]{%
@@ -1806,7 +1871,7 @@
 	~
 	\vspace{-\baselineskip}
 	\par%
-	\begin{wrapfigure}{r}{#3\textwidth}%
+	\begin{wrapfigure}{r}{#3\linewidth}%
 		% \thisfloatpagestyle{fancy} no funciona bien
 		\setcaptionmargincm{0}
 		\ifthenelse{\equal{\figurecaptiontop}{true}}{}{
@@ -1831,7 +1896,7 @@
 % Insertar una imagen a la derecha, ajustada en un número de líneas, escalada, ancho fijo
 % 	#1	Label (opcional)
 %	#2	Dirección de la imagen
-%	#3	Ancho de la imagen (en textwidth)
+%	#3	Ancho de la imagen (en linewidth)
 %	#4	Altura en líneas de la imagen
 %	#5	Leyenda de la imagen (opcional)
 \newcommand{\insertimagerightline}[5][]{%
@@ -1841,7 +1906,7 @@
 % Insertar una imagen recuadrada a la derecha, ajustada en un número de líneas, escalada, ancho fijo
 % 	#1	Label (opcional)
 %	#2	Dirección de la imagen
-%	#3	Ancho de la imagen (en textwidth)
+%	#3	Ancho de la imagen (en linewidth)
 %	#4	Ancho de la línea (en pt)
 %	#5	Altura en líneas de la imagen
 %	#6	Leyenda de la imagen (opcional)
@@ -1854,7 +1919,7 @@
 	~
 	\vspace{-\baselineskip}
 	\par%
-	\begin{wrapfigure}[#5]{r}{#3\textwidth}%
+	\begin{wrapfigure}[#5]{r}{#3\linewidth}%
 		% \thisfloatpagestyle{fancy} no funciona bien
 		\setcaptionmargincm{0}
 		\ifthenelse{\equal{\figurecaptiontop}{true}}{}{
@@ -2457,16 +2522,19 @@
 % Crea un salto de columna en el entorno multicol
 \newcommand{\newcolumn}{\checkinsidemulticol\vfill\null\columnbreak}
 
+% Salto de página en entorno multicol
+\newcommand{\newpagemulticol}{\newcolumn\newcolumn\newpage}
+
 % Inserta un lipsum corregido
 % \newcommand{\slipsum}[1][]{~\lipsum[#1]}
 
 % Redimensiona un ítem
-% 	#1	Tamaño del nuevo objeto (En textwidth)
+% 	#1	Tamaño del nuevo objeto (En linewidth)
 %	#2	Objeto a redimensionar
 \newcommand{\itemresize}[2]{
 	\emptyvarerr{\itemresize}{#1}{Tamano del nuevo objeto no definido}
 	\emptyvarerr{\itemresize}{#2}{Objeto a redimensionar no definido}
-	\resizebox{#1\textwidth}{!}{#2}
+	\resizebox{#1\linewidth}{!}{#2}
 }
 
 % Crea una página vacía sin header o footer
@@ -3044,11 +3112,12 @@
 
 % Crea una sección de imágenes múltiples completa dentro de un multicol
 %	#1	Label (opcional)
-%	#2	Posición de la imagen, "bottom" o "top"
+%	#2	Posición de la imagen, "bottom", "top", "fixed2", "fixed3", "fixed4"
 %	#3	Caption
 \newenvironment{imagesmc}[3][]{
 	% Modifica globales
 	\def\envimageslabelvar {#1}
+	\def\envimagesmcpos {#2}
 	\def\envimagescaptionvar {#3}
 	\def\GLOBALenvimageinitialized {true}
 	\def\GLOBALenvimageadded {false}
@@ -3059,13 +3128,41 @@
 	
 	% Inicia la figura
 	\ifthenelse{\equal{#2}{bottom}}{%
-		\begin{figure*}[b!] \centering%
-		}{%
-	\ifthenelse{\equal{#2}{top}}{%
-		\begin{figure*}[t!] \centering%
+		\begin{figure*}[hb] \centering%
 	}{%
-		\errmessage{LaTeX Warning: Posicion de imagen invalida, valores esperados: bottom,top}
-	}}%
+	\ifthenelse{\equal{#2}{top}}{%
+		\begin{figure*}[ht] \centering%
+	}{%
+	\ifthenelse{\equal{#2}{fixed2}}{%
+		\end{multicols} \begin{figure*}[h] \centering%
+	}{%
+	\ifthenelse{\equal{#2}{fixed2b}}{%
+		\end{multicols} \begin{figure*}[b] \centering%
+	}{%
+	\ifthenelse{\equal{#2}{fixed2t}}{%
+		\end{multicols} \begin{figure*}[t] \centering%
+	}{%
+	\ifthenelse{\equal{#2}{fixed3}}{%
+		\end{multicols} \begin{figure*}[h] \centering%
+	}{%
+	\ifthenelse{\equal{#2}{fixed3b}}{%
+		\end{multicols} \begin{figure*}[b] \centering%
+	}{%
+	\ifthenelse{\equal{#2}{fixed3t}}{%
+		\end{multicols} \begin{figure*}[t] \centering%
+	}{%
+	\ifthenelse{\equal{#2}{fixed4}}{%
+		\end{multicols} \begin{figure*}[h] \centering%
+	}{%
+	\ifthenelse{\equal{#2}{fixed4b}}{%
+		\end{multicols} \begin{figure*}[b] \centering%
+	}{%
+	\ifthenelse{\equal{#2}{fixed4t}}{%
+		\end{multicols} \begin{figure*}[t] \centering%
+	}{%
+		\errmessage{LaTeX Warning: Posicion de imagen invalida, valores esperados: bottom,top,fixed2,fixed2b,fixed2t,fixed3,fixed3b,fixed3t,fixed4,fixed4b,fixed4t}
+		\stop
+	}}}}}}}}}}}%
 		\thisfloatpagestyle{fancy}%
 		\vspace{\marginimagemulttop cm}%
 	}{%
@@ -3076,6 +3173,34 @@
 			\caption{\envimagescaptionvar\envimageslabelvar}%
 		}%
 	\end{figure*}%
+	\ifthenelse{\equal{\envimagesmcpos}{fixed2}}{%
+		\begin{multicols}{2}
+	}{
+	\ifthenelse{\equal{\envimagesmcpos}{fixed2b}}{%
+		\begin{multicols}{2}
+	}{
+	\ifthenelse{\equal{\envimagesmcpos}{fixed2t}}{%
+		\begin{multicols}{2}
+	}{
+	\ifthenelse{\equal{\envimagesmcpos}{fixed3}}{%
+		\begin{multicols}{3}
+	}{
+	\ifthenelse{\equal{\envimagesmcpos}{fixed3b}}{%
+		\begin{multicols}{3}
+	}{
+	\ifthenelse{\equal{\envimagesmcpos}{fixed3t}}{%
+		\begin{multicols}{3}
+	}{
+	\ifthenelse{\equal{\envimagesmcpos}{fixed4}}{%
+		\begin{multicols}{4}
+	}{
+	\ifthenelse{\equal{\envimagesmcpos}{fixed4b}}{%
+		\begin{multicols}{4}
+	}{
+	\ifthenelse{\equal{\envimagesmcpos}{fixed4t}}{%
+		\begin{multicols}{4}
+	}{
+	}}}}}}}}}
 	
 	% Reestablece caption y márgenes
 	\setcaptionmargincm{\captionlrmargin}
@@ -3762,6 +3887,7 @@
 	\ifthenelse{\equal{#1}{vhdl}}{}{
 	\ifthenelse{\equal{#1}{xml}}{}{
 		\errmessage{LaTeX Warning: Estilo de codigo desconocido. Valores esperados: assemblerx64,assemblerx86,bash,c,cpp,csharp,css,csv,cuda,docker,fortran,glsl,haskell,html5,ini,java,js,json,kotlin,latex,lisp,lua,maple,matlab,octave,opencl,opensees,pascal,perl,php,plaintext,pseudocode,python,r,ruby,scala,scheme,sql,tcl,vbscript,verilog,vhdl,xml}
+		\stop
 	}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}
 }
 % -----------------------------------------------------------------------------
@@ -3925,14 +4051,14 @@
 		Template.Autor.Nombre={Pablo Pizarro R.},
 		Template.Autor.Web={https://ppizarror.com/},
 		Template.Codificacion={UTF-8},
-		Template.Fecha={21/07/2020},
+		Template.Fecha={23/07/2020},
 		Template.Latex.Compilador={pdflatex},
 		Template.Licencia.Tipo={MIT},
 		Template.Licencia.Web={https://opensource.org/licenses/MIT/},
 		Template.Nombre={Template-Reporte},
 		Template.Tipo={Normal},
-		Template.Version.Dev={2.0.2-REPT},
-		Template.Version.Hash={E12093A0B3CF8EE8B8F9C99E55D67EAC},
+		Template.Version.Dev={2.0.2-3-REPT},
+		Template.Version.Hash={1D1510ED6B41773DA8B334C068EFAF1A},
 		Template.Version.Release={2.0.2},
 		Template.Web.Dev={https://github.com/Template-Latex/Template-Reporte/},
 		Template.Web.Manual={https://latex.ppizarror.com/reporte},

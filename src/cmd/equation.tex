@@ -1,6 +1,6 @@
 % Template:     Template Reporte LaTeX
 % Documento:    Funciones para insertar ecuaciones
-% Versión:      2.0.2 (21/07/2020)
+% Versión:      2.0.2 (23/07/2020)
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R.
@@ -14,7 +14,7 @@
 \newcommand{\equationresize}[2]{
 	\emptyvarerr{\equationresize}{#1}{Dimension no definida}
 	\emptyvarerr{\equationresize}{#2}{Ecuacion a redimensionar no definida}
-	\resizebox{#1\textwidth}{!}{$#2$}
+	\resizebox{#1\linewidth}{!}{$#2$}
 }
 \newcommand{\insertequation}[2][]{
 	\emptyvarerr{\insertequation}{#2}{Ecuacion no definida}
