@@ -1,6 +1,6 @@
 % Template:     Template Reporte LaTeX
 % Documento:    Núcleo del template
-% Versión:      2.0.2 (23/07/2020)
+% Versión:      2.0.3 (02/08/2020)
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R.
@@ -3112,7 +3112,7 @@
 
 % Crea una sección de imágenes múltiples completa dentro de un multicol
 %	#1	Label (opcional)
-%	#2	Posición de la imagen, "bottom", "top", "fixed2", "fixed3", "fixed4"
+%	#2	Posición de la imagen, "bottom", "top"
 %	#3	Caption
 \newenvironment{imagesmc}[3][]{
 	% Modifica globales
@@ -3133,36 +3133,9 @@
 	\ifthenelse{\equal{#2}{top}}{%
 		\begin{figure*}[ht] \centering%
 	}{%
-	\ifthenelse{\equal{#2}{fixed2}}{%
-		\end{multicols} \begin{figure*}[h] \centering%
-	}{%
-	\ifthenelse{\equal{#2}{fixed2b}}{%
-		\end{multicols} \begin{figure*}[b] \centering%
-	}{%
-	\ifthenelse{\equal{#2}{fixed2t}}{%
-		\end{multicols} \begin{figure*}[t] \centering%
-	}{%
-	\ifthenelse{\equal{#2}{fixed3}}{%
-		\end{multicols} \begin{figure*}[h] \centering%
-	}{%
-	\ifthenelse{\equal{#2}{fixed3b}}{%
-		\end{multicols} \begin{figure*}[b] \centering%
-	}{%
-	\ifthenelse{\equal{#2}{fixed3t}}{%
-		\end{multicols} \begin{figure*}[t] \centering%
-	}{%
-	\ifthenelse{\equal{#2}{fixed4}}{%
-		\end{multicols} \begin{figure*}[h] \centering%
-	}{%
-	\ifthenelse{\equal{#2}{fixed4b}}{%
-		\end{multicols} \begin{figure*}[b] \centering%
-	}{%
-	\ifthenelse{\equal{#2}{fixed4t}}{%
-		\end{multicols} \begin{figure*}[t] \centering%
-	}{%
 		\errmessage{LaTeX Warning: Posicion de imagen invalida, valores esperados: bottom,top,fixed2,fixed2b,fixed2t,fixed3,fixed3b,fixed3t,fixed4,fixed4b,fixed4t}
 		\stop
-	}}}}}}}}}}}%
+	}}%
 		\thisfloatpagestyle{fancy}%
 		\vspace{\marginimagemulttop cm}%
 	}{%
@@ -3173,34 +3146,6 @@
 			\caption{\envimagescaptionvar\envimageslabelvar}%
 		}%
 	\end{figure*}%
-	\ifthenelse{\equal{\envimagesmcpos}{fixed2}}{%
-		\begin{multicols}{2}
-	}{
-	\ifthenelse{\equal{\envimagesmcpos}{fixed2b}}{%
-		\begin{multicols}{2}
-	}{
-	\ifthenelse{\equal{\envimagesmcpos}{fixed2t}}{%
-		\begin{multicols}{2}
-	}{
-	\ifthenelse{\equal{\envimagesmcpos}{fixed3}}{%
-		\begin{multicols}{3}
-	}{
-	\ifthenelse{\equal{\envimagesmcpos}{fixed3b}}{%
-		\begin{multicols}{3}
-	}{
-	\ifthenelse{\equal{\envimagesmcpos}{fixed3t}}{%
-		\begin{multicols}{3}
-	}{
-	\ifthenelse{\equal{\envimagesmcpos}{fixed4}}{%
-		\begin{multicols}{4}
-	}{
-	\ifthenelse{\equal{\envimagesmcpos}{fixed4b}}{%
-		\begin{multicols}{4}
-	}{
-	\ifthenelse{\equal{\envimagesmcpos}{fixed4t}}{%
-		\begin{multicols}{4}
-	}{
-	}}}}}}}}}
 	
 	% Reestablece caption y márgenes
 	\setcaptionmargincm{\captionlrmargin}
@@ -4051,15 +3996,15 @@
 		Template.Autor.Nombre={Pablo Pizarro R.},
 		Template.Autor.Web={https://ppizarror.com/},
 		Template.Codificacion={UTF-8},
-		Template.Fecha={23/07/2020},
+		Template.Fecha={02/08/2020},
 		Template.Latex.Compilador={pdflatex},
 		Template.Licencia.Tipo={MIT},
 		Template.Licencia.Web={https://opensource.org/licenses/MIT/},
 		Template.Nombre={Template-Reporte},
 		Template.Tipo={Normal},
-		Template.Version.Dev={2.0.2-3-REPT},
-		Template.Version.Hash={1D1510ED6B41773DA8B334C068EFAF1A},
-		Template.Version.Release={2.0.2},
+		Template.Version.Dev={2.0.3-REPT},
+		Template.Version.Hash={1C01E2AB3537886AFEF099B7AA23D834},
+		Template.Version.Release={2.0.3},
 		Template.Web.Dev={https://github.com/Template-Latex/Template-Reporte/},
 		Template.Web.Manual={https://latex.ppizarror.com/reporte},
 		Universidad.Departamento={\pdfmetainfounidepto},
@@ -4071,7 +4016,7 @@
 	pdfmenubar={\cfgpdfmenubar},
 	pdfpagelayout={\cfgpdflayout},
 	pdfpagemode={\cfgpdfpagemode},
-	pdfproducer={Template-Reporte v2.0.2 | (Pablo Pizarro R.) ppizarror.com},
+	pdfproducer={Template-Reporte v2.0.3 | (Pablo Pizarro R.) ppizarror.com},
 	pdfremotestartview={Fit},
 	pdfstartpage={1},
 	pdfstartview={\cfgpdfpageview},
@@ -4703,6 +4648,7 @@
 	\subsubsectionfont{\color{\subsubtitlecolor} \fontsizesubsubtitle \stylesubsubtitle \selectfont}
 	\titleformat{\subsubsubsection}{\color{\ssstitlecolor} \normalfont \fontsizessstitle \stylessstitle}{\thesubsubsubsection}{1em}{}
 	\titlespacing*{\subsubsubsection}{0pt}{3.25ex plus 1ex minus .2ex}{1.5ex plus .2ex}
+	\def\bibfont{\refsfontsize} % Tamaño de fuente de las referencias
 	
 	% -----------------------------------------------------------------------------
 	% Estilo citas

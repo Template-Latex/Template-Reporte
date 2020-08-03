@@ -1,6 +1,6 @@
 % Template:     Template Reporte LaTeX
 % Documento:    Definición de entornos
-% Versión:      2.0.2 (23/07/2020)
+% Versión:      2.0.3 (02/08/2020)
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R.
@@ -255,36 +255,9 @@
 	\ifthenelse{\equal{#2}{top}}{%
 \begin{figure*}[ht] \centering
 	}{%
-	\ifthenelse{\equal{#2}{fixed2}}{%
-\end{multicols} \begin{figure*}[h] \centering
-	}{%
-	\ifthenelse{\equal{#2}{fixed2b}}{%
-\end{multicols} \begin{figure*}[b] \centering
-	}{%
-	\ifthenelse{\equal{#2}{fixed2t}}{%
-\end{multicols} \begin{figure*}[t] \centering
-	}{%
-	\ifthenelse{\equal{#2}{fixed3}}{%
-\end{multicols} \begin{figure*}[h] \centering
-	}{%
-	\ifthenelse{\equal{#2}{fixed3b}}{%
-\end{multicols} \begin{figure*}[b] \centering
-	}{%
-	\ifthenelse{\equal{#2}{fixed3t}}{%
-\end{multicols} \begin{figure*}[t] \centering
-	}{%
-	\ifthenelse{\equal{#2}{fixed4}}{%
-\end{multicols} \begin{figure*}[h] \centering
-	}{%
-	\ifthenelse{\equal{#2}{fixed4b}}{%
-\end{multicols} \begin{figure*}[b] \centering
-	}{%
-	\ifthenelse{\equal{#2}{fixed4t}}{%
-\end{multicols} \begin{figure*}[t] \centering
-	}{%
 		\errmessage{LaTeX Warning: Posicion de imagen invalida, valores esperados: bottom,top,fixed2,fixed2b,fixed2t,fixed3,fixed3b,fixed3t,fixed4,fixed4b,fixed4t}
 		\stop
-	}}}}}}}}}}}%
+	}}%
 		\thisfloatpagestyle{fancy}%
 		\vspace{\marginimagemulttop cm}%
 	}{%
@@ -295,34 +268,6 @@
 			\caption{\envimagescaptionvar\envimageslabelvar}%
 		}%
 	\end{figure*}%
-	\ifthenelse{\equal{\envimagesmcpos}{fixed2}}{%
-		\begin{multicols}{2}
-	}{
-	\ifthenelse{\equal{\envimagesmcpos}{fixed2b}}{%
-		\begin{multicols}{2}
-	}{
-	\ifthenelse{\equal{\envimagesmcpos}{fixed2t}}{%
-		\begin{multicols}{2}
-	}{
-	\ifthenelse{\equal{\envimagesmcpos}{fixed3}}{%
-		\begin{multicols}{3}
-	}{
-	\ifthenelse{\equal{\envimagesmcpos}{fixed3b}}{%
-		\begin{multicols}{3}
-	}{
-	\ifthenelse{\equal{\envimagesmcpos}{fixed3t}}{%
-		\begin{multicols}{3}
-	}{
-	\ifthenelse{\equal{\envimagesmcpos}{fixed4}}{%
-		\begin{multicols}{4}
-	}{
-	\ifthenelse{\equal{\envimagesmcpos}{fixed4b}}{%
-		\begin{multicols}{4}
-	}{
-	\ifthenelse{\equal{\envimagesmcpos}{fixed4t}}{%
-		\begin{multicols}{4}
-	}{
-	}}}}}}}}}
 	\setcaptionmargincm{\captionlrmargin}
 	\def\GLOBALenvimageinitialized {false}
 }
