@@ -1,6 +1,6 @@
 % Template:     Template Reporte LaTeX
 % Documento:    Núcleo del template
-% Versión:      2.0.5 (07/10/2020)
+% Versión:      2.0.6 (21/10/2020)
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R.
@@ -985,7 +985,9 @@
 
 % Función mod
 %	#1	Elemento tal que (mod #1)
-\newcommand{\Mod}[1]{\ (\mathrm{mod}\ #1)}
+\newcommand{\Mod}[1]{
+	\ensuremath{\ (\mathrm{mod}\ #1)}
+}
 
 % Paréntesis grande
 % 	#1	Expresión
@@ -1068,29 +1070,39 @@
 \newcommand{\overbar}[1]{\mkern 1.5mu\overline{\mkern-1.5mu#1\mkern-1.5mu}\mkern 1.5mu}
 
 % Definición de letras
-\newcommand{\A}{\mathcal{A}}
-\let\oldC=\C
-\renewcommand{\C}{\mathbb{C}}
-\newcommand{\D}{\mathbb{D}}
-\newcommand{\E}{\mathbb{E}}
-\newcommand{\F}{\mathcal{F}}
-\let\oldG=\G
-\renewcommand{\G}{\mathcal{G}}
-\let\oldH=\H
-\renewcommand{\H}{\mathcal{H}}
-\newcommand{\K}{\mathcal{K}}
-\let\oldL=\L
-\renewcommand{\L}{\mathcal{L}}
-\newcommand{\M}{\mathcal{M}}
-\newcommand{\N}{\mathbb{N}}
-\let\oldP=\P
-\renewcommand{\P}{\mathbb{P}}
-\newcommand{\Q}{\mathbb{Q}}
-\newcommand{\R}{\mathbb{R}}
-\let\oldS=\S
-\renewcommand{\S}{\mathcal{S}}
-\newcommand{\T}{\mathcal{T}}
-\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\A}{\ensuremath{\mathcal{A}}}
+\newcommand{\B}{\ensuremath{\mathcal{B}}}
+\let\oldC=\C % No existe en T1
+\renewcommand{\C}{\ensuremath{\mathbb{C}}}
+\newcommand{\D}{\ensuremath{\mathbb{D}}}
+\newcommand{\E}{\ensuremath{\mathbb{E}}}
+\newcommand{\F}{\ensuremath{\mathcal{F}}}
+\let\oldG=\G % No existe en T1
+\renewcommand{\G}{\ensuremath{\mathcal{G}}}
+\let\oldH=\H % No existe en T1
+\renewcommand{\H}{\ensuremath{\mathcal{H}}}
+\newcommand{\I}{\ensuremath{\mathbb{I}}}
+\newcommand{\J}{\ensuremath{\mathcal{J}}}
+\newcommand{\K}{\ensuremath{\mathcal{K}}}
+\let\oldL=\L % Es como una L con una raya
+\renewcommand{\L}{\ensuremath{\mathcal{L}}}
+\newcommand{\M}{\ensuremath{\mathcal{M}}}
+\newcommand{\N}{\ensuremath{\mathbb{N}}}
+% \renewcommand{\O}{\ensuremath{\mathbb{O}}} % O equivale a o/oo
+\let\oldP=\P % P negra
+\renewcommand{\P}{\ensuremath{\mathbb{P}}}
+\newcommand{\Q}{\ensuremath{\mathbb{Q}}}
+\newcommand{\R}{\ensuremath{\mathbb{R}}}
+\let\oldS=\S % Es como una serpiente
+\renewcommand{\S}{\ensuremath{\mathcal{S}}}
+\newcommand{\T}{\ensuremath{\mathcal{T}}}
+\let\oldU=\U % No existe en T1
+\renewcommand{\U}{\ensuremath{\mathcal{U}}}
+\newcommand{\V}{\ensuremath{\mathcal{V}}}
+\newcommand{\W}{\ensuremath{\mathcal{W}}}
+\newcommand{\X}{\ensuremath{\mathcal{X}}}
+\newcommand{\Y}{\ensuremath{\mathcal{Y}}}
+\newcommand{\Z}{\ensuremath{\mathbb{Z}}}
 
 % Definición de teoremas y lemas
 \makeatletter
@@ -2841,7 +2853,7 @@
 		\throwerror{\references}{Solo se puede usar entorno references con estilo citas \noexpand\stylecitereferences=bibtex}
 	}
 	\begingroup
-	\ifthenelse{\equal{\sectionrefenv}{true}}{ % Se configura las referencias como una sección
+	\ifthenelse{\equal{\bibtexenvrefsecnum}{true}}{ % Se configura las referencias como una sección
 		\section{\namereferences}
 	}{
 		\sectionanum{\namereferences}
@@ -4027,15 +4039,15 @@
 		Template.Autor.Nombre={Pablo Pizarro R.},
 		Template.Autor.Web={https://ppizarror.com/},
 		Template.Codificacion={UTF-8},
-		Template.Fecha={07/10/2020},
+		Template.Fecha={21/10/2020},
 		Template.Latex.Compilador={pdflatex},
 		Template.Licencia.Tipo={MIT},
 		Template.Licencia.Web={https://opensource.org/licenses/MIT/},
 		Template.Nombre={Template-Reporte},
 		Template.Tipo={Normal},
-		Template.Version.Dev={2.0.5-REPT},
-		Template.Version.Hash={EE117FEA36C437B7A62C463ACBF2A454},
-		Template.Version.Release={2.0.5},
+		Template.Version.Dev={2.0.6-REPT},
+		Template.Version.Hash={F91EBD023AAEBA828A74CC619BC7BAA9},
+		Template.Version.Release={2.0.6},
 		Template.Web.Dev={https://github.com/Template-Latex/Template-Reporte/},
 		Template.Web.Manual={https://latex.ppizarror.com/reporte},
 		Universidad.Departamento={\pdfmetainfounidepto},
@@ -4047,7 +4059,7 @@
 	pdfmenubar={\cfgpdfmenubar},
 	pdfpagelayout={\cfgpdflayout},
 	pdfpagemode={\cfgpdfpagemode},
-	pdfproducer={Template-Reporte v2.0.5 | (Pablo Pizarro R.) ppizarror.com},
+	pdfproducer={Template-Reporte v2.0.6 | (Pablo Pizarro R.) ppizarror.com},
 	pdfremotestartview={Fit},
 	pdfstartpage={1},
 	pdfstartview={\cfgpdfpageview},
@@ -4679,7 +4691,7 @@
 	\subsubsectionfont{\color{\subsubtitlecolor} \fontsizesubsubtitle \stylesubsubtitle \selectfont}
 	\titleformat{\subsubsubsection}{\color{\ssstitlecolor} \normalfont \fontsizessstitle \stylessstitle}{\thesubsubsubsection}{1em}{}
 	\titlespacing*{\subsubsubsection}{0pt}{3.25ex plus 1ex minus .2ex}{1.5ex plus .2ex}
-	\def\bibfont{\refsfontsize} % Tamaño de fuente de las referencias
+	\def\bibfont{\fontsizerefbibl} % Tamaño de fuente de las referencias
 	
 	% -----------------------------------------------------------------------------
 	% Estilo citas
