@@ -1,6 +1,6 @@
 % Template:     Template Reporte LaTeX
 % Documento:    Núcleo del template
-% Versión:      2.0.7 (22/10/2020)
+% Versión:      2.0.8 (29/10/2020)
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R.
@@ -1069,6 +1069,16 @@
 %	#1 	Elemento
 \newcommand{\overbar}[1]{\mkern 1.5mu\overline{\mkern-1.5mu#1\mkern-1.5mu}\mkern 1.5mu}
 
+% Función \tilde{} pero que encierra todo el texto
+%	#1 	Elemento
+\makeatletter
+\def\longtilde#1{\mathop{\vbox{\m@th\ialign{##\crcr\noalign{\kern3\p@}%
+				\sortoftildefill\crcr\noalign{\kern3\p@\nointerlineskip}%
+				$\hfil\displaystyle{#1}\hfil$\crcr}}}\limits}
+\def\sortoftildefill{$\m@th \setbox\z@\hbox{$\braceld$}%
+	\braceld\leaders\vrule \@height\ht\z@ \@depth\z@\hfill\braceru$}
+\makeatother
+
 % Definición de letras
 \newcommand{\A}{\ensuremath{\mathcal{A}}}
 \newcommand{\B}{\ensuremath{\mathcal{B}}}
@@ -1103,6 +1113,25 @@
 \newcommand{\X}{\ensuremath{\mathcal{X}}}
 \newcommand{\Y}{\ensuremath{\mathcal{Y}}}
 \newcommand{\Z}{\ensuremath{\mathbb{Z}}}
+
+% Definición de operadores matemáticos de asignación (Typeset assigments)
+\newcommand{\asteq}{\ensuremath{\mathrel{{*}{=}}}}
+\newcommand{\cdoteq}{\ensuremath{\mathrel{{\cdot}{=}}}}
+\newcommand{\diveq}{\ensuremath{\mathrel{{/}{=}}}}
+\newcommand{\eqast}{\ensuremath{\mathrel{{=}{*}}}}
+\newcommand{\eqcdot}{\ensuremath{\mathrel{{=}{\cdot}}}}
+\newcommand{\eqdiv}{\ensuremath{\mathrel{{=}{/}}}}
+\newcommand{\eqeq}{\ensuremath{\mathrel{{=}{=}}}}
+\newcommand{\eqminus}{\ensuremath{\mathrel{{=}{-}}}}
+\newcommand{\eqnot}{\ensuremath{\mathrel{{=}{!}}}}
+\newcommand{\eqplus}{\ensuremath{\mathrel{{=}{+}}}}
+\newcommand{\eqtimes}{\ensuremath{\mathrel{{=}{\times}}}}
+\newcommand{\minuseq}{\ensuremath{\mathrel{{-}{=}}}}
+\newcommand{\minusminus}{\ensuremath{\mathrel{{-}{-}}}}
+\newcommand{\noteq}{\ensuremath{\mathrel{{!}{=}}}}
+\newcommand{\pluseq}{\ensuremath{\mathrel{{+}{=}}}}
+\newcommand{\plusplus}{\ensuremath{\mathrel{{+}{+}}}}
+\newcommand{\timeseq}{\ensuremath{\mathrel{{\times}{=}}}}
 
 % Definición de teoremas y lemas
 \makeatletter
@@ -4039,15 +4068,15 @@
 		Template.Autor.Nombre={Pablo Pizarro R.},
 		Template.Autor.Web={https://ppizarror.com/},
 		Template.Codificacion={UTF-8},
-		Template.Fecha={22/10/2020},
+		Template.Fecha={29/10/2020},
 		Template.Latex.Compilador={pdflatex},
 		Template.Licencia.Tipo={MIT},
 		Template.Licencia.Web={https://opensource.org/licenses/MIT/},
 		Template.Nombre={Template-Reporte},
 		Template.Tipo={Normal},
-		Template.Version.Dev={2.0.7-REPT},
-		Template.Version.Hash={02256FF0B5691254ED691CDF6D5049EF},
-		Template.Version.Release={2.0.7},
+		Template.Version.Dev={2.0.8-1-REPT},
+		Template.Version.Hash={746359F944C5C8A7417401B98657A959},
+		Template.Version.Release={2.0.8},
 		Template.Web.Dev={https://github.com/Template-Latex/Template-Reporte/},
 		Template.Web.Manual={https://latex.ppizarror.com/reporte},
 		Universidad.Departamento={\pdfmetainfounidepto},
@@ -4059,7 +4088,7 @@
 	pdfmenubar={\cfgpdfmenubar},
 	pdfpagelayout={\cfgpdflayout},
 	pdfpagemode={\cfgpdfpagemode},
-	pdfproducer={Template-Reporte v2.0.7 | (Pablo Pizarro R.) ppizarror.com},
+	pdfproducer={Template-Reporte v2.0.8 | (Pablo Pizarro R.) ppizarror.com},
 	pdfremotestartview={Fit},
 	pdfstartpage={1},
 	pdfstartview={\cfgpdfpageview},
