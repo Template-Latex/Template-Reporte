@@ -111,6 +111,7 @@
 \usepackage{floatrow}      % Permite administrar posiciones en los caption
 \usepackage{framed}        % Permite creación de recuadros
 \usepackage{gensymb}       % Simbología común
+\usepackage{graphicx}      % Propiedades extra para los gráficos
 \usepackage{lipsum}        % Permite crear párrafos de prueba
 \usepackage{listings}      % Permite añadir código fuente
 \usepackage{longtable}     % Permite utilizar tablas en varias hojas
@@ -161,11 +162,14 @@
 % LIBRERÍAS CONDICIONALES
 % -----------------------------------------------------------------------------
 
-% Carga las imagenes
-\ifthenelse{\equal{\graphicxdraft}{false}}{
-	\usepackage{graphicx}
-}{
-	\usepackage[draft]{graphicx}
+% Imágenes en modo draft
+\ifthenelse{\equal{\graphicxdraft}{true}}{
+	\usepackage[
+		allfiguresdraft,
+		filename,
+		size={scriptsize},
+		style={tt}
+	]{draftfigure}}{
 }
 
 % Acepta codificación UTF-8 en código fuente
@@ -4391,8 +4395,8 @@
 		Template.Licencia.Web={https://opensource.org/licenses/MIT/},
 		Template.Nombre={Template-Reporte},
 		Template.Tipo={Normal},
-		Template.Version.Dev={2.1.6-REPT},
-		Template.Version.Hash={6EB6B61D7E48948855358CAFB95BA9F0},
+		Template.Version.Dev={2.1.6-1-REPT},
+		Template.Version.Hash={8321B65C3D5AD13B0C8CC2F116DCC733},
 		Template.Version.Release={2.1.6},
 		Template.Web.Dev={https://github.com/Template-Latex/Template-Reporte/},
 		Template.Web.Manual={https://latex.ppizarror.com/reporte},
