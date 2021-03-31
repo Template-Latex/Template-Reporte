@@ -1,6 +1,6 @@
 % Template:     Template Reporte LaTeX
 % Documento:    Núcleo del template
-% Versión:      2.1.6 (27/03/2021)
+% Versión:      2.1.7 (31/03/2021)
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R.
@@ -4302,6 +4302,7 @@
 \def\titulodelinforme{\titulodelreporte}
 \checkvardefined{\autordeldocumento}
 \checkvardefined{\departamentouniversidad}
+\checkvardefined{\imagendepartamentoparams}
 \checkvardefined{\localizacionuniversidad}
 \checkvardefined{\nombredelcurso}
 \checkvardefined{\nombrefacultad}
@@ -4389,15 +4390,15 @@
 		Template.Autor.Nombre={Pablo Pizarro R.},
 		Template.Autor.Web={https://ppizarror.com/},
 		Template.Codificacion={UTF-8},
-		Template.Fecha={27/03/2021},
+		Template.Fecha={31/03/2021},
 		Template.Latex.Compilador={pdflatex},
 		Template.Licencia.Tipo={MIT},
 		Template.Licencia.Web={https://opensource.org/licenses/MIT/},
 		Template.Nombre={Template-Reporte},
 		Template.Tipo={Normal},
-		Template.Version.Dev={2.1.6-1-REPT},
-		Template.Version.Hash={8321B65C3D5AD13B0C8CC2F116DCC733},
-		Template.Version.Release={2.1.6},
+		Template.Version.Dev={2.1.7-REPT},
+		Template.Version.Hash={AFB2DFA1A6F4969B3D103D14B49DE924},
+		Template.Version.Release={2.1.7},
 		Template.Web.Dev={https://github.com/Template-Latex/Template-Reporte/},
 		Template.Web.Manual={https://latex.ppizarror.com/reporte},
 		Universidad.Departamento={\pdfmetainfounidepto},
@@ -4409,7 +4410,7 @@
 	pdfmenubar={\cfgpdfmenubar},
 	pdfpagelayout={\cfgpdflayout},
 	pdfpagemode={\cfgpdfpagemode},
-	pdfproducer={Template-Reporte v2.1.6 | (Pablo Pizarro R.) ppizarror.com},
+	pdfproducer={Template-Reporte v2.1.7 | (Pablo Pizarro R.) ppizarror.com},
 	pdfremotestartview={Fit},
 	pdfstartpage={1},
 	pdfstartview={\cfgpdfpageview},
@@ -4982,7 +4983,7 @@
 		}{}
 		\ifthenelse{\equal{\titleshowcourse}{true}}{
 			\vskip 0.5em
-			{\normalsize \codigodelcurso\ - \nombredelcurso}
+			{\normalsize \codigodelcurso\ \hfpdashcharstyle\ \nombredelcurso}
 		}{}
 		\ifthenelse{\equal{\titleshowdate}{true}}{
 			\vskip 1em
