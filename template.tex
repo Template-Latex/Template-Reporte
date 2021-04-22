@@ -1,6 +1,6 @@
 % Template:     Template Reporte LaTeX
 % Documento:    Núcleo del template
-% Versión:      2.1.8 (13/04/2021)
+% Versión:      2.1.9 (22/04/2021)
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R.
@@ -2639,7 +2639,7 @@
 %	#1	Título
 \newcommand{\newchapter}[1]{
 	\emptyvarerr{\newchapter}{#1}{Titulo no definido}
-	\newpage
+	\clearpage
 	\stepcounter{section}
 	\phantomsection
 	\needspace{3\baselineskip}
@@ -2676,7 +2676,7 @@
 
 % Salto de página en entorno multicol
 \newcommand{\newpagemulticol}{%
-	\newcolumn\newcolumn\newpage%
+	\newcolumn\newcolumn\clearpage%
 }
 
 % Inserta un lipsum corregido
@@ -2693,21 +2693,21 @@
 
 % Crea una página vacía sin header o footer
 \newcommand{\insertemptypage}{%
-	\newpage
+	\clearpage
 	\setcounter{templatePageCounter}{\thepage}
 	\pagenumbering{gobble}
 	\null
 	\thispagestyle{empty}
-	\newpage
+	\clearpage
 	\pagenumbering{arabic}
 	\setcounter{page}{\thetemplatePageCounter}
 }
 
 % Inserta una página vacía, aunque conserva header, footer y numeración
 \newcommand{\insertblankpage}{%
-	\newpage
+	\clearpage
 	\null
-	\newpage
+	\clearpage
 }
 
 % Añade un archivo pdf con el header
@@ -2885,7 +2885,7 @@
 	\ifthenelse{\equal{\compilertype}{lualatex}}{
 		\throwwarning{Funcion no valida en compilador lualatex}
 	}{
-		\newpage
+		\clearpage
 		\ifthenelse{\equal{#1}{}}{
 			\newgeometry{left=\pagemarginleft cm, top=\pagemargintop cm, right=\pagemarginright cm, bottom=\pagemarginbottom cm, paperwidth=#2 cm, paperheight=#3 cm}
 		}{
@@ -3035,7 +3035,7 @@
 	\bookmarksetupnext{level=part}
 	\begin{appendices} % Crea la sección
 		\ifthenelse{\equal{\showappendixsecindex}{true}}{}{
-			\pdfbookmark{\nameappendixsection}{contents} % Si false
+			\pdfbookmark{\nameappendixsection}{appendix} % Si false
 		}
 		% \setcounter{secnumdepth}{4}
 		% \setcounter{tocdepth}{4}
@@ -3652,7 +3652,7 @@
 \lstdefinestyle{latex}{
 	language=TeX,
 	morekeywords={
-		aacos,aasin,aatan,acos,addimage,addimageanum,addimageboxed,align,asin,atan,begin,bibitem,bibliography,bigstrut,boldmath,bookmarksetup,boxed,cancelto,caption,changeheadertitle,checkmark,checkvardefined,cite,dd,degree,eqref,equal,frac,fracnpartial,fullcite,hline,href,ifthenelse,imageshspace,imagesnewline,imagesvspace,includefullhfpdf,includehfpdf,insertalign,insertalignanum,insertaligncaptioned,insertaligncaptioned,insertaligncaptionedanum,insertaligned,insertalignedanum,insertalignedcaptioned,insertalignedcaptionedanum,insertemail,insertemptypage,inserteqimage,insertequation,insertequationanum,insertequationcaptioned,insertequationcaptionedanum,insertgather,insertgatheranum,insertgathercaptioned,insertgathercaptionedanum,insertgathered,insertgatheredanum,insertgatheredcaptioned,insertgatheredcaptionedanum,insertimage,insertimageleft,insertimageright,insertindextitle,insertindextitlepage,insertphone,isundefined,itemresize,label,LaTeX,lipsum,lpow,makeatletter,makeatother,newcommand,newcounter,newp,newpage,pow,quotes,ref,renewcommand,section,sectionanum,setcounter,setlength,shortcite,sourcecode,sourcecodep,subsection,subsectionanum,subsubsection,subsubsectionanum,subsubsubsection,subsubsubsection,subsubsubsectionanum,textbf,textit,textregistered,textsuperscript,texttt,throwbadconfig,unboldmath,url,xspace
+		aacos,aasin,aatan,acos,addimage,addimageanum,addimageboxed,align,asin,atan,begin,bibitem,bibliography,bigstrut,boldmath,bookmarksetup,boxed,cancelto,caption,changeheadertitle,checkmark,checkvardefined,cite,dd,degree,eqref,equal,frac,fracnpartial,fullcite,hline,href,ifthenelse,imageshspace,imagesnewline,imagesvspace,includefullhfpdf,includehfpdf,insertalign,insertalignanum,insertaligncaptioned,insertaligncaptioned,insertaligncaptionedanum,insertaligned,insertalignedanum,insertalignedcaptioned,insertalignedcaptionedanum,insertemail,insertemptypage,inserteqimage,insertequation,insertequationanum,insertequationcaptioned,insertequationcaptionedanum,insertgather,insertgatheranum,insertgathercaptioned,insertgathercaptionedanum,insertgathered,insertgatheredanum,insertgatheredcaptioned,insertgatheredcaptionedanum,insertimage,insertimageleft,insertimageright,insertindextitle,insertindextitlepage,insertphone,isundefined,itemresize,label,LaTeX,lipsum,lpow,makeatletter,makeatother,newcommand,newcounter,newp,newpage,clearpage,pow,quotes,ref,renewcommand,section,sectionanum,setcounter,setlength,shortcite,sourcecode,sourcecodep,subsection,subsectionanum,subsubsection,subsubsectionanum,subsubsubsection,subsubsubsection,subsubsubsectionanum,textbf,textit,textregistered,textsuperscript,texttt,throwbadconfig,unboldmath,url,xspace
 	}
 }
 
@@ -4391,15 +4391,15 @@
 		Template.Autor.Nombre={Pablo Pizarro R.},
 		Template.Autor.Web={https://ppizarror.com/},
 		Template.Codificacion={UTF-8},
-		Template.Fecha={13/04/2021},
+		Template.Fecha={22/04/2021},
 		Template.Latex.Compilador={pdflatex},
 		Template.Licencia.Tipo={MIT},
 		Template.Licencia.Web={https://opensource.org/licenses/MIT/},
 		Template.Nombre={Template-Reporte},
 		Template.Tipo={Normal},
-		Template.Version.Dev={2.1.8-REPT},
-		Template.Version.Hash={148ECD703508EB7258B7D64C29D45998},
-		Template.Version.Release={2.1.8},
+		Template.Version.Dev={2.1.9-1-REPT},
+		Template.Version.Hash={5419AECB96FCB29E456604790546ED09},
+		Template.Version.Release={2.1.9},
 		Template.Web.Dev={https://github.com/Template-Latex/Template-Reporte/},
 		Template.Web.Manual={https://latex.ppizarror.com/reporte},
 		Universidad.Departamento={\pdfmetainfounidepto},
@@ -4411,7 +4411,7 @@
 	pdfmenubar={\cfgpdfmenubar},
 	pdfpagelayout={\cfgpdflayout},
 	pdfpagemode={\cfgpdfpagemode},
-	pdfproducer={Template-Reporte v2.1.8 | (Pablo Pizarro R.) ppizarror.com},
+	pdfproducer={Template-Reporte v2.1.9 | (Pablo Pizarro R.) ppizarror.com},
 	pdfremotestartview={Fit},
 	pdfstartpage={1},
 	pdfstartview={\cfgpdfpageview},
@@ -4999,10 +4999,10 @@
 % CONFIGURACIÓN DE PÁGINA Y ENCABEZADOS
 \newcommand{\templatePagecfg}{
 
-	% -----------------------------------------------------------------------------
+	% -------------------------------------------------------------------------
 	% Numeración de páginas
-	% -----------------------------------------------------------------------------
-	\newpage
+	% -------------------------------------------------------------------------
+	\clearpage
 	\ifthenelse{\equal{\predocpageromannumber}{true}}{ % Si se usan números romanos en el predocumento
 		\ifthenelse{\equal{\predocpageromanupper}{true}}{
 			\pagenumbering{Roman}
@@ -5014,23 +5014,23 @@
 	\setcounter{page}{1}
 	\setcounter{footnote}{0}
 
-	% -----------------------------------------------------------------------------
+	% -------------------------------------------------------------------------
 	% Márgenes de páginas y tablas
-	% -----------------------------------------------------------------------------
+	% -------------------------------------------------------------------------
 	\setpagemargincm{\pagemarginleft}{\pagemargintop}{\pagemarginright}{\pagemarginbottom}
 	\def\arraystretch {\tablepaddingv} % Se ajusta el padding vertical de las tablas
 	\setlength{\tabcolsep}{\tablepaddingh em} % Se ajusta el padding horizontal de las tablas
 
-	% -----------------------------------------------------------------------------
+	% -------------------------------------------------------------------------
 	% Se define el punto decimal
-	% -----------------------------------------------------------------------------
+	% -------------------------------------------------------------------------
 	\ifthenelse{\equal{\pointdecimal}{true}}{
 		\decimalpoint}{
 	}
 
-	% -----------------------------------------------------------------------------
+	% -------------------------------------------------------------------------
 	% Definición de nombres de objetos
-	% -----------------------------------------------------------------------------
+	% -------------------------------------------------------------------------
 	\renewcommand{\appendixname}{\nomltappendixsection} % Nombre del anexo (título)
 	\renewcommand{\appendixpagename}{\nameappendixsection} % Nombre del anexo en índice
 	\renewcommand{\appendixtocname}{\nameappendixsection} % Nombre del anexo en índice
@@ -5044,9 +5044,9 @@
 	\renewcommand{\bibname}{\namereferences} % Nombre de las referencias (natbib)
 	\renewcommand{\tablename}{\nomltwtable} % Nombre de la leyenda de tablas
 
-	% -----------------------------------------------------------------------------
+	% -------------------------------------------------------------------------
 	% Estilo de títulos
-	% -----------------------------------------------------------------------------
+	% -------------------------------------------------------------------------
 	\sectionfont{\color{\titlecolor} \fontsizetitle \styletitle \selectfont}
 	\subsectionfont{\color{\subtitlecolor} \fontsizesubtitle \stylesubtitle \selectfont}
 	\subsubsectionfont{\color{\subsubtitlecolor} \fontsizesubsubtitle \stylesubsubtitle \selectfont}
@@ -5054,16 +5054,16 @@
 	\titlespacing*{\subsubsubsection}{0pt}{3.25ex plus 1ex minus .2ex}{1.5ex plus .2ex}
 	\def\bibfont{\fontsizerefbibl} % Tamaño de fuente de las referencias
 	
-	% -----------------------------------------------------------------------------
+	% -------------------------------------------------------------------------
 	% Estilo citas
-	% -----------------------------------------------------------------------------
+	% -------------------------------------------------------------------------
 	\ifthenelse{\equal{\stylecitereferences}{apacite}}{
 		\renewcommand{\BOthers}[1]{\apacitebothers\hbox{}}
 	}{}
 
-	% -----------------------------------------------------------------------------
+	% -------------------------------------------------------------------------
 	% Se crean los header-footer
-	% -----------------------------------------------------------------------------
+	% -------------------------------------------------------------------------
 	\fancyheadoffset{0pt} % Desactiva el offset de los header-footer
 	\def\hfheaderimageparamsA {height=\baselineskip} % Tamaño de las imágenes del encabezado estilo 3/13
 	\ifthenelse{\equal{\hfstyle}{style1}}{
@@ -5742,16 +5742,16 @@
 		\COREstyledefinition
 	}
 
-	% -----------------------------------------------------------------------------
+	% -------------------------------------------------------------------------
 	% Muestra los números de línea
-	% -----------------------------------------------------------------------------
+	% -------------------------------------------------------------------------
 	\ifthenelse{\equal{\showlinenumbers}{true}}{
 		\linenumbers}{
 	}
 
-	% -----------------------------------------------------------------------------
+	% -------------------------------------------------------------------------
 	% Configura el nombre del abstract
-	% -----------------------------------------------------------------------------
+	% -------------------------------------------------------------------------
 	\ifthenelse{\isundefined{\abstractname}}{
 		\newcommand{\abstractname}{\nameabstract}
 		\throwwarning{La variable \noexpand\abstractname no existe, lo que indica que la libreria babel no se ha cargado. Si ha desactivado la configuracion \noexpand\usespanishbabel debe cargar manualmente la libreria babel con algun otro idioma, como por ejemplo \noexpand\usepackage[english]{babel}, o bien define en true la configuracion \noexpand\useenglishbabel}
@@ -5764,11 +5764,11 @@
 % CONFIGURACIONES FINALES
 \newcommand{\templateFinalcfg}{
 	
-	% -----------------------------------------------------------------------------
+	% -------------------------------------------------------------------------
 	% Se reestablecen headers y footers
-	% -----------------------------------------------------------------------------
+	% -------------------------------------------------------------------------
 	\markboth{}{}
-	\newpage
+	\clearpage
 
 	% Actualiza headers
 	\ifthenelse{\equal{\disablehfrightmark}{false}}{
@@ -5898,18 +5898,18 @@
 	}{
 	}
 
-	% -----------------------------------------------------------------------------
+	% -------------------------------------------------------------------------
 	% Estilo de títulos - reestablece estilos por el índice
-	% -----------------------------------------------------------------------------
+	% -------------------------------------------------------------------------
 	\sectionfont{\color{\titlecolor} \fontsizetitle \styletitle \selectfont}
 	\subsectionfont{\color{\subtitlecolor} \fontsizesubtitle \stylesubtitle \selectfont}
 	\subsubsectionfont{\color{\subsubtitlecolor} \fontsizesubsubtitle \stylesubsubtitle \selectfont}
 	\titleformat{\subsubsubsection}{\color{\ssstitlecolor} \normalfont \fontsizessstitle \stylessstitle}{\thesubsubsubsection}{1em}{}
 	\titlespacing*{\subsubsubsection}{0pt}{3.25ex plus 1ex minus .2ex}{1.5ex plus .2ex}
 
-	% -----------------------------------------------------------------------------
+	% -------------------------------------------------------------------------
 	% Crea funciones para numerar objetos
-	% -----------------------------------------------------------------------------
+	% -------------------------------------------------------------------------
 
 	% Numeración de la sección en los objetos CÓDIGO FUENTE
 	\ifthenelse{\equal{\showsectioncaptioncode}{none}}{
@@ -6015,9 +6015,9 @@
 		\throwbadconfig{Valor configuracion incorrecto}{\showsectioncaptiontab}{none,chap,sec,ssec,sssec,ssssec}}}}}}
 	}
 
-	% -----------------------------------------------------------------------------
+	% -------------------------------------------------------------------------
 	% Modifica numeración de objetos
-	% -----------------------------------------------------------------------------
+	% -------------------------------------------------------------------------
 
 	% Código fuente, INCLUIR SECCIÓN
 	\ifthenelse{\equal{\captionnumcode}{arabic}}{
@@ -6133,9 +6133,9 @@
 		\throwbadconfig{Tipo numero subtabla desconocido}{\captionnumsubtable}{arabic,alph,Alph,roman,Roman}}}}}
 	}
 
-	% -----------------------------------------------------------------------------
+	% -------------------------------------------------------------------------
 	% Se reestablecen números de página y secciones
-	% -----------------------------------------------------------------------------
+	% -------------------------------------------------------------------------
 
 	% Se usa número de páginas en arábigo si es que se tenía activado los númeos romanos
 	\ifthenelse{\equal{\predocpageromannumber}{true}}{
@@ -6149,16 +6149,16 @@
 	\setcounter{section}{0}
 	\setcounter{footnote}{0}
 
-	% -----------------------------------------------------------------------------
+	% -------------------------------------------------------------------------
 	% Muestra los números de línea
-	% -----------------------------------------------------------------------------
+	% -------------------------------------------------------------------------
 	\ifthenelse{\equal{\showlinenumbers}{true}}{
 		\linenumbers}{
 	}
 
-	% -----------------------------------------------------------------------------
+	% -------------------------------------------------------------------------
 	% Establece el estilo de las subsubsubsecciones
-	% -----------------------------------------------------------------------------
+	% -------------------------------------------------------------------------
 
 }
 
