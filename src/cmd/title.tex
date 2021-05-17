@@ -1,6 +1,6 @@
 % Template:     Template Reporte LaTeX
 % Documento:    Funciones para insertar títulos
-% Versión:      2.1.9 (22/04/2021)
+% Versión:      2.2.0 (17/05/2021)
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R.
@@ -179,17 +179,6 @@
 	\renewcommand{\thesubsection}{\arabic{subsection}}
 	\def\GLOBALsectionanumenabled{true}
 }
-\newcommand{\sectionanumnoi}[1]{
-	\emptyvarerr{\sectionanumnoi}{#1}{Titulo no definido}
-	\phantomsection
-	\needspace{3\baselineskip}
-	\section*{#1}
-	\ifthenelse{\equal{\anumsecaddtocounter}{true}}{\stepcounter{section}}{}
-	\changeheadertitle{#1}
-	\setcounter{subsection}{0}
-	\renewcommand{\thesubsection}{\arabic{subsection}}
-	\def\GLOBALsectionanumenabled{true}
-}
 \newcommand{\sectionanumheadless}[1]{
 	\emptyvarerr{\sectionanumnoheadless}{#1}{Titulo no definido}
 	\section*{#1}
@@ -199,26 +188,10 @@
 	\renewcommand{\thesubsection}{\arabic{subsection}}
 	\def\GLOBALsectionanumenabled{true}
 }
-\newcommand{\sectionanumnoiheadless}[1]{
-	\emptyvarerr{\sectionanumnoiheadless}{#1}{Titulo no definido}
-	\section*{#1}
-	\ifthenelse{\equal{\anumsecaddtocounter}{true}}{\stepcounter{section}}{}
-	\setcounter{subsection}{0}
-	\renewcommand{\thesubsection}{\arabic{subsection}}
-	\def\GLOBALsectionanumenabled{true}
-}
 \newcommand{\subsectionanum}[1]{
 	\emptyvarerr{\subsectionanum}{#1}{Subtitulo no definido}
 	\subsection*{#1}
 	\addcontentsline{toc}{subsection}{#1}
-	\ifthenelse{\equal{\anumsecaddtocounter}{true}}{\stepcounter{subsection}}{}
-	\setcounter{subsubsection}{0}
-	\renewcommand{\thesubsubsection}{\arabic{subsubsection}}
-	\def\GLOBALsubsectionanumenabled{true}
-}
-\newcommand{\subsectionanumnoi}[1]{
-	\emptyvarerr{\subsectionanumnoi}{#1}{Subtitulo no definido}
-	\subsection*{#1}
 	\ifthenelse{\equal{\anumsecaddtocounter}{true}}{\stepcounter{subsection}}{}
 	\setcounter{subsubsection}{0}
 	\renewcommand{\thesubsubsection}{\arabic{subsubsection}}
@@ -236,26 +209,10 @@
 		\renewcommand{\thesubsubsubsection}{\arabic{subsubsubsection}}
 	}
 }
-\newcommand{\subsubsectionanumnoi}[1]{
-	\emptyvarerr{\subsubsectionanumnoi}{#1}{Sub-subtitulo no definido}
-	\subsubsection*{#1}
-	\ifthenelse{\equal{\anumsecaddtocounter}{true}}{\stepcounter{subsubsection}}{}
-	\setcounter{subsubsubsection}{0}
-	\ifthenelse{\equal{\showdotaftersnum}{true}}{
-		\renewcommand{\thesubsubsubsection}{\arabic{subsubsubsection}.}
-	}{
-		\renewcommand{\thesubsubsubsection}{\arabic{subsubsubsection}}
-	}
-}
 \newcommand{\subsubsubsectionanum}[1]{
 	\emptyvarerr{\subsubsubsectionanum}{#1}{Sub-sub-subtitulo no definido}
 	\subsubsubsection*{#1}
 	\addcontentsline{toc}{subsubsubsection}{#1}
-	\ifthenelse{\equal{\anumsecaddtocounter}{true}}{\stepcounter{subsubsubsection}}{}
-}
-\newcommand{\subsubsubsectionanumnoi}[1]{
-	\emptyvarerr{\subsubsubsectionanumnoi}{#1}{Sub-sub-subtitulo no definido}
-	\subsubsection*{#1}
 	\ifthenelse{\equal{\anumsecaddtocounter}{true}}{\stepcounter{subsubsubsection}}{}
 }
 \newcommand{\changeheadertitle}[1]{
@@ -264,28 +221,6 @@
 }
 \newcommand{\clearheadertitle}{
 	\markboth{}{}
-}
-\newcommand{\insertindextitle}[2][]{
-	\emptyvarerr{\insertindextitle}{#2}{Titulo no definido}
-	\ifx\hfuzz#1\hfuzz
-		\addtocontents{toc}{\protect\addvspace{\indextitlemargin pt}}
-	\else
-		\addtocontents{toc}{\protect\addvspace{#1 pt}}
-	\fi
-	\addtocontents{toc}{\noindent\hyperref[swpn]{\textbf{#2}}}
-}
-\newcommand{\insertindextitlepage}[2][]{
-	\emptyvarerr{\insertindextitlepage}{#2}{Titulo no definido}
-	\ifx\hfuzz#1\hfuzz
-		\addtocontents{toc}{\protect\addvspace{\indextitlemargin pt}}
-	\else
-		\addtocontents{toc}{\protect\addvspace{#1 pt}}
-	\fi
-	\addcontentsline{toc}{section}{#2}
-}
-\newcommand{\createhiddensection}[2][]{
-	\changeheadertitle{#2}
-	\insertindextitlepage[#1]{#2}
 }
 \newcommand{\newchapter}[1]{
 	\emptyvarerr{\newchapter}{#1}{Titulo no definido}

@@ -1,6 +1,6 @@
 % Template:     Template Reporte LaTeX
 % Documento:    Núcleo del template
-% Versión:      2.1.9 (22/04/2021)
+% Versión:      2.2.0 (17/05/2021)
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R.
@@ -298,6 +298,9 @@
 \ifthenelse{\equal{\fontdocument}{times}}{
 	\usepackage{mathptmx}
 }{
+\ifthenelse{\equal{\fontdocument}{mathptmx}}{
+	\usepackage{mathptmx}
+}{
 \ifthenelse{\equal{\fontdocument}{helvet}}{
 	\renewcommand{\familydefault}{\sfdefault}
 	\usepackage[scaled=0.95]{helvet}
@@ -579,11 +582,11 @@
 	\usepackage[lf]{venturis}
 	\renewcommand*\familydefault{\sfdefault}
 }{
-	\throwbadconfig[nostop]{Fuente desconocida}{\fontdocument}{(Fuentes recomendadas) lmodern,arial,arial2,helvet,times,alegreyasans,mathpazo}
+	\throwbadconfig[nostop]{Fuente desconocida}{\fontdocument}{(Fuentes recomendadas) lmodern,arial,arial2,helvet,times,alegreyasans,mathpazo,mathptmx}
 	\throwbadconfig[noheader-nostop]{Fuente desconocida}{\fontdocument}{(Fuentes adicionales) accantis,alegreya,algolrevived,antiqua,antpolt,antpoltlight,anttor,anttorcondensed,anttorlight,anttorlightcondensed,arev,arimo,aurical,avant,baskervald,berasans,beraserif,biolinum,cabin,cabincondensed,cantarell,caladea,carlito,chivolight,chivoregular,clearsans,comfortaa,comicneue,comicneueangular,crimson,cyklop,dejavusans,dejavusanscondensed,droidsans,firasans,iwona,iwonacondensed,iwonalight,iwonalightcondensed,kurier}
 	\throwbadconfig[noheader-nostop]{Fuente desconocida}{\fontdocument}{kuriercondensed,kurierlight,kurierlightcondensed,lato,libris,lxfonts,merriweather,merriweatherlight,mintspirit,montserratalternatesextralight,montserratalternatesregular,montserratalternatesthin,montserratextralight,montserratlight,montserratregular,montserratthin,nimbussans,noto,opensansserif,overlock,paratype,paratypesanscaption,paratypesansnarrow,quattrocento,raleway,roboto,robotolight,robotolightcondensed,robotothin,rosario,sourcesanspro,uarial,ugq}
 	\throwbadconfig[noheader]{Fuente desconocida}{\fontdocument}{universalis,universaliscondensed,venturis}
-	}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}
+	}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}
 }
 
 % -----------------------------------------------------------------------------
@@ -2483,20 +2486,6 @@
 	\def\GLOBALsectionanumenabled{true}
 }
 
-% Insertar un título sin número y sin indexar
-% 	#1	Título
-\newcommand{\sectionanumnoi}[1]{
-	\emptyvarerr{\sectionanumnoi}{#1}{Titulo no definido}
-	\phantomsection
-	\needspace{3\baselineskip}
-	\section*{#1}
-	\ifthenelse{\equal{\anumsecaddtocounter}{true}}{\stepcounter{section}}{}
-	\changeheadertitle{#1}
-	\setcounter{subsection}{0}
-	\renewcommand{\thesubsection}{\arabic{subsection}}
-	\def\GLOBALsectionanumenabled{true}
-}
-
 % Insertar un título sin número sin cambiar el título del header
 % 	#1	Título
 \newcommand{\sectionanumheadless}[1]{
@@ -2509,34 +2498,12 @@
 	\def\GLOBALsectionanumenabled{true}
 }
 
-% Insertar un título sin número, sin indexar y sin cambiar el título del header
-% 	#1	Título
-\newcommand{\sectionanumnoiheadless}[1]{
-	\emptyvarerr{\sectionanumnoiheadless}{#1}{Titulo no definido}
-	\section*{#1}
-	\ifthenelse{\equal{\anumsecaddtocounter}{true}}{\stepcounter{section}}{}
-	\setcounter{subsection}{0}
-	\renewcommand{\thesubsection}{\arabic{subsection}}
-	\def\GLOBALsectionanumenabled{true}
-}
-
 % Insertar un subtítulo sin número
 % 	#1	Subtítulo
 \newcommand{\subsectionanum}[1]{
 	\emptyvarerr{\subsectionanum}{#1}{Subtitulo no definido}
 	\subsection*{#1}
 	\addcontentsline{toc}{subsection}{#1}
-	\ifthenelse{\equal{\anumsecaddtocounter}{true}}{\stepcounter{subsection}}{}
-	\setcounter{subsubsection}{0}
-	\renewcommand{\thesubsubsection}{\arabic{subsubsection}}
-	\def\GLOBALsubsectionanumenabled{true}
-}
-
-% Insertar un subtítulo sin número y sin indexar
-% 	#1	Subtítulo
-\newcommand{\subsectionanumnoi}[1]{
-	\emptyvarerr{\subsectionanumnoi}{#1}{Subtitulo no definido}
-	\subsection*{#1}
 	\ifthenelse{\equal{\anumsecaddtocounter}{true}}{\stepcounter{subsection}}{}
 	\setcounter{subsubsection}{0}
 	\renewcommand{\thesubsubsection}{\arabic{subsubsection}}
@@ -2558,34 +2525,12 @@
 	}
 }
 
-% Insertar un sub-subtítulo sin número y sin indexar
-% 	#1	Sub-subtítulo
-\newcommand{\subsubsectionanumnoi}[1]{
-	\emptyvarerr{\subsubsectionanumnoi}{#1}{Sub-subtitulo no definido}
-	\subsubsection*{#1}
-	\ifthenelse{\equal{\anumsecaddtocounter}{true}}{\stepcounter{subsubsection}}{}
-	\setcounter{subsubsubsection}{0}
-	\ifthenelse{\equal{\showdotaftersnum}{true}}{
-		\renewcommand{\thesubsubsubsection}{\arabic{subsubsubsection}.}
-	}{
-		\renewcommand{\thesubsubsubsection}{\arabic{subsubsubsection}}
-	}
-}
-
 % Insertar un sub-sub-subtítulo sin número
 % 	#1	Sub-sub-subtítulo
 \newcommand{\subsubsubsectionanum}[1]{
 	\emptyvarerr{\subsubsubsectionanum}{#1}{Sub-sub-subtitulo no definido}
 	\subsubsubsection*{#1}
 	\addcontentsline{toc}{subsubsubsection}{#1}
-	\ifthenelse{\equal{\anumsecaddtocounter}{true}}{\stepcounter{subsubsubsection}}{}
-}
-
-% Insertar un sub-sub-subtítulo sin número y sin indexar
-% 	#1	Sub-sub-subtítulo
-\newcommand{\subsubsubsectionanumnoi}[1]{
-	\emptyvarerr{\subsubsubsectionanumnoi}{#1}{Sub-sub-subtitulo no definido}
-	\subsubsection*{#1}
 	\ifthenelse{\equal{\anumsecaddtocounter}{true}}{\stepcounter{subsubsubsection}}{}
 }
 
@@ -2599,40 +2544,6 @@
 % Elimina el título del encabezado (header)
 \newcommand{\clearheadertitle}{
 	\markboth{}{}
-}
-
-% Insertar un título en un índice, sin número de página
-%	#1	Margen superior en pt. (opcional)
-%	#2	Título
-\newcommand{\insertindextitle}[2][]{
-	\emptyvarerr{\insertindextitle}{#2}{Titulo no definido}
-	\ifx\hfuzz#1\hfuzz
-		\addtocontents{toc}{\protect\addvspace{\indextitlemargin pt}}
-	\else
-		\addtocontents{toc}{\protect\addvspace{#1 pt}}
-	\fi
-	\addtocontents{toc}{\noindent\hyperref[swpn]{\textbf{#2}}}
-}
-
-% Insertar un título en un índice, con número de página
-%	#1	Margen superior en pt. (opcional)
-%	#2	Título
-\newcommand{\insertindextitlepage}[2][]{
-	\emptyvarerr{\insertindextitlepage}{#2}{Titulo no definido}
-	\ifx\hfuzz#1\hfuzz
-		\addtocontents{toc}{\protect\addvspace{\indextitlemargin pt}}
-	\else
-		\addtocontents{toc}{\protect\addvspace{#1 pt}}
-	\fi
-	\addcontentsline{toc}{section}{#2}
-}
-
-% Crea una sección en el índice y en el header
-%	#1	Margen superior en pt. (opcional)
-%	#2	Título
-\newcommand{\createhiddensection}[2][]{
-	\changeheadertitle{#2}
-	\insertindextitlepage[#1]{#2}
 }
 
 % Crear un capítulo como una sección
@@ -4340,7 +4251,6 @@
 \makeatother
 
 % -----------------------------------------------------------------------------
-% -----------------------------------------------------------------------------
 % Verifica tamaños de fuentes
 % -----------------------------------------------------------------------------
 \corecheckfontsize{\captionfontsize}
@@ -4404,15 +4314,15 @@
 		Template.Autor.Nombre={Pablo Pizarro R.},
 		Template.Autor.Web={https://ppizarror.com/},
 		Template.Codificacion={UTF-8},
-		Template.Fecha={22/04/2021},
+		Template.Fecha={17/05/2021},
 		Template.Latex.Compilador={pdflatex},
 		Template.Licencia.Tipo={MIT},
 		Template.Licencia.Web={https://opensource.org/licenses/MIT/},
 		Template.Nombre={Template-Reporte},
 		Template.Tipo={Normal},
-		Template.Version.Dev={2.1.9-3-REPT},
-		Template.Version.Hash={28520B7A486E9578199220E7D87772C5},
-		Template.Version.Release={2.1.9},
+		Template.Version.Dev={2.2.0-3-REPT},
+		Template.Version.Hash={45A07A9E79F3EE378DB5DA41BE837E82},
+		Template.Version.Release={2.2.0},
 		Template.Web.Dev={https://github.com/Template-Latex/Template-Reporte/},
 		Template.Web.Manual={https://latex.ppizarror.com/reporte},
 		Universidad.Departamento={\pdfmetainfounidepto},
@@ -4424,7 +4334,7 @@
 	pdfmenubar={\cfgpdfmenubar},
 	pdfpagelayout={\cfgpdflayout},
 	pdfpagemode={\cfgpdfpagemode},
-	pdfproducer={Template-Reporte v2.1.9 | (Pablo Pizarro R.) ppizarror.com},
+	pdfproducer={Template-Reporte v2.2.0 | (Pablo Pizarro R.) ppizarror.com},
 	pdfremotestartview={Fit},
 	pdfstartpage={1},
 	pdfstartview={\cfgpdfpageview},
@@ -4695,17 +4605,6 @@
 \endgroup
 
 % -----------------------------------------------------------------------------
-% Crea índice de ecuaciones
-% -----------------------------------------------------------------------------
-\newcommand{\listindexequationsname}{\nomlteqn}
-\newlistof{myindexequations}{equ}{\listindexequationsname}
-\newcommand{\myindexequations}[1]{
-	\addcontentsline{equ}{myindexequations}{\protect\numberline{\theequation}#1}
-}
-\setcounter{templateIndexEquations}{0}
-\DeclareTotalCounter{templateIndexEquations}
-
-% -----------------------------------------------------------------------------
 % Reconfiguración de tamaño de páginas
 % -----------------------------------------------------------------------------
 \makeatletter
@@ -4768,7 +4667,6 @@
 % -----------------------------------------------------------------------------
 \urlstyle{\fonturl}
 
-% -----------------------------------------------------------------------------
 % -----------------------------------------------------------------------------
 % Configuraciones del motor de compilación
 % -----------------------------------------------------------------------------
@@ -5786,10 +5684,8 @@
 	% -------------------------------------------------------------------------
 	\markboth{}{}
 	\clearpage
-
 	% Actualiza headers
 	\ifthenelse{\equal{\disablehfrightmark}{false}}{
-		
 		% Define funciones generales
 		\def\COREhfstyledefA { % 1, 2, 4, 9, 11, 14, 15
 			\fancypagestyle{plain}{\fancyhead[L]{\nouppercase{\leftmark}}}
@@ -5847,7 +5743,6 @@
 				\fancyhead[L]{\nouppercase{\leftmark}}
 			}
 		}
-		
 		% Actualiza los header-footer
 		\ifthenelse{\equal{\hfstyle}{style1}}{
 			\COREhfstyledefA
@@ -6163,6 +6058,7 @@
 	\ifthenelse{\equal{\predocresetpagenumber}{true}}{
 		\setcounter{page}{1}}{
 	}
+	
 	\setcounter{section}{0}
 	\setcounter{footnote}{0}
 
