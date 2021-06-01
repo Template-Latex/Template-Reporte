@@ -1,6 +1,6 @@
 % Template:     Template Reporte LaTeX
 % Documento:    Núcleo del template
-% Versión:      2.2.1 (26/05/2021)
+% Versión:      2.2.2 (01/06/2021)
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R.
@@ -42,7 +42,6 @@
 % -----------------------------------------------------------------------------
 % LIBRERÍAS DEL NÚCLEO
 % -----------------------------------------------------------------------------
-
 % Manejo de condicionales
 \usepackage{ifthen}
 
@@ -123,7 +122,6 @@
 \usepackage{pdflscape}     % Modo página horizontal de página
 \usepackage{pdfpages}      % Permite administrar páginas en pdf
 \usepackage{physics}       % Paquete de matemáticas
-% \usepackage{ragged2e}    % Redefine centering
 \usepackage{rotating}      % Permite rotación de objetos
 \usepackage{selinput}      % Compatibilidad con acentos
 \usepackage{setspace}      % Cambia el espacio entre líneas
@@ -133,21 +131,6 @@
 \usepackage{url}           % Permite añadir enlaces
 \usepackage{wrapfig}       % Posición de imágenes
 \usepackage{xspace}        % Adminsitra espacios en párrafos y líneas
-
-% En v6.3.7 se desactiva cellspace
-% \usepackage{cellspace}   % Tamaños en celdas de tablas
-
-% \usepackage{colortbl}, xcolor al cargar table ya importa colortbl (v6.3.3)
-% El paquete colortbl queda obsoleto con array+xcolor si la versión es inferior
-% a v1.0c, se recomienda actualizar o ocurren errores asociados a @parbox
-
-% Se prefiere no utilizar matlab-prettifier ya que es muy pesada para lo que
-% la librería ofrece
-% \usepackage{matlab-prettifier}
-
-% Tampoco se recomienda el uso de subfigure, posee errores de compatibilidad y
-% está obsoleto
-% \usepackage{subfigure}
 
 % -----------------------------------------------------------------------------
 % LIBRERÍAS CON PARÁMETROS
@@ -163,7 +146,6 @@
 % -----------------------------------------------------------------------------
 % LIBRERÍAS CONDICIONALES
 % -----------------------------------------------------------------------------
-
 % Imágenes en modo draft
 \ifthenelse{\equal{\graphicxdraft}{true}}{
 	\usepackage[
@@ -194,10 +176,6 @@
 }
 
 % Referencias
-% Desde v6.2.8 se debe cargar al final para evitar errores:
-%	- Option clash for package hyperref
-% 	- name has been referenced but does not exist, replaced by a fixed one
-% Desde v6.5.6 se carga después de las referencias (apacite, natbib, bibtex)
 \usepackage[pdfencoding=auto,psdextra]{hyperref} % Enlaces, referencias
 \ifthenelse{\equal{\stylecitereferences}{natbib}}{ % Formato citas natbib
 	\usepackage[nottoc,notlof,notlot]{tocbibind}
@@ -282,9 +260,8 @@
 % -----------------------------------------------------------------------------
 % TIPOGRAFÍA DEL DOCUMENTO
 % -----------------------------------------------------------------------------
-
 % Tipografías clásicas
-\ifthenelse{\equal{\fontdocument}{lmodern}}{ % Default
+\ifthenelse{\equal{\fontdocument}{lmodern}}{
 	\usepackage{lmodern}
 }{
 \ifthenelse{\equal{\fontdocument}{arial}}{
@@ -430,7 +407,7 @@
 	\usepackage[defaultsans]{droidsans}
 	\renewcommand*\familydefault{\sfdefault}
 }{
-\ifthenelse{\equal{\fontdocument}{fetamont}}{ % Falta implementar aún
+\ifthenelse{\equal{\fontdocument}{fetamont}}{
 	\usepackage{fetamont}
 	\renewcommand*\familydefault{\sfdefault}
 }{
@@ -591,7 +568,7 @@
 % -----------------------------------------------------------------------------
 % TIPOGRAFÍA TYPEWRITER
 % -----------------------------------------------------------------------------
-\ifthenelse{\equal{\fonttypewriter}{tmodern}}{ % Default
+\ifthenelse{\equal{\fonttypewriter}{tmodern}}{
 	\renewcommand*\ttdefault{lmvtt}
 }{
 \ifthenelse{\equal{\fonttypewriter}{anonymouspro}}{
@@ -1671,7 +1648,7 @@
 	\fi
 }
 
-% Añade una imagen a un env 'image' con borde
+% Añade una imagen a un env "image" con borde
 % 	#1	Label (opcional)
 %	#2	Dirección de la imagen
 %	#3	Parámetros de la imagen
@@ -1680,7 +1657,7 @@
 	\addimageboxed[#1]{#2}{#3}{0}{#4}%
 }
 
-% Añade una imagen a un env 'image' con borde
+% Añade una imagen a un env "image" con borde
 % 	#1	Label (opcional)
 %	#2	Dirección de la imagen
 %	#3	Parámetros de la imagen
@@ -1690,14 +1667,14 @@
 	\checkonlyonenvimage\begingroup\setlength{\fboxsep}{0 pt}\setlength{\fboxrule}{#4 pt}\ifthenelse{\equal{\GLOBALenvimageadded}{true}}{\hspace{\marginimagemultright cm}\hspace{-0.125cm}}{}\subfloat[#5]{\fbox{\includegraphics[#3]{#2}}#1}\endgroup\ifthenelse{\equal{\GLOBALenvimageadded}{true}}{}{\def\GLOBALenvimageadded {true}}%
 }
 
-% Añade una imagen a un env 'image' con borde sin leyenda
+% Añade una imagen a un env "image" con borde sin leyenda
 %	#1	Dirección de la imagen
 %	#2	Parámetros de la imagen
 \newcommand{\addimageanum}[2]{%
 	\addimageboxedanum{#1}{#2}{0}%
 }
 
-% Añade una imagen a un env 'image' con borde sin leyenda
+% Añade una imagen a un env "image" con borde sin leyenda
 %	#1	Dirección de la imagen
 %	#2	Parámetros de la imagen
 %	#3	Ancho de la línea (en pt)
@@ -2589,9 +2566,6 @@
 	\newcolumn\newcolumn\clearpage%
 }
 
-% Inserta un lipsum corregido
-% \newcommand{\slipsum}[1][]{~\lipsum[#1]}
-
 % Redimensiona un ítem
 % 	#1	Tamaño del nuevo objeto (En linewidth)
 %	#2	Objeto a redimensionar
@@ -2664,12 +2638,6 @@
 \newcommand{\hreftext}[1]{%
 	\ifthenelse{\equal{\fonturl}{same}}{#1}{\ifthenelse{\equal{\fonturl}{tt}}{\texttt{#1}}{\ifthenelse{\equal{\fonturl}{rm}}{\textrm{#1}}{\ifthenelse{\equal{\fonturl}{sf}}{\textsf{#1}}{}}}}%
 }
-
-% Parcha href para incluir el estilo
-% \let\oldhref=\href
-% \renewcommand{\href}[2]{
-% 	\oldhref{#1}{\insertHREFtext{#2}}
-% }
 
 % Inserta un email con un link cliqueable
 %	#1 	Dirección email
@@ -4315,15 +4283,15 @@
 		Template.Autor.Nombre={Pablo Pizarro R.},
 		Template.Autor.Web={https://ppizarror.com},
 		Template.Codificacion={UTF-8},
-		Template.Fecha={26/05/2021},
+		Template.Fecha={01/06/2021},
 		Template.Latex.Compilador={pdflatex},
 		Template.Licencia.Tipo={MIT},
 		Template.Licencia.Web={https://opensource.org/licenses/MIT},
 		Template.Nombre={Template-Reporte},
 		Template.Tipo={Normal},
-		Template.Version.Dev={2.2.1-REPT},
-		Template.Version.Hash={BBD8494769CAE2EC883F4314A5D78353},
-		Template.Version.Release={2.2.1},
+		Template.Version.Dev={2.2.2-REPT},
+		Template.Version.Hash={B1977906B8D52D8FC14A39F43B0258EB},
+		Template.Version.Release={2.2.2},
 		Template.Web.Dev={https://github.com/Template-Latex/Template-Reporte},
 		Template.Web.Manual={https://latex.ppizarror.com/reporte},
 		Universidad.Departamento={\pdfmetainfounidepto},
@@ -4332,11 +4300,10 @@
 		Universidad.Ubicacion={\pdfmetainfouniubicacion}
 	},
 	pdfkeywords={\cfgpdfkeywords},
-	pdflang={\documentlang},
 	pdfmenubar={\cfgpdfmenubar},
 	pdfpagelayout={\cfgpdflayout},
 	pdfpagemode={\cfgpdfpagemode},
-	pdfproducer={Template-Reporte v2.2.1 | (Pablo Pizarro R.) ppizarror.com},
+	pdfproducer={Template-Reporte v2.2.2 | (Pablo Pizarro R.) ppizarror.com},
 	pdfremotestartview={Fit},
 	pdfstartpage={1},
 	pdfstartview={\cfgpdfpageview},
@@ -4411,7 +4378,6 @@
 % -----------------------------------------------------------------------------
 % Configuración de las leyendas
 % -----------------------------------------------------------------------------
-
 % Márgenes de las leyendas por defecto
 \setcaptionmargincm{\captionlrmargin}
 \ifthenelse{\equal{\captiontextbold}{true}}{ % Texto en negrita en etiquetas
@@ -4626,7 +4592,6 @@
 \vfuzz=200pt
 \hbadness=\maxdimen
 \vbadness=\maxdimen
-% \sloppy Sloppy arruina portadas al exigir "justify", desde 6.4.2 se desactiva
 
 % -----------------------------------------------------------------------------
 % Configura las fuentes
@@ -4848,7 +4813,6 @@
 % -----------------------------------------------------------------------------
 % Configuraciones del idioma
 % -----------------------------------------------------------------------------
-
 % Desactiva carácteres acentuados en operaciones matemáticas
 \unaccentedoperators
 
@@ -5016,7 +4980,7 @@
 		\renewcommand{\sectionmark}[1]{\markboth{##1}{}}
 		\COREstyledefinition
 	}{
-	\ifthenelse{\equal{\hfstyle}{style1-i}}{ % impar izquierdo
+	\ifthenelse{\equal{\hfstyle}{style1-i}}{ % Impar izquierdo
 		\pagestyle{fancy}
 		\newcommand{\COREstyledefinition}{
 			\fancyhf{}
@@ -5049,7 +5013,7 @@
 		\renewcommand{\sectionmark}[1]{\markboth{##1}{}}
 		\COREstyledefinition
 	}{
-	\ifthenelse{\equal{\hfstyle}{style1-d}}{ % impar derecho
+	\ifthenelse{\equal{\hfstyle}{style1-d}}{ % Impar derecho
 		\pagestyle{fancy}
 		\newcommand{\COREstyledefinition}{
 			\fancyhf{}
@@ -5115,7 +5079,7 @@
 		\renewcommand{\sectionmark}[1]{\markboth{##1}{}}
 		\COREstyledefinition
 	}{
-	\ifthenelse{\equal{\hfstyle}{style2-i}}{ % impar izquierdo
+	\ifthenelse{\equal{\hfstyle}{style2-i}}{ % Impar izquierdo
 		\pagestyle{fancy}
 		\newcommand{\COREstyledefinition}{
 			\fancyhf{}
@@ -5148,7 +5112,7 @@
 		\renewcommand{\sectionmark}[1]{\markboth{##1}{}}
 		\COREstyledefinition
 	}{
-	\ifthenelse{\equal{\hfstyle}{style1-d}}{ % impar derecho
+	\ifthenelse{\equal{\hfstyle}{style1-d}}{ % Impar derecho
 		\pagestyle{fancy}
 		\newcommand{\COREstyledefinition}{
 			\fancyhf{}
@@ -5256,7 +5220,7 @@
 		\renewcommand{\sectionmark}[1]{\markboth{##1}{}}
 		\COREstyledefinition
 	}{
-	\ifthenelse{\equal{\hfstyle}{style5-d}}{ % impar derecho
+	\ifthenelse{\equal{\hfstyle}{style5-d}}{ % Impar derecho
 		\pagestyle{fancy}
 		\newcommand{\COREstyledefinition}{
 			\fancyhf{}
@@ -5291,7 +5255,7 @@
 		\renewcommand{\sectionmark}[1]{\markboth{##1}{}}
 		\COREstyledefinition
 	}{
-	\ifthenelse{\equal{\hfstyle}{style5-i}}{ % impar izquierdo
+	\ifthenelse{\equal{\hfstyle}{style5-i}}{ % Impar izquierdo
 		\pagestyle{fancy}
 		\newcommand{\COREstyledefinition}{
 			\fancyhf{}
@@ -5361,7 +5325,7 @@
 		\setlength{\headheight}{49pt}
 		\COREstyledefinition
 	}{
-	\ifthenelse{\equal{\hfstyle}{style8-d}}{ % impar derecho
+	\ifthenelse{\equal{\hfstyle}{style8-d}}{ % Impar derecho
 		\pagestyle{fancy}
 		\newcommand{\COREstyledefinition}{
 			\fancyhf{}
@@ -5372,7 +5336,7 @@
 		\setlength{\headheight}{49pt}
 		\COREstyledefinition
 	}{
-	\ifthenelse{\equal{\hfstyle}{style8-i}}{ % impar izquierdo
+	\ifthenelse{\equal{\hfstyle}{style8-i}}{ % Impar izquierdo
 		\pagestyle{fancy}
 		\newcommand{\COREstyledefinition}{
 			\fancyhf{}
@@ -5399,7 +5363,7 @@
 		\renewcommand{\sectionmark}[1]{\markboth{##1}{}}
 		\COREstyledefinition
 	}{
-	\ifthenelse{\equal{\hfstyle}{style9-d}}{ % impar derecho
+	\ifthenelse{\equal{\hfstyle}{style9-d}}{ % Impar derecho
 		\pagestyle{fancy}
 		\newcommand{\COREstyledefinition}{
 			\fancyhf{}
@@ -5415,7 +5379,7 @@
 		\renewcommand{\sectionmark}[1]{\markboth{##1}{}}
 		\COREstyledefinition
 	}{
-	\ifthenelse{\equal{\hfstyle}{style9-i}}{ % impar izquierdo
+	\ifthenelse{\equal{\hfstyle}{style9-i}}{ % Impar izquierdo
 		\pagestyle{fancy}
 		\newcommand{\COREstyledefinition}{
 			\fancyhf{}
@@ -5466,7 +5430,7 @@
 		\renewcommand{\sectionmark}[1]{\markboth{##1}{}}
 		\COREstyledefinition
 	}{
-	\ifthenelse{\equal{\hfstyle}{style10-i}}{ % impar izquierdo
+	\ifthenelse{\equal{\hfstyle}{style10-i}}{ % Impar izquierdo
 		\pagestyle{fancy}
 		\newcommand{\COREstyledefinition}{
 			\fancyhf{}
@@ -5501,7 +5465,7 @@
 		\renewcommand{\sectionmark}[1]{\markboth{##1}{}}
 		\COREstyledefinition
 	}{
-	\ifthenelse{\equal{\hfstyle}{style10-d}}{ % impar derecho
+	\ifthenelse{\equal{\hfstyle}{style10-d}}{ % Impar derecho
 		\pagestyle{fancy}
 		\newcommand{\COREstyledefinition}{
 			\fancyhf{}
@@ -5749,22 +5713,22 @@
 		\ifthenelse{\equal{\hfstyle}{style1}}{
 			\COREhfstyledefA
 		}{
-		\ifthenelse{\equal{\hfstyle}{style1-i}}{ % impar izquierdo
+		\ifthenelse{\equal{\hfstyle}{style1-i}}{ % Impar izquierdo
 			\fancypagestyle{plain}{\fancyhead[LE,RO]{\nouppercase{\leftmark}}}
 			\fancyhead[LE,RO]{\nouppercase{\leftmark}}
 		}{
-		\ifthenelse{\equal{\hfstyle}{style1-d}}{ % impar derecho
+		\ifthenelse{\equal{\hfstyle}{style1-d}}{ % Impar derecho
 			\fancypagestyle{plain}{\fancyhead[LO,RE]{\nouppercase{\leftmark}}}
 			\fancyhead[LO,RE]{\nouppercase{\leftmark}}
 		}{
 		\ifthenelse{\equal{\hfstyle}{style2}}{
 			\COREhfstyledefA
 		}{
-		\ifthenelse{\equal{\hfstyle}{style2-i}}{ % impar izquierdo
+		\ifthenelse{\equal{\hfstyle}{style2-i}}{ % Impar izquierdo
 			\fancypagestyle{plain}{\fancyhead[LE,RO]{\nouppercase{\leftmark}}}
 			\fancyhead[LE,RO]{\nouppercase{\leftmark}}
 		}{
-		\ifthenelse{\equal{\hfstyle}{style2-d}}{ % impar derecho
+		\ifthenelse{\equal{\hfstyle}{style2-d}}{ % Impar derecho
 			\fancypagestyle{plain}{\fancyhead[LO,RE]{\nouppercase{\leftmark}}}
 			\fancyhead[LO,RE]{\nouppercase{\leftmark}}
 		}{
@@ -5774,28 +5738,28 @@
 		\ifthenelse{\equal{\hfstyle}{style5}}{
 			\COREhfstyledefB
 		}{
-		\ifthenelse{\equal{\hfstyle}{style5-d}}{ % impar derecho
+		\ifthenelse{\equal{\hfstyle}{style5-d}}{ % Impar derecho
 			\COREhfstyledefB
 		}{
-		\ifthenelse{\equal{\hfstyle}{style5-i}}{ % impar izquierdo
+		\ifthenelse{\equal{\hfstyle}{style5-i}}{ % Impar izquierdo
 			\COREhfstyledefB
 		}{
 		\ifthenelse{\equal{\hfstyle}{style9}}{
 			\COREhfstyledefA
 		}{
-		\ifthenelse{\equal{\hfstyle}{style9-d}}{ % impar derecho
+		\ifthenelse{\equal{\hfstyle}{style9-d}}{ % Impar derecho
 			\COREhfstyledefA
 		}{
-		\ifthenelse{\equal{\hfstyle}{style9-i}}{ % impar izquierdo
+		\ifthenelse{\equal{\hfstyle}{style9-i}}{ % Impar izquierdo
 			\COREhfstyledefA
 		}{
 		\ifthenelse{\equal{\hfstyle}{style10}}{
 			\COREhfstyledefC
 		}{
-		\ifthenelse{\equal{\hfstyle}{style10-d}}{ % impar derecho
+		\ifthenelse{\equal{\hfstyle}{style10-d}}{ % Impar derecho
 			\COREhfstyledefC
 		}{
-		\ifthenelse{\equal{\hfstyle}{style10-i}}{ % impar izquierdo
+		\ifthenelse{\equal{\hfstyle}{style10-i}}{ % Impar izquierdo
 			\COREhfstyledefC
 		}{
 		\ifthenelse{\equal{\hfstyle}{style11}}{ % Similar a 1
@@ -5824,7 +5788,6 @@
 	% -------------------------------------------------------------------------
 	% Crea funciones para numerar objetos
 	% -------------------------------------------------------------------------
-
 	% Numeración de la sección en los objetos CÓDIGO FUENTE
 	\ifthenelse{\equal{\showsectioncaptioncode}{none}}{
 		\def\sectionobjectnumcode {}
@@ -5932,7 +5895,6 @@
 	% -------------------------------------------------------------------------
 	% Modifica numeración de objetos
 	% -------------------------------------------------------------------------
-
 	% Código fuente, INCLUIR SECCIÓN
 	\ifthenelse{\equal{\captionnumcode}{arabic}}{
 		\renewcommand{\thelstlisting}{\sectionobjectnumcode\arabic{lstlisting}}
@@ -6050,7 +6012,6 @@
 	% -------------------------------------------------------------------------
 	% Se reestablecen números de página y secciones
 	% -------------------------------------------------------------------------
-
 	% Se usa número de páginas en arábigo si es que se tenía activado los númeos romanos
 	\ifthenelse{\equal{\predocpageromannumber}{true}}{
 		\renewcommand{\thepage}{\arabic{page}}}{
@@ -6070,10 +6031,6 @@
 	\ifthenelse{\equal{\showlinenumbers}{true}}{
 		\linenumbers}{
 	}
-
-	% -------------------------------------------------------------------------
-	% Establece el estilo de las subsubsubsecciones
-	% -------------------------------------------------------------------------
 
 }
 
