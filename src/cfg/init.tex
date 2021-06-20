@@ -1,6 +1,6 @@
 % Template:     Template Reporte LaTeX
 % Documento:    Configuración inicial del template
-% Versión:      2.2.3 (15/06/2021)
+% Versión:      2.2.4 (20/06/2021)
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R.
@@ -45,18 +45,18 @@
 	\def\pdfmetainfoautor {\autordeldocumento}
 	\def\pdfmetainfocodigodelcurso {\codigodelcurso}
 	\def\pdfmetainfonombredelcurso {\nombredelcurso}
-	\def\pdfmetainfoautor {\autordeldocumento}
 	\def\pdfmetainfotema {\temaatratar}
 	\def\pdfmetainfotitulo {\titulodelreporte}
 	\def\pdfmetainfounidepto {\departamentouniversidad}
 	\def\pdfmetainfounifacultad {\nombrefacultad}
 	\def\pdfmetainfouninombre {\nombreuniversidad}
 	\def\pdfmetainfouniubicacion {\localizacionuniversidad}
+	\author{\pdfmetainfoautor}
+	\title{\pdfmetainfotitulo}
 }{
 	\def\pdfmetainfoautor {}
 	\def\pdfmetainfocodigodelcurso {}
 	\def\pdfmetainfonombredelcurso {}
-	\def\pdfmetainfoautor {}
 	\def\pdfmetainfotema {}
 	\def\pdfmetainfotitulo {}
 	\def\pdfmetainfounidepto {}
@@ -65,6 +65,7 @@
 	\def\pdfmetainfouniubicacion {}
 }
 \hypersetup{
+	keeppdfinfo,
 	bookmarksopen={\cfgpdfbookmarkopen},
 	bookmarksopenlevel={\cfgbookmarksopenlevel},
 	bookmarkstype={toc},
@@ -86,15 +87,15 @@
 		Template.Autor.Nombre={Pablo Pizarro R.},
 		Template.Autor.Web={https://ppizarror.com},
 		Template.Codificacion={UTF-8},
-		Template.Fecha={15/06/2021},
+		Template.Fecha={20/06/2021},
 		Template.Latex.Compilador={pdflatex},
 		Template.Licencia.Tipo={MIT},
 		Template.Licencia.Web={https://opensource.org/licenses/MIT},
 		Template.Nombre={Template-Reporte},
 		Template.Tipo={Normal},
-		Template.Version.Dev={2.2.3-1-REPT},
-		Template.Version.Hash={DCC621F5ED1BB14CDB4C42AC58F7106C},
-		Template.Version.Release={2.2.3},
+		Template.Version.Dev={2.2.4-REPT},
+		Template.Version.Hash={61A5BB38BDA0DCC3F3D8E266F3088C0B},
+		Template.Version.Release={2.2.4},
 		Template.Web.Dev={https://github.com/Template-Latex/Template-Reporte},
 		Template.Web.Manual={https://latex.ppizarror.com/reporte},
 		Universidad.Departamento={\pdfmetainfounidepto},
@@ -106,7 +107,7 @@
 	pdfmenubar={\cfgpdfmenubar},
 	pdfpagelayout={\cfgpdflayout},
 	pdfpagemode={\cfgpdfpagemode},
-	pdfproducer={Template-Reporte v2.2.3 | (Pablo Pizarro R.) ppizarror.com},
+	pdfproducer={Template-Reporte v2.2.4 | (Pablo Pizarro R.) ppizarror.com},
 	pdfremotestartview={Fit},
 	pdfstartpage={1},
 	pdfstartview={\cfgpdfpageview},
