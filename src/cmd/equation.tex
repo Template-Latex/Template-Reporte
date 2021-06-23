@@ -1,6 +1,6 @@
 % Template:     Template Reporte LaTeX
 % Documento:    Funciones para insertar ecuaciones
-% Versión:      2.2.4 (20/06/2021)
+% Versión:      2.2.5 (23/06/2021)
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R.
@@ -11,35 +11,49 @@
 % Sitio web:    [https://latex.ppizarror.com/reporte]
 % Licencia MIT: [https://opensource.org/licenses/MIT]
 
-\newcommand{\equationresize}[2]{
-	\emptyvarerr{\equationresize}{#1}{Dimension no definida}
-	\emptyvarerr{\equationresize}{#2}{Ecuacion a redimensionar no definida}
-	\resizebox{#1\linewidth}{!}{$#2$}
+% Redimensiona una ecuación en linewidth
+% 	#1	Tamaño del nuevo objeto (En linewidth)
+%	#2	Ecuación a redimensionar
+\newcommand{\equationresize}[2]{%
+	\emptyvarerr{\equationresize}{#1}{Dimension no definida}%
+	\emptyvarerr{\equationresize}{#2}{Ecuacion a redimensionar no definida}%
+	\resizebox{#1\linewidth}{!}{$#2$}%
 }
-\newcommand{\insertequation}[2][]{
-	\emptyvarerr{\insertequation}{#2}{Ecuacion no definida}
-	\ifthenelse{\equal{\numberedequation}{true}}{
-		\vspace{\marginequationtop cm}
-		\begin{equation}
-			\text{#1} #2
-		\end{equation}
-		\vspace{\marginequationbottom cm}
-	}{
-		\ifx\hfuzz#1\hfuzz
-		\else
-			\throwwarning{Label invalido en ecuacion sin numero}
-		\fi
-		\insertequationanum{#2}
-	}
+
+% Insertar una ecuación
+% 	#1	Label (opcional)
+%	#2	Ecuación
+\newcommand{\insertequation}[2][]{%
+	\emptyvarerr{\insertequation}{#2}{Ecuacion no definida}%
+	\ifthenelse{\equal{\numberedequation}{true}}{%
+		\vspace{\marginequationtop cm}%
+		\begin{equation}%
+			\text{#1} #2%
+		\end{equation}%
+		\vspace{\marginequationbottom cm}%
+	}{%
+		\ifx\hfuzz#1\hfuzz%
+		\else%
+			\throwwarning{Label invalido en ecuacion sin numero}%
+		\fi%
+		\insertequationanum{#2}%
+	}%
 }
-\newcommand{\insertequationanum}[1]{
-	\emptyvarerr{\insertequationanum}{#1}{Ecuacion no definida}
-	\vspace{\marginequationtop cm}
-	\begin{equation*}
-		\ensuremath{#1}
-	\end{equation*}
-	\vspace{\marginequationbottom cm}
+
+% Insertar una ecuación sin número
+%	#1	Ecuación
+\newcommand{\insertequationanum}[1]{%
+	\emptyvarerr{\insertequationanum}{#1}{Ecuacion no definida}%
+	\vspace{\marginequationtop cm}%
+	\begin{equation*}%
+		\ensuremath{#1}%
+	\end{equation*}%
+	\vspace{\marginequationbottom cm}%
 }
+
+% Insertar una ecuación alineada a la izquierda
+% 	#1	Label (opcional)
+%	#2	Ecuación
 \newcommand{\insertequationleft}[2][]{
 	\emptyvarerr{\insertequationleft}{#2}{Ecuacion no definida}
 	\ifthenelse{\equal{\numberedequation}{true}}{
@@ -57,6 +71,9 @@
 		\insertequationleftanum{#2}
 	}
 }
+
+% Insertar una ecuación sin número alineada a la izquierda
+%	#1	Ecuación
 \newcommand{\insertequationleftanum}[1]{
 	\emptyvarerr{\insertequationleftanum}{#1}{Ecuacion no definida}
 	\vspace{\marginequationtop cm}
@@ -66,6 +83,10 @@
 	\end{equation*}
 	\vspace{\marginequationbottom cm}
 }
+
+% Insertar una ecuación alineada a la derecha
+% 	#1	Label (opcional)
+%	#2	Ecuación
 \newcommand{\insertequationright}[2][]{
 	\emptyvarerr{\insertequationright}{#2}{Ecuacion no definida}
 	\ifthenelse{\equal{\numberedequation}{true}}{
@@ -83,6 +104,9 @@
 		\insertequationrightanum{#2}
 	}
 }
+
+% Insertar una ecuación sin número alineada a la derecha
+%	#1	Ecuación
 \newcommand{\insertequationrightanum}[1]{
 	\emptyvarerr{\insertequationrightanum}{#1}{Ecuacion no definida}
 	\vspace{\marginequationtop cm}
@@ -92,6 +116,11 @@
 	\end{equation*}
 	\vspace{\marginequationbottom cm}
 }
+
+% Insertar una ecuación con leyenda
+% 	#1	Label (opcional)
+%	#2	Ecuación
+%	#3	Leyenda
 \newcommand{\insertequationcaptioned}[3][]{
 	\emptyvarerr{\insertequationcaptioned}{#2}{Ecuacion no definida}
 	\ifx\hfuzz#3\hfuzz
@@ -117,6 +146,10 @@
 		}
 	\fi
 }
+
+% Insertar una ecuación con leyenda sin número
+%	#1	Ecuación
+%	#2	Leyenda
 \newcommand{\insertequationcaptionedanum}[2]{
 	\emptyvarerr{\insertequationcaptionedanum}{#1}{Ecuacion no definida}
 	\ifx\hfuzz#2\hfuzz
@@ -134,6 +167,9 @@
 		\vspace{\margineqncaptionbottom cm}
 	\fi
 }
+
+% Insertar una ecuación con el ambiente gather
+%	#1	Ecuación
 \newcommand{\insertgather}[1]{
 	\emptyvarerr{\insertgather}{#1}{Ecuacion no definida}
 	\ifthenelse{\equal{\numberedequation}{true}}{
@@ -146,6 +182,9 @@
 		\insertgatheranum{#1}
 	}
 }
+
+% Insertar una ecuación con el ambiente gather sin número
+%	#1	Ecuación
 \newcommand{\insertgatheranum}[1]{
 	\emptyvarerr{\insertgatheranum}{#1}{Ecuacion no definida}
 	\vspace{\margingathertop cm}
@@ -154,6 +193,10 @@
 	\end{gather*}
 	\vspace{\margingatherbottom cm}
 }
+
+% Insertar una ecuación (gather) con leyenda
+%	#1	Ecuación
+%	#2	Leyenda
 \newcommand{\insertgathercaptioned}[2]{
 	\emptyvarerr{\insertgathercaptioned}{#1}{Ecuacion no definida}
 	\ifx\hfuzz#2\hfuzz
@@ -175,6 +218,10 @@
 		}
 	\fi
 }
+
+% Insertar una ecuación (gather) con leyenda sin número
+%	#1	Ecuación
+%	#2	Leyenda
 \newcommand{\insertgathercaptionedanum}[2]{
 	\emptyvarerr{\insertgathercaptionedanum}{#1}{Ecuacion no definida}
 	\ifx\hfuzz#2\hfuzz
@@ -192,6 +239,10 @@
 		\vspace{\margingathercaptbottom cm}
 	\fi
 }
+
+% Insertar una ecuación con el ambiente gathered
+% 	#1	Label (opcional)
+%	#2	Ecuación
 \newcommand{\insertgathered}[2][]{
 	\emptyvarerr{\insertgathered}{#2}{Ecuacion no definida}
 	\ifthenelse{\equal{\numberedequation}{true}}{
@@ -207,13 +258,16 @@
 		\else
 			\throwwarning{Label invalido en ecuacion (gathered) sin numero}
 		\fi
-\vspace{\margingatheredtop cm}
+		\vspace{\margingatheredtop cm} % \insertgatheredanum{#2} tira warning
 		\begin{gather*}
 			\ensuremath{#2}
 		\end{gather*}
 		\vspace{\margingatheredbottom cm}
 	}
 }
+
+% Insertar una ecuación con el ambiente gathered sin número
+%	#1	Ecuación
 \newcommand{\insertgatheredanum}[1]{
 	\emptyvarerr{\insertgatheredanum}{#1}{Ecuacion no definida}
 	\vspace{\margingatheredtop cm}
@@ -222,6 +276,11 @@
 	\end{gather*}
 	\vspace{\margingatheredbottom cm}
 }
+
+% Insertar una ecuación (gathered) con leyenda
+% 	#1	Label (opcional)
+%	#2	Ecuación
+%	#3	Leyenda
 \newcommand{\insertgatheredcaptioned}[3][]{
 	\emptyvarerr{\insertgatheredcaptioned}{#2}{Ecuacion no definida}
 	\ifx\hfuzz#3\hfuzz
@@ -249,6 +308,10 @@
 		}
 		\fi
 }
+
+% Insertar una ecuación (gathered) con leyenda sin número
+%	#1	Ecuación
+%	#2	Leyenda
 \newcommand{\insertgatheredcaptionedanum}[2]{
 	\emptyvarerr{\insertgatheredcaptionedanum}{#1}{Ecuacion no definida}
 	\ifx\hfuzz#2\hfuzz
@@ -266,6 +329,9 @@
 		\vspace{\margingathercaptbottom cm}
 	\fi
 }
+
+% Insertar una ecuación con el ambiente align
+%	#1	Ecuación
 \newcommand{\insertalign}[1]{
 	\emptyvarerr{\insertalign}{#1}{Ecuacion no definida}
 	\ifthenelse{\equal{\numberedequation}{true}}{
@@ -278,6 +344,9 @@
 		\insertalignanum{#1}
 	}
 }
+
+% Insertar una ecuación con el ambiente align sin número
+%	#1	Ecuación
 \newcommand{\insertalignanum}[1]{
 	\emptyvarerr{\insertalignanum}{#1}{Ecuacion no definida}
 	\vspace{\marginaligntop cm}
@@ -286,6 +355,10 @@
 	\end{align*}
 	\vspace{\marginalignbottom cm}
 }
+
+% Insertar una ecuación (align) con leyenda
+%	#1	Ecuación
+%	#2	Leyenda
 \newcommand{\insertaligncaptioned}[2]{
 	\emptyvarerr{\insertaligncaptioned}{#1}{Ecuacion no definida}
 	\ifx\hfuzz#2\hfuzz
@@ -307,6 +380,10 @@
 		}
 	\fi
 }
+
+% Insertar una ecuación (align) con leyenda sin número
+%	#1	Ecuación
+%	#2	Leyenda
 \newcommand{\insertaligncaptionedanum}[2]{
 	\emptyvarerr{\insertaligncaptionedanum}{#1}{Ecuacion no definida}
 	\ifx\hfuzz#2\hfuzz
@@ -324,6 +401,10 @@
 		\vspace{\marginaligncaptbottom cm}
 	\fi
 }
+
+% Insertar una ecuación con el ambiente aligned
+% 	#1	Label (opcional)
+%	#2	Ecuación
 \newcommand{\insertaligned}[2][]{
 	\emptyvarerr{\insertaligned}{#2}{Ecuacion no definida}
 	\ifthenelse{\equal{\numberedequation}{true}}{
@@ -342,6 +423,9 @@
 		\insertalignedanum{#2}
 	}
 }
+
+% Insertar una ecuación con el ambiente aligned sin número
+%	#1	Ecuación
 \newcommand{\insertalignedanum}[1]{
 	\emptyvarerr{\insertalignedanum}{#1}{Ecuacion no definida}
 	\vspace{\marginalignedtop cm}
@@ -350,6 +434,11 @@
 	\end{align*}
 	\vspace{\marginalignedbottom cm}
 }
+
+% Insertar una ecuación (aligned) con leyenda
+% 	#1	Label (opcional)
+%	#2	Ecuación
+%	#3	Leyenda
 \newcommand{\insertalignedcaptioned}[3][]{
 	\emptyvarerr{\insertalignedcaptioned}{#2}{Ecuacion no definida}
 	\ifx\hfuzz#3\hfuzz
@@ -377,6 +466,10 @@
 		}
 	\fi
 }
+
+% Insertar una ecuación (aligned) con leyenda sin número
+%	#1	Ecuación
+%	#2	Leyenda
 \newcommand{\insertalignedcaptionedanum}[2]{
 	\emptyvarerr{\insertalignedcaptionedanum}{#1}{Ecuacion no definida}
 	\ifx\hfuzz#2\hfuzz

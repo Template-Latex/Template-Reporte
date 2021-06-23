@@ -1,6 +1,6 @@
 % Template:     Template Reporte LaTeX
 % Documento:    Definición de entornos
-% Versión:      2.2.4 (20/06/2021)
+% Versión:      2.2.5 (23/06/2021)
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R.
@@ -11,20 +11,21 @@
 % Sitio web:    [https://latex.ppizarror.com/reporte]
 % Licencia MIT: [https://opensource.org/licenses/MIT]
 
+% Crea una sección de referencias solo para bibtex
 \newenvironment{references}{
-\ifthenelse{\equal{\stylecitereferences}{bibtex}}{
+	\ifthenelse{\equal{\stylecitereferences}{bibtex}}{ % Verifica configuraciones
 	}{
 		\throwerror{\references}{Solo se puede usar entorno references con estilo citas \noexpand\stylecitereferences=bibtex}
 	}
 	\begingroup
-\ifthenelse{\equal{\bibtexenvrefsecnum}{true}}{
+	\ifthenelse{\equal{\bibtexenvrefsecnum}{true}}{ % Se configura las referencias como una sección
 		\section{\namereferences}
 	}{
 		\sectionanum{\namereferences}
 	}
 	\renewcommand{\section}[2]{}
-\begin{thebibliography}{}
-\ifthenelse{\equal{\bibtextextalign}{justify}}{
+	\begin{thebibliography}{} % Inicia la bibliografía
+		\ifthenelse{\equal{\bibtextextalign}{justify}}{ % Formato ajuste de línea
 		}{
 		\ifthenelse{\equal{\bibtextextalign}{left}}{
 			\raggedright
@@ -40,24 +41,30 @@
 	}
 	{
 	\end{thebibliography}
-\endgroup
+	\endgroup % Termina el grupo
 }
+
+% Crea una sección de anexos
 \newenvironment{anexo}{
-\begingroup
+	\begingroup % Inicia el grupo en nueva página y sección
+	% \clearpage
 	\phantomsection
-\changeheadertitle{\nomltappendixsection}
-\def\GLOBALsectionalph{true}
+	\changeheadertitle{\nomltappendixsection} % Cambia el nombre del header
+	\def\GLOBALsectionalph {true} % Modifica formato de secciones con sección alph
 	\bookmarksetup{
 		numbered={true},
 		openlevel={\thetemplateBookmarksLevelPrev}
 	}
 	\appendixtitleon
 	\appendixtitletocon
+	%\addappheadtotoc
 	\bookmarksetupnext{level=part}
-\begin{appendices}
+	\begin{appendices} % Crea la sección
 		\ifthenelse{\equal{\showappendixsecindex}{true}}{}{
-\pdfbookmark{\nameappendixsection}{appendix}
+			\pdfbookmark{\nameappendixsection}{appendix} % Si false
 		}
+		% \setcounter{secnumdepth}{4}
+		% \setcounter{tocdepth}{4}
 		\ifthenelse{\equal{\appendixindepobjnum}{true}}{
 			\counterwithin{equation}{section}
 			\counterwithin{figure}{section}
@@ -66,14 +73,20 @@
 		}
 	}{
 	\end{appendices}
-\def\GLOBALsectionalph{false}
-\bookmarksetupnext{level={\thetemplateBookmarksLevelPrev}}
+	\def\GLOBALsectionalph {false} % Desactiva formato de secciones con sección alph
+	\bookmarksetupnext{level={\thetemplateBookmarksLevelPrev}} % Reestablece índice marcador
 	\bookmarksetup{
 		numbered={\cfgpdfsecnumbookmarks},
 		openlevel={\cfgbookmarksopenlevel}
 	}
 	\endgroup
 }
+
+% Inicia código fuente con parámetros
+%	#1	Label (opcional)
+%	#2	Estilo de código
+%	#3	Parámetros
+%	#4	Caption
 \newcommand{\coreinitsourcecodep}[4]{
 	\emptyvarerr{\coreinitsourcecodep}{#2}{Estilo de codigo no definido}
 	\checkvalidsourcecodestyle{#2}
@@ -148,6 +161,12 @@
 		\fi	
 	}
 }
+
+% Inserta código fuente con parámetros
+%	#1	Label (opcional)
+%	#2	Estilo de código
+%	#3	Parámetros
+%	#4	Caption
 \lstnewenvironment{sourcecodep}[4][]{
 	\coreinitsourcecodep{#1}{#2}{#3}{#4}
 }{
@@ -155,6 +174,13 @@
 		\leftlinenumbers}{
 	}
 }
+
+% Importa código fuente desde un archivo con parámetros
+%	#1	Label (opcional)
+%	#2	Estilo de código
+%	#3	Parámetros
+%	#4	Archivo de código fuente
+%	#5	Caption
 \newcommand{\importsourcecodep}[5][]{
 	\coreinitsourcecodep{#1}{#2}{#3}{#5}
 	\inputlisting{#4}
@@ -162,6 +188,11 @@
 		\leftlinenumbers}{
 	}
 }
+
+% Inicia código fuente sin parámetros
+%	#1	Label (opcional)
+%	#2	Estilo de código
+%	#3	Caption
 \newcommand{\coreinitsourcecode}[3]{
 	\emptyvarerr{\coreinitsourcecode}{#2}{Estilo de codigo no definido}
 	\checkvalidsourcecodestyle{#2}
@@ -201,6 +232,11 @@
 		\fi
 	}
 }
+
+% Inserta código fuente sin parámetros
+%	#1	Label (opcional)
+%	#2	Estilo de código
+%	#3	Caption
 \lstnewenvironment{sourcecode}[3][]{
 	\coreinitsourcecode{#1}{#2}{#3}
 }{
@@ -208,6 +244,12 @@
 		\leftlinenumbers}{
 	}
 }
+
+% Importa código fuente desde un archivo sin parámetros
+%	#1	Label (opcional)
+%	#2	Estilo de código
+%	#3	Archivo de código fuente
+%	#4	Caption
 \newcommand{\importsourcecode}[4][]{
 	\coreinitsourcecode{#1}{#2}{#4}
 	\lstinputlisting{#3}
@@ -215,55 +257,90 @@
 		\leftlinenumbers}{
 	}
 }
+
+% Itemize en negrita
+%	#1	Parámetros opcionales
 \newenvironment{itemizebf}[1][]{
 	\begin{itemize}[font=\bfseries,#1]
 	}{
 	\end{itemize}
 }
+
+% Enumerate en negrita
+%	#1	Parámetros opcionales
 \newenvironment{enumeratebf}[1][]{
 	\begin{enumerate}[font=\bfseries,#1]
 	}{
 	\end{enumerate}
 }
+
+% Crea una sección de resumen
 \newenvironment{resumen}{
+	% Tipo de título para abstract
 	\sectionfont{\color{\titlecolor} \fontsizetitle \styletitle \selectfont}
+	% Inserta un título sin número, sin cabecera y sin aparecer en el índice,
+	% para que aparezca en el índice utilizar la función \sectionanumheadless
 	\sectionanumnoiheadless{\nameabstract}}{
 }
-\newenvironment{images}[2][]{
+
+% Crea una sección de imágenes múltiples
+%	#1	Label (opcional)
+%	#2	Caption
+\newenvironment{images}[2][]{%
+	% Modifica globales
 	\def\envimageslabelvar {#1}
 	\def\envimagescaptionvar {#2}
 	\def\GLOBALenvimageinitialized {true}
 	\def\GLOBALenvimageadded {false}
+	
+	% Configura caption y márgenes
 	\vspace{\marginimagetop cm}
 	\setcaptionmargincm{\captionmarginmultimg}
-\begin{figure}[H] \centering
+	
+	% Inicia la figura
+	\begin{figure}[H] \centering%
 		\thisfloatpagestyle{fancy}%
 		\vspace{\marginimagemulttop cm}%
 		}{%
 		\setcaptionmargincm{\captionlrmargin}%
-\ifthenelse{\equal{\envimagescaptionvar}{}}{
+		\ifthenelse{\equal{\envimagescaptionvar}{}}{ % \ifx\hfuzz no sirve
 			\vspace{\captionlessmarginimage cm}%
 		}{%
+			\ifthenelse{\equal{\captionmarginimage}{0}}{}{\vspace{\captionmarginimage cm}}%
 			\caption{\envimagescaptionvar\envimageslabelvar}%
 		}%
 	\end{figure}%
+
+	% Reestablece caption y márgenes
 	\setcaptionmargincm{\captionlrmargin}
 	\vspace{\marginimagebottom cm}
+	
+	% Reestablece globales
 	\def\GLOBALenvimageinitialized {false}
 }
+
+% Crea una sección de imágenes múltiples completa dentro de un multicol
+%	#1	Label (opcional)
+%	#2	Posición de la imagen, "bottom", "top"
+%	#3	Caption
 \newenvironment{imagesmc}[3][]{
+	% Modifica globales
 	\def\envimageslabelvar {#1}
 	\def\envimagesmcpos {#2}
 	\def\envimagescaptionvar {#3}
 	\def\GLOBALenvimageinitialized {true}
 	\def\GLOBALenvimageadded {false}
 	\checkinsidemulticol
-\setcaptionmargincm{\captionmarginmultimg}
+	
+	% Configura caption y márgenes
+	\setcaptionmargincm{\captionmarginmultimg} % Eso es para los wrapfig
+	
+	% Inicia la figura
 	\ifthenelse{\equal{#2}{bottom}}{%
-\begin{figure*}[hb] \centering
+		\begin{figure*}[hb] \centering%
 	}{%
 	\ifthenelse{\equal{#2}{top}}{%
-\begin{figure*}[ht] \centering
+		\begin{figure*}[ht] \centering%
 	}{%
 		\errmessage{LaTeX Warning: Posicion de imagen invalida, valores esperados: bottom,top}
 		\stop
@@ -272,12 +349,17 @@
 		\vspace{\marginimagemulttop cm}%
 	}{%
 		\setcaptionmargincm{\captionlrmargin}%
-\ifthenelse{\equal{\envimagescaptionvar}{}}{
+		\ifthenelse{\equal{\envimagescaptionvar}{}}{ % \ifx\hfuzz no sirve
 			\vspace{\captionlessmarginimage cm}%
 		}{%
+			\ifthenelse{\equal{\captionmarginimage}{0}}{}{\vspace{\captionmarginimage cm}}
 			\caption{\envimagescaptionvar\envimageslabelvar}%
 		}%
 	\end{figure*}%
+	
+	% Reestablece caption y márgenes
 	\setcaptionmargincm{\captionlrmargin}
+	
+	% Reestablece globales
 	\def\GLOBALenvimageinitialized {false}
 }
