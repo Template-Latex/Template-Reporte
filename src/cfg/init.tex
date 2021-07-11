@@ -110,8 +110,8 @@
 		Template.Licencia.Web={https://opensource.org/licenses/MIT},
 		Template.Nombre={Template-Reporte},
 		Template.Tipo={Normal},
-		Template.Version.Dev={2.2.8-REPT},
-		Template.Version.Hash={FE8F43197984216F334CF311561A16BE},
+		Template.Version.Dev={2.2.8-1-REPT},
+		Template.Version.Hash={F4B54D11C5FF2C91DCB540D12D488D1B},
 		Template.Version.Release={2.2.8},
 		Template.Web.Dev={https://github.com/Template-Latex/Template-Reporte},
 		Template.Web.Manual={https://latex.ppizarror.com/reporte},
@@ -446,7 +446,7 @@
 \strictpagecheck
 
 % -----------------------------------------------------------------------------
-% Actualización márgen títulos
+% Actualización margen títulos
 % -----------------------------------------------------------------------------
 \titlespacing{\section}{0pt}{20pt}{10pt}
 \titlespacing{\subsection}{0pt}{15pt}{10pt}
@@ -492,14 +492,9 @@
 }
 
 % -----------------------------------------------------------------------------
-% Profundidad de las secciones
+% Crea las sub-sub-sub-secciones
 % -----------------------------------------------------------------------------
-\setcounter{secnumdepth}{4} % Límite máximo subsubsubsección
-
-% Crea las subsubsubsecciones
 \newcounter{subsubsubsection}[subsubsection]
-
-% Establece el número de las subsubsubsecciones
 \ifthenelse{\equal{\showdotaftersnum}{true}}{ % Agrega punto tras el número
 	\renewcommand{\thesubsubsubsection}{\thesubsubsection.\arabic{subsubsubsection}.}
 	\renewcommand{\theparagraph}{\thesubsubsubsection.\arabic{paragraph}.}
@@ -508,9 +503,10 @@
 	\renewcommand{\theparagraph}{\thesubsubsubsection.\arabic{paragraph}}
 }
 
-% -----------------------------------------------------------------------------
-% Agrega compatibilidad de subsubsubsecciones al TOC
-% -----------------------------------------------------------------------------
+% Límite máximo profundidad
+\setcounter{secnumdepth}{4}
+
+% Agrega compatibilidad de sub-sub-sub-secciones al TOC
 \makeatletter
 	\def\toclevel@subsubsubsection {4}
 	\def\toclevel@paragraph {5}
@@ -643,7 +639,7 @@
 % -----------------------------------------------------------------------------
 % Configuraciones del idioma
 % -----------------------------------------------------------------------------
-% Desactiva carácteres acentuados en operaciones matemáticas
+% Desactiva caracteres acentuados en operaciones matemáticas
 \unaccentedoperators
 
 % -----------------------------------------------------------------------------
