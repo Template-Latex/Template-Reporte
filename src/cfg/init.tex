@@ -1,6 +1,6 @@
 % Template:     Template Reporte LaTeX
 % Documento:    Configuración inicial del template
-% Versión:      2.2.7 (09/07/2021)
+% Versión:      2.2.8 (11/07/2021)
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R.
@@ -104,15 +104,15 @@
 		Template.Autor.Nombre={Pablo Pizarro R.},
 		Template.Autor.Web={https://ppizarror.com},
 		Template.Codificacion={UTF-8},
-		Template.Fecha={09/07/2021},
+		Template.Fecha={11/07/2021},
 		Template.Latex.Compilador={pdflatex},
 		Template.Licencia.Tipo={MIT},
 		Template.Licencia.Web={https://opensource.org/licenses/MIT},
 		Template.Nombre={Template-Reporte},
 		Template.Tipo={Normal},
-		Template.Version.Dev={2.2.7-3-REPT},
-		Template.Version.Hash={E7D3BF2413C5DFC2479F93B317F9D09A},
-		Template.Version.Release={2.2.7},
+		Template.Version.Dev={2.2.8-REPT},
+		Template.Version.Hash={FE8F43197984216F334CF311561A16BE},
+		Template.Version.Release={2.2.8},
 		Template.Web.Dev={https://github.com/Template-Latex/Template-Reporte},
 		Template.Web.Manual={https://latex.ppizarror.com/reporte},
 		Universidad.Departamento={\pdfmetainfounidepto},
@@ -124,7 +124,7 @@
 	pdfmenubar={\cfgpdfmenubar},
 	pdfpagelayout={\cfgpdflayout},
 	pdfpagemode={\cfgpdfpagemode},
-	pdfproducer={Template-Reporte v2.2.7 | (Pablo Pizarro R.) ppizarror.com},
+	pdfproducer={Template-Reporte v2.2.8 | (Pablo Pizarro R.) ppizarror.com},
 	pdfremotestartview={Fit},
 	pdfstartpage={1},
 	pdfstartview={\cfgpdfpageview},
@@ -392,6 +392,17 @@
 	\newlistentry{lstlisting}{lol}{0}
 	\makeatother
 \endgroup
+
+% -----------------------------------------------------------------------------
+% Crea índice de ecuaciones
+% -----------------------------------------------------------------------------
+\newcommand{\listindexequationsname}{\nomlteqn}
+\newlistof{myindexequations}{equ}{\listindexequationsname}
+\newcommand{\myindexequations}[1]{
+	\addcontentsline{equ}{myindexequations}{\protect\numberline{\theequation}#1}
+}
+\setcounter{templateIndexEquations}{0}
+\DeclareTotalCounter{templateIndexEquations}
 
 % -----------------------------------------------------------------------------
 % Reconfiguración de tamaño de páginas
@@ -689,6 +700,22 @@
 	\setcaptionmargincm{\captionlrmargin}%
 }
 
+% -----------------------------------------------------------------------------
+% Configura estilos de listas
+% -----------------------------------------------------------------------------
+% Enumerate
+\renewcommand{\labelenumi}{\senumerti}
+\renewcommand{\labelenumii}{\senumertii}
+\renewcommand{\labelenumiii}{\senumertiii}
+\renewcommand{\labelenumiv}{\senumertiv}
+
+% Itemize
+\renewcommand{\labelitemi}{\sitemizei}
+\renewcommand{\labelitemii}{\sitemizeii}
+\renewcommand{\labelitemiii}{\sitemizeiii}
+\renewcommand{\labelitemiv}{\sitemizeiv}
+
+% -----------------------------------------------------------------------------
 % Operaciones especiales Template-Reporte
 % -----------------------------------------------------------------------------
 \title{\titulodelinforme}

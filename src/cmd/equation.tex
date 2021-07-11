@@ -1,6 +1,6 @@
 % Template:     Template Reporte LaTeX
 % Documento:    Funciones para insertar ecuaciones
-% Versión:      2.2.7 (09/07/2021)
+% Versión:      2.2.8 (11/07/2021)
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R.
@@ -66,6 +66,23 @@
 		\ensuremath{#1}
 	\end{equation*}
 	\vspace{\marginequationbottom cm}
+}
+
+% Insertar una ecuación en el índice
+% 	#1	Label (opcional)
+%	#2	Ecuación
+%	#3	Título de la ecuación
+\newcommand{\insertindexequation}[3][]{
+	\emptyvarerr{\insertindexequation}{#2}{Ecuacion no definida}
+	\emptyvarerr{\insertindexequation}{#3}{Leyenda no definida}
+	\vspace{\margineqnindextop cm}
+	\begin{align}
+		\text{#1} \ensuremath{#2}
+	\end{align}
+	\myindexequations{#3}%
+	\vspace{\margineqnindexbottom cm}%
+	\coreinsertequationcaption{\textit{#3}}%
+	\addtocounter{templateIndexEquations}{1}
 }
 
 % Insertar una ecuación alineada a la izquierda

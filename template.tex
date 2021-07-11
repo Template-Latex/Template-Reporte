@@ -1,6 +1,6 @@
 % Template:     Template Reporte LaTeX
 % Documento:    Núcleo del template
-% Versión:      2.2.7 (09/07/2021)
+% Versión:      2.2.8 (11/07/2021)
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R.
@@ -14,6 +14,14 @@
 % -----------------------------------------------------------------------------
 % CONFIGURACIONES
 % -----------------------------------------------------------------------------
+% Definiciones previas
+\def\iitembcirc {\raisebox{.55\height}{\scriptsize$\bullet$}}
+\def\iitembsquare {\raisebox{.3\height}{\tiny$\blacksquare$}}
+\def\iitemdash {\raisebox{.35\height}{\textendash}}
+\def\iitemcirc {\raisebox{.25\height}{\small$\circ$}}
+\def\iitemdiamond {\raisebox{.25\height}{\small$\diamond$}}
+
+% Ajustes usuario
 \input{template_config}
 
 % -----------------------------------------------------------------------------
@@ -23,9 +31,7 @@
 \let\RE\Re
 \let\IM\Im
 
-% -----------------------------------------------------------------------------
-% PARCHES DE LIBRERÍAS
-% -----------------------------------------------------------------------------
+% Parches de librerías
 \let\counterwithout\relax
 \let\counterwithin\relax
 \let\underbar\relax
@@ -43,7 +49,7 @@
 \makeatother
 
 % -----------------------------------------------------------------------------
-% LIBRERÍAS DEL NÚCLEO
+% Librerías del núcleo
 % -----------------------------------------------------------------------------
 % Manejo de condicionales
 \usepackage{ifthen}
@@ -98,7 +104,7 @@
 \changefontsizes{\documentfontsize pt}
 
 % -----------------------------------------------------------------------------
-% LIBRERÍAS INDEPENDIENTES
+% Librerías independientes
 % -----------------------------------------------------------------------------
 \usepackage{amssymb}       % Librerías matemáticas
 \usepackage{amsthm}        % Definición de teoremas
@@ -133,10 +139,10 @@
 \usepackage{textcomp}      % Simbología común
 \usepackage{url}           % Permite añadir enlaces
 \usepackage{wrapfig}       % Posición de imágenes
-\usepackage{xspace}        % Adminsitra espacios en párrafos y líneas
+\usepackage{xspace}        % Administra espacios en párrafos y líneas
 
 % -----------------------------------------------------------------------------
-% LIBRERÍAS CON PARÁMETROS
+% Librerías con parámetros
 % -----------------------------------------------------------------------------
 \usepackage[makeroom]{cancel} % Cancelar términos en fórmulas
 \usepackage[inline]{enumitem} % Permite enumerar ítems
@@ -147,7 +153,7 @@
 \usepackage[dvipsnames,table,usenames]{xcolor} % Paquete de colores avanzado
 
 % -----------------------------------------------------------------------------
-% LIBRERÍAS CONDICIONALES
+% Librerías condicionales
 % -----------------------------------------------------------------------------
 % Imágenes en modo draft
 \ifthenelse{\equal{\graphicxdraft}{true}}{
@@ -250,7 +256,7 @@
 }
 
 % -----------------------------------------------------------------------------
-% LIBRERÍAS DEPENDIENTES
+% Librerías dependientes
 % -----------------------------------------------------------------------------
 \usepackage{bookmark}      % Administración de marcadores en pdf
 \usepackage{fancyhdr}      % Encabezados y pie de páginas
@@ -261,7 +267,7 @@
 \usepackage{titlesec}      % Administración de títulos
 
 % -----------------------------------------------------------------------------
-% TIPOGRAFÍA DEL DOCUMENTO
+% Tipografía del documento
 % -----------------------------------------------------------------------------
 % Tipografías clásicas
 \ifthenelse{\equal{\fontdocument}{lmodern}}{
@@ -569,7 +575,7 @@
 }
 
 % -----------------------------------------------------------------------------
-% TIPOGRAFÍA TYPEWRITER
+% Tipografía typewriter
 % -----------------------------------------------------------------------------
 \ifthenelse{\equal{\fonttypewriter}{tmodern}}{
 	\renewcommand*\ttdefault{lmvtt}
@@ -634,7 +640,7 @@
 }
 
 % -----------------------------------------------------------------------------
-% FINALES
+% Finales
 % -----------------------------------------------------------------------------
 \usepackage[T1]{fontenc} % Caracteres acentuados
 \ifthenelse{\equal{\showlayoutlines}{true}}{ % Muestra las líneas del layout
@@ -1263,6 +1269,23 @@
 		\ensuremath{#1}
 	\end{equation*}
 	\vspace{\marginequationbottom cm}
+}
+
+% Insertar una ecuación en el índice
+% 	#1	Label (opcional)
+%	#2	Ecuación
+%	#3	Título de la ecuación
+\newcommand{\insertindexequation}[3][]{
+	\emptyvarerr{\insertindexequation}{#2}{Ecuacion no definida}
+	\emptyvarerr{\insertindexequation}{#3}{Leyenda no definida}
+	\vspace{\margineqnindextop cm}
+	\begin{align}
+		\text{#1} \ensuremath{#2}
+	\end{align}
+	\myindexequations{#3}%
+	\vspace{\margineqnindexbottom cm}%
+	\coreinsertequationcaption{\textit{#3}}%
+	\addtocounter{templateIndexEquations}{1}
 }
 
 % Insertar una ecuación alineada a la izquierda
@@ -3302,6 +3325,7 @@
 % -----------------------------------------------------------------------------
 % IMPORTACIÓN DE ESTILOS
 % -----------------------------------------------------------------------------
+% Definición de colores
 \colorlet{numb}{magenta!60!black}
 \colorlet{punct}{red!60!black}
 \definecolor{delim}{RGB}{20,105,176}
@@ -4250,15 +4274,15 @@
 		Template.Autor.Nombre={Pablo Pizarro R.},
 		Template.Autor.Web={https://ppizarror.com},
 		Template.Codificacion={UTF-8},
-		Template.Fecha={09/07/2021},
+		Template.Fecha={11/07/2021},
 		Template.Latex.Compilador={pdflatex},
 		Template.Licencia.Tipo={MIT},
 		Template.Licencia.Web={https://opensource.org/licenses/MIT},
 		Template.Nombre={Template-Reporte},
 		Template.Tipo={Normal},
-		Template.Version.Dev={2.2.7-3-REPT},
-		Template.Version.Hash={E7D3BF2413C5DFC2479F93B317F9D09A},
-		Template.Version.Release={2.2.7},
+		Template.Version.Dev={2.2.8-REPT},
+		Template.Version.Hash={FE8F43197984216F334CF311561A16BE},
+		Template.Version.Release={2.2.8},
 		Template.Web.Dev={https://github.com/Template-Latex/Template-Reporte},
 		Template.Web.Manual={https://latex.ppizarror.com/reporte},
 		Universidad.Departamento={\pdfmetainfounidepto},
@@ -4270,7 +4294,7 @@
 	pdfmenubar={\cfgpdfmenubar},
 	pdfpagelayout={\cfgpdflayout},
 	pdfpagemode={\cfgpdfpagemode},
-	pdfproducer={Template-Reporte v2.2.7 | (Pablo Pizarro R.) ppizarror.com},
+	pdfproducer={Template-Reporte v2.2.8 | (Pablo Pizarro R.) ppizarror.com},
 	pdfremotestartview={Fit},
 	pdfstartpage={1},
 	pdfstartview={\cfgpdfpageview},
@@ -4538,6 +4562,17 @@
 	\newlistentry{lstlisting}{lol}{0}
 	\makeatother
 \endgroup
+
+% -----------------------------------------------------------------------------
+% Crea índice de ecuaciones
+% -----------------------------------------------------------------------------
+\newcommand{\listindexequationsname}{\nomlteqn}
+\newlistof{myindexequations}{equ}{\listindexequationsname}
+\newcommand{\myindexequations}[1]{
+	\addcontentsline{equ}{myindexequations}{\protect\numberline{\theequation}#1}
+}
+\setcounter{templateIndexEquations}{0}
+\DeclareTotalCounter{templateIndexEquations}
 
 % -----------------------------------------------------------------------------
 % Reconfiguración de tamaño de páginas
@@ -4835,6 +4870,22 @@
 	\setcaptionmargincm{\captionlrmargin}%
 }
 
+% -----------------------------------------------------------------------------
+% Configura estilos de listas
+% -----------------------------------------------------------------------------
+% Enumerate
+\renewcommand{\labelenumi}{\senumerti}
+\renewcommand{\labelenumii}{\senumertii}
+\renewcommand{\labelenumiii}{\senumertiii}
+\renewcommand{\labelenumiv}{\senumertiv}
+
+% Itemize
+\renewcommand{\labelitemi}{\sitemizei}
+\renewcommand{\labelitemii}{\sitemizeii}
+\renewcommand{\labelitemiii}{\sitemizeiii}
+\renewcommand{\labelitemiv}{\sitemizeiv}
+
+% -----------------------------------------------------------------------------
 % Operaciones especiales Template-Reporte
 % -----------------------------------------------------------------------------
 \title{\titulodelinforme}
@@ -5785,7 +5836,7 @@
 	% -------------------------------------------------------------------------
 	% Crea funciones para numerar objetos
 	% -------------------------------------------------------------------------
-	% Numeración de la sección en los objetos CÓDIGO FUENTE
+	% Numeración de la sección en los objetos código fuente
 	\ifthenelse{\equal{\showsectioncaptioncode}{none}}{
 		\def\sectionobjectnumcode {}
 	}{
@@ -5811,7 +5862,7 @@
 		\throwbadconfig{Valor configuracion incorrecto}{\showsectioncaptioncode}{none,chap,sec,ssec,sssec,ssssec}}}}}}
 	}
 
-	% Numeración de la sección en los objetos ECUACIONES
+	% Numeración de la sección en los objetos ecuaciones
 	\ifthenelse{\equal{\showsectioncaptioneqn}{none}}{
 		\def\sectionobjectnumeqn {}
 	}{
@@ -5837,7 +5888,7 @@
 		\throwbadconfig{Valor configuracion incorrecto}{\showsectioncaptioneqn}{none,chap,sec,ssec,sssec,ssssec}}}}}}
 	}
 
-	% Numeración de la sección en los objetos FIGURAS
+	% Numeración de la sección en los objetos figuras
 	\ifthenelse{\equal{\showsectioncaptionfig}{none}}{
 		\def\sectionobjectnumfig {}
 	}{
@@ -5863,7 +5914,7 @@
 		\throwbadconfig{Valor configuracion incorrecto}{\showsectioncaptionfig}{none,chap,sec,ssec,sssec,ssssec}}}}}}
 	}
 
-	% Numeración de la sección en los objetos TABLAS
+	% Numeración de la sección en los objetos tablas
 	\ifthenelse{\equal{\showsectioncaptiontab}{none}}{
 		\def\sectionobjectnumtab {}
 	}{
@@ -5892,7 +5943,7 @@
 	% -------------------------------------------------------------------------
 	% Modifica numeración de objetos
 	% -------------------------------------------------------------------------
-	% Código fuente, INCLUIR SECCIÓN
+	% Código fuente, incluir sección
 	\ifthenelse{\equal{\captionnumcode}{arabic}}{
 		\renewcommand{\thelstlisting}{\sectionobjectnumcode\arabic{lstlisting}}
 	}{
@@ -5911,7 +5962,7 @@
 		\throwbadconfig{Tipo numero codigo fuente desconocido}{\captionnumcode}{arabic,alph,Alph,roman,Roman}}}}}
 	}
 
-	% Ecuaciones, INCLUIR SECCIÓN
+	% Ecuaciones, incluir sección
 	\ifthenelse{\equal{\captionnumequation}{arabic}}{
 		\renewcommand{\theequation}{\sectionobjectnumeqn\arabic{equation}}
 	}{
@@ -5930,7 +5981,7 @@
 		\throwbadconfig{Tipo numero ecuacion desconocido}{\captionnumequation}{arabic,alph,Alph,roman,Roman}}}}}
 	}
 
-	% Figuras, INCLUIR SECCIÓN
+	% Figuras, incluir sección
 	\ifthenelse{\equal{\captionnumfigure}{arabic}}{
 		\renewcommand{\thefigure}{\sectionobjectnumfig\arabic{figure}}
 	}{
@@ -5949,7 +6000,7 @@
 		\throwbadconfig{Tipo numero figura desconocido}{\captionnumfigure}{arabic,alph,Alph,roman,Roman}}}}}
 	}
 
-	% Subfiguras, NO USAR SECCIONES YA QUE SON HIJAS DE FIGURA
+	% Subfiguras, no usar secciones ya que son hijas de figura
 	\ifthenelse{\equal{\captionnumsubfigure}{arabic}}{
 		\renewcommand{\thesubfigure}{\arabic{subfigure}}
 	}{
@@ -5968,7 +6019,7 @@
 		\throwbadconfig{Tipo numero subfigura desconocido}{\captionnumsubfigure}{arabic,alph,Alph,roman,Roman}}}}}
 	}
 
-	% Tablas, INCLUIR SECCIÓN
+	% Tablas, incluir sección
 	\ifthenelse{\equal{\captionnumtable}{arabic}}{
 		\renewcommand{\thetable}{\sectionobjectnumtab\arabic{table}}
 	}{
@@ -5987,7 +6038,7 @@
 		\throwbadconfig{Tipo numero tabla desconocido}{\captionnumtable}{arabic,alph,Alph,roman,Roman}}}}}
 	}
 
-	% Subtablas, NO INCLUIR SECCIÓN YA QUE SON HIJAS DE LAS TABLAS
+	% Subtablas, no incluir sección ya que son hijas de las tablas
 	\ifthenelse{\equal{\captionnumsubtable}{arabic}}{
 		\renewcommand{\thesubtable}{\arabic{subtable}}
 	}{
@@ -6029,6 +6080,9 @@
 		\linenumbers}{
 	}
 
-}
+	% -------------------------------------------------------------------------
+	% Establece el estilo de las subsubsubsecciones
+	% -------------------------------------------------------------------------
+	\titleclass{\subsubsubsection}{straight}[\subsection]
 
-\titleclass{\subsubsubsection}{straight}[\subsection]
+}
