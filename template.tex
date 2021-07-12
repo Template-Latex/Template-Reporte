@@ -4251,8 +4251,8 @@
 		Template.Licencia.Web={https://opensource.org/licenses/MIT},
 		Template.Nombre={Template-Reporte},
 		Template.Tipo={Normal},
-		Template.Version.Dev={2.3.0-REPT},
-		Template.Version.Hash={C9E4ED4DD35888084DE0A5E0C6E3D171},
+		Template.Version.Dev={2.3.0-1-REPT},
+		Template.Version.Hash={2F62039CADCF6914C1250471FF6421AE},
 		Template.Version.Release={2.3.0},
 		Template.Web.Dev={https://github.com/Template-Latex/Template-Reporte},
 		Template.Web.Manual={https://latex.ppizarror.com/reporte},
@@ -4447,7 +4447,7 @@
 	\newcommand{\shortcite}[1]{\citep{#1}}
 	\newcommand{\fullcite}[1]{\citet{#1}}
 	% Caracteres citas
-	\setcitestyle{open={\natbibrefcharopen},close={\natbibrefcharclose}}
+	\setcitestyle{open={\natbibrefcitecharopen},close={\natbibrefcitecharclose}}
 	% Separador citas
 	\ifthenelse{\equal{\natbibrefcitesepcomma}{true}}{
 		\setcitestyle{comma}
@@ -4500,7 +4500,7 @@
 	\ifthenelse{\equal{\apaciterefnumber}{true}}{
 		\newcounter{apaciteNumberCounter}
 		\renewcommand{\theapaciteNumberCounter}{% Formato de número
-			\apaciterefciteopen\arabic{apaciteNumberCounter}\apaciterefciteclose
+			\apaciterefcitecharopen\arabic{apaciteNumberCounter}\apaciterefcitecharclose
 		}
 		\patchcmd{\@lbibitem}{\item[}{\item[\stepcounter{apaciteNumberCounter}{\hss\llap{\theapaciteNumberCounter}\quad}}{}{}
 		\setlength{\bibleftmargin}{2.54em}
