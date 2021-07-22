@@ -1,6 +1,6 @@
 % Template:     Template Reporte LaTeX
 % Documento:    Funciones del núcleo del template
-% Versión:      2.3.1 (17/07/2021)
+% Versión:      2.3.2 (21/07/2021)
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R.
@@ -41,7 +41,7 @@
 % Para la compatibilidad con template-tesis se define el capítulo
 \newcounter{chapter}
 
-% Otros
+% Define latex para uso en referencias
 \let\latex\LaTeX
 
 % Lanza un mensaje de error
@@ -181,7 +181,7 @@
 % Centra verticalmente un texto
 %	#1	Texto a centrar
 \newcommand{\verticallycentertext}[1]{%
-	\emptyvarerr{\verticallycentertext}{#1}{Centra un texto verticalmente}%
+	\emptyvarerr{\verticallycentertext}{#1}{Texto no definido}%
 	\topskip0pt%
 	\vspace*{\fill}%
 	#1%
