@@ -1,6 +1,6 @@
 % Template:     Reporte LaTeX
 % Documento:    Núcleo del template
-% Versión:      2.4.2 (06/09/2021)
+% Versión:      2.4.3 (08/09/2021)
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R.
@@ -171,6 +171,11 @@
 % Acepta codificación UTF-8 en código fuente
 \ifthenelse{\equal{\compilertype}{pdf2latex}}{
 	\usepackage{listingsutf8}}{
+}
+
+% Footnotes en dos columnas
+\ifthenelse{\equal{\footnotetwocolumn}{true}}{
+	\usepackage{dblfnote}}{
 }
 
 % Regla superior
@@ -808,6 +813,7 @@
 % Definición de variables globales
 \global\def\GLOBALcaptiondefn {EMPTY-VAR}       % Definición del caption
 \global\def\GLOBALchapternumenabled {false}     % Numeración de capítulos empezó
+\global\def\GLOBALenvappendix {false}           % Indica que el entorno anexo está activo
 \global\def\GLOBALenvimageadded {false}         % Indica que una imagen ha sido añadida
 \global\def\GLOBALenvimageinitialized {false}   % Entorno images activo
 \global\def\GLOBALenvmulticol {false}           % Indica que el entorno multicol está activo
@@ -816,6 +822,10 @@
 \global\def\GLOBALsubsectionanumenabled {false} % Subsección sin numeración
 \global\def\GLOBALtablerowcolorindex {2}        % Índice tabla colores
 \global\def\GLOBALtablerowcolorswitch {false}   % Tabla con colores cambiados
+
+% Signo porcentaje para archivos
+\def\LOCALpercentchar#1{}
+\edef\LOCALpercentchar{\expandafter\LOCALpercentchar\string\%}
 
 % Contador global de objetos
 \newcounter{templateEquations}      % Ecuaciones
@@ -957,6 +967,14 @@
 \newcommand{\checkinsidemulticol}{%
 	\ifthenelse{\equal{\GLOBALenvmulticol}{false}}{%
 		\throwwarning{Esta funcion solo puede usarse dentro de multicols}%
+		\stop}{%
+	}
+}
+
+% Chequea que las funciones puedan usarse fuera del entorno anexo
+\newcommand{\checkoutsideappendix}{%
+	\ifthenelse{\equal{\GLOBALenvappendix}{true}}{%
+		\throwwarning{Esta funcion solo puede usarse fuera de anexo}%
 		\stop}{%
 	}
 }
@@ -2051,6 +2069,7 @@
 	\emptyvarerr{\insertimageboxedmc}{#5}{Posicion de la imagen no definida}%
 	\checkoutsideenvimage%
 	\checkinsidemulticol%
+	\checkoutsideappendix%
 	\setcaptionmargincm{\captionlrmarginmc}%
 	\ifthenelse{\equal{#5}{bottom}}{%
 		\begin{samepage}%
@@ -3473,7 +3492,8 @@
 }
 
 % Crea una sección de anexos
-\newenvironment{anexo}{
+\newenvironment{appendixd}{
+	\global\def\GLOBALenvappendix {true}%
 	\begingroup % Inicia el grupo en nueva página y sección
 	% \clearpage
 	\phantomsection
@@ -3485,7 +3505,7 @@
 	}
 	\appendixtitleon
 	\appendixtitletocon
-	%\addappheadtotoc
+	% \addappheadtotoc
 	\bookmarksetupnext{level=part}
 	\begin{appendices} % Crea la sección
 		\ifthenelse{\equal{\showappendixsecindex}{true}}{}{
@@ -3703,7 +3723,7 @@
 }
 
 % Crea una sección de resumen
-\newenvironment{resumen}{
+\newenvironment{abstractd}{
 	% Tipo de título para abstract
 	\sectionfont{\color{\titlecolor} \fontsizetitle \styletitle \selectfont}
 	% Inserta un título sin número, sin cabecera y sin aparecer en el índice,
@@ -3723,7 +3743,7 @@
 	
 	% Configura caption y márgenes
 	\vspace{\marginimagetop cm}%
-	\setcaptionmargincm{\captionmarginmultimg}%
+	\setcaptionmargincm{\captionmarginmultimg} % Eso es para los wrapfig
 	
 	% Inicia la figura
 	\begin{samepage}%
@@ -3761,6 +3781,7 @@
 	\global\def\GLOBALenvimageinitialized {true}
 	\global\def\GLOBALenvimageadded {false}
 	\checkinsidemulticol%
+	\checkoutsideappendix%
 	
 	% Configura caption y márgenes
 	\setcaptionmargincm{\captionmarginmultimg} % Eso es para los wrapfig
@@ -3788,7 +3809,7 @@
 	\end{figure*}%
 	
 	% Restablece caption y márgenes
-	\setcaptionmargincm{\captionlrmargin}%
+	\setcaptionmargincm{\captionlrmarginmc}%
 	
 	% Restablece globales
 	\global\def\GLOBALenvimageinitialized {false}
@@ -3872,10 +3893,10 @@
 	language=[gnu] make,
 	keywordstyle=[2]\color{dkcyan},
 	morekeywords=[1]{
-		add_custom_command,add_custom_target,add_definitions,add_executable,add_library,cmake_minimum_required,cmake_policy,configure_file,cuda_add_library,cuda_include_directories,else,elseif,endforeach,endfunction,endif,endmacro,execute_process,file,find_package,find_path,find_program,foreach,function,get_directory_property,get_filename_component,get_filename_component,get_source_file_property,if,include,include_directories,link_directories,list,macro,mark_as_advanced,message,option,project,set,set_property,set_target_properties,string,target_link_libraries,unset
+		add_custom_command,add_custom_target,add_definitions,add_executable,add_library,add_subdirectory,cmake_minimum_required,cmake_policy,configure_file,cuda_add_library,cuda_include_directories,else,elseif,endforeach,endfunction,endif,endmacro,execute_process,file,find_package,find_path,find_program,foreach,function,get_directory_property,get_filename_component,get_filename_component,get_source_file_property,if,include,include_directories,install,link_directories,list,macro,mark_as_advanced,message,option,project,set,set_property,set_target_properties,string,target_compile_options,target_link_libraries,unset
 	},
 	morekeywords=[2]{
-		APPEND,CACHE,CMAKE_MODULE_PATH,COMMENT,COMPILE_DEFINITIONS,DEPENDS,DESTINATION,ENDIF,FATAL_ERROR,FIND_LIBRARY,FORCE,GLOB,GREATER,IF,INCLUDE_DIRECTORIES,IS_ABSOLUTE,LESS,LINK_PRIVATE,LIST,MAIN_DEPENDENCY,MAKE_DIRECTORY,MARK_AS_ADVANCED,MATCHALL,MATCHES,NOT,OFF,ON,OUTPUT,PARENT_SCOPE,PRE_BUILD_COMMAND,PRE_LINK,PROPERTIES,REGEX,REQUIRED,SET,TARGET,TOUPPER,UNIX,VERSION,VERSION_EQUAL,VERSION_LESS,WIN32,WORKING_DIRECTORY
+		AND,APPEND,ARCHIVE,CACHE,CMAKE_MODULE_PATH,COMMAND,COMMENT,COMPILE_DEFINITIONS,CONFIG,DEFINED,DEPENDS,DESTINATION,DIRECTORY,ENDIF,ENV,EQUAL,ERROR_QUIET,EXISTS,FATAL_ERROR,FILES,FILES_MATCHING,FIND,FIND,FIND_LIBRARY,FORCE,GLOB,GREATER,IF,INCLUDE_DIRECTORIES,IS_ABSOLUTE,LESS,LIBRARY,LINK_PRIVATE,LIST,MAIN_DEPENDENCY,MAKE_DIRECTORY,MARK_AS_ADVANCED,MATCHALL,MATCHES,NOT,OFF,ON,OPTIONAL,OR,OUTPUT,OUTPUT_STRIP_TRAILING_WHITESPACE,OUTPUT_VARIABLE,PARENT_SCOPE,PATTERN,PRE_BUILD_COMMAND,PRE_LINK,PRIVATE,PROPERTIES,PUBLIC,REGEX,RELEASE,RENAME,REQUIRED,RUNTIME,SET,STATIC,STREQUAL,TARGET,TARGETS,TOUPPER,UNIX,VERSION,VERSION_EQUAL,VERSION_LESS,WIN32,WORKING_DIRECTORY
 	}
 }
 
@@ -4676,7 +4697,7 @@
 		{ϋ}{{$\ddot \upsilon$}}1 {ΰ}{{$\dddot \upsilon$}}1
 		{Φ}{{$\Phi$}}1 {φ}{{$\phi$}}1 {Ψ}{{$\Psi$}}1 {ψ}{{$\psi$}}1
 		{Ω}{{$\Omega$}}1 {ω}{{$\omega$}}1 {ώ}{{$\dot \omega$}}1
-		{“}{{``}}1 {”}{{''}}1 {…}{{$\ldots$}}1 {`}{\`}1,
+		{“}{{``}}1 {”}{{''}}1 {…}{{$\ldots$}}1 {`}{\`}1 {–}{{--}}1,
 	numbers=left,
 	numbersep={\sourcecodenumbersep pt},
 	numberstyle=\tiny\color{dkgray},
@@ -4880,38 +4901,38 @@
 % CONFIGURACIÓN INICIAL DEL DOCUMENTO
 % -----------------------------------------------------------------------------
 % Se revisa si las variables no han sido borradas
-\checkvardefined{\autordeldocumento}
-\checkvardefined{\codigodelcurso}
-\checkvardefined{\departamentouniversidad}
-\checkvardefined{\localizacionuniversidad}
-\checkvardefined{\nombredelcurso}
-\checkvardefined{\nombrefacultad}
-\checkvardefined{\nombreuniversidad}
-\checkvardefined{\temaatratar}
-\checkvardefined{\titulodeldocumento}
+\checkvardefined{\coursecode}
+\checkvardefined{\coursename}
+\checkvardefined{\documentauthor}
+\checkvardefined{\documenttitle}
+\checkvardefined{\documenttopic}
+\checkvardefined{\universitydepartment}
+\checkvardefined{\universityfaculty}
+\checkvardefined{\universitylocation}
+\checkvardefined{\universityname}
 
 % -----------------------------------------------------------------------------
 % Se añade \xspace a las variables
 % -----------------------------------------------------------------------------
 \makeatletter
-	\g@addto@macro\autordeldocumento\xspace
-	\g@addto@macro\codigodelcurso\xspace
-	\g@addto@macro\departamentouniversidad\xspace
-	\g@addto@macro\localizacionuniversidad\xspace
-	\g@addto@macro\nombredelcurso\xspace
-	\g@addto@macro\nombrefacultad\xspace
-	\g@addto@macro\nombreuniversidad\xspace
-	\g@addto@macro\temaatratar\xspace
-	\g@addto@macro\titulodeldocumento\xspace
+	\g@addto@macro\coursecode\xspace
+	\g@addto@macro\coursename\xspace
+	\g@addto@macro\documentauthor\xspace
+	\g@addto@macro\documenttitle\xspace
+	\g@addto@macro\documenttopic\xspace
+	\g@addto@macro\universitydepartment\xspace
+	\g@addto@macro\universityfaculty\xspace
+	\g@addto@macro\universitylocation\xspace
+	\g@addto@macro\universityname\xspace
 \makeatother
 
-\ifthenelse{\equal{\subtitulodocumento}{}}{
-	\def\titulodeldocumentohf {\titulodeldocumento}
+\ifthenelse{\equal{\documentsubtitle}{}}{
+	\def\documenttitlehf {\documenttitle}
 }{
 	\makeatletter
-		\g@addto@macro\subtitulodocumento\xspace
+		\g@addto@macro\documentsubtitle\xspace
 	\makeatother
-	\def\titulodeldocumentohf {\subtitulodocumento}
+	\def\documenttitlehf {\documentsubtitle}
 }
 
 % -----------------------------------------------------------------------------
@@ -4936,32 +4957,32 @@
 	\def\cfgpdfpagemode {UseNone}
 }
 \ifthenelse{\equal{\usepdfmetadata}{true}}{
-	\def\pdfmetainfoautor {\autordeldocumento}
-	\def\pdfmetainfocodigodelcurso {\codigodelcurso}
-	\def\pdfmetainfonombredelcurso {\nombredelcurso}
-	\def\pdfmetainfotema {\temaatratar}
-	\def\pdfmetainfotitulo {\titulodeldocumento}
-	\def\pdfmetainfounidepto {\departamentouniversidad}
-	\def\pdfmetainfounifacultad {\nombrefacultad}
-	\def\pdfmetainfouninombre {\nombreuniversidad}
-	\def\pdfmetainfouniubicacion {\localizacionuniversidad}
+	\def\pdfmetainfoauthor {\documentauthor}
+	\def\pdfmetainfocoursecode {\coursecode}
+	\def\pdfmetainfocoursename {\coursename}
+	\def\pdfmetainfotitle {\documenttitle}
+	\def\pdfmetainfotopic {\documenttopic}
+	\def\pdfmetainfouniversity {\universityname}
+	\def\pdfmetainfouniversitydepartment {\universitydepartment}
+	\def\pdfmetainfouniversityfaculty {\universityfaculty}
+	\def\pdfmetainfouniversitylocation {\universitylocation}
 }{
-	\def\pdfmetainfoautor {}
-	\def\pdfmetainfocodigodelcurso {}
-	\def\pdfmetainfonombredelcurso {}
-	\def\pdfmetainfotema {}
-	\def\pdfmetainfotitulo {}
-	\def\pdfmetainfounidepto {}
-	\def\pdfmetainfounifacultad {}
-	\def\pdfmetainfouninombre {}
-	\def\pdfmetainfouniubicacion {}
+	\def\pdfmetainfoauthor {}
+	\def\pdfmetainfocoursecode {}
+	\def\pdfmetainfocoursename {}
+	\def\pdfmetainfotitle {}
+	\def\pdfmetainfotopic {}
+	\def\pdfmetainfouniversity {}
+	\def\pdfmetainfouniversitydepartment {}
+	\def\pdfmetainfouniversityfaculty {}
+	\def\pdfmetainfouniversitylocation {}
 }
 \hypersetup{
 	keeppdfinfo,
 	bookmarksopen={\cfgpdfbookmarkopen},
 	bookmarksopenlevel={\cfgbookmarksopenlevel},
 	bookmarkstype={toc},
-	pdfauthor={\pdfmetainfoautor},
+	pdfauthor={\pdfmetainfoauthor},
 	pdfcenterwindow={\cfgpdfcenterwindow},
 	pdfcopyright={\cfgpdfcopyright},
 	pdfcreator={LaTeX},
@@ -4969,42 +4990,42 @@
 	pdfencoding={unicode},
 	pdffitwindow={\cfgpdffitwindow},
 	pdfinfo={
-		Curso.Codigo={\pdfmetainfocodigodelcurso},
-		Curso.Nombre={\pdfmetainfonombredelcurso},
-		Documento.Autor={\pdfmetainfoautor},
-		Documento.Tema={\pdfmetainfotema},
-		Documento.Titulo={\pdfmetainfotitulo},
-		Template.Autor.Alias={ppizarror},
-		Template.Autor.Email={pablo@ppizarror.com},
-		Template.Autor.Nombre={Pablo Pizarro R.},
-		Template.Autor.Web={https://ppizarror.com},
-		Template.Codificacion={UTF-8},
-		Template.Fecha={06/09/2021},
-		Template.Latex.Compilador={pdflatex},
-		Template.Licencia.Tipo={MIT},
-		Template.Licencia.Web={https://opensource.org/licenses/MIT},
-		Template.Nombre={Template-Reporte},
-		Template.Tipo={Normal},
-		Template.Version.Dev={2.4.2-1-REPT},
-		Template.Version.Hash={516BA7179358DB5D51B4C18948C84A2C},
-		Template.Version.Release={2.4.2},
+		Course.Code={\pdfmetainfocoursecode},
+		Course.Name={\pdfmetainfocoursename},
+		Document.Author={\pdfmetainfoauthor},
+		Document.Title={\pdfmetainfotitle},
+		Document.Topic={\pdfmetainfotopic},
+		Template.Author.Alias={ppizarror},
+		Template.Author.Email={pablo@ppizarror.com},
+		Template.Author.Web={https://ppizarror.com},
+		Template.Author={Pablo Pizarro R.},
+		Template.Date={08/09/2021},
+		Template.Encoding={UTF-8},
+		Template.Latex.Compiler={pdflatex},
+		Template.License.Type={MIT},
+		Template.License.Web={https://opensource.org/licenses/MIT},
+		Template.Name={Template-Reporte},
+		Template.Type={Normal},
+		Template.Version.Dev={2.4.3-REPT},
+		Template.Version.Hash={85DA91C5A0A08A2B5F79C9AA61CDFFF2},
+		Template.Version.Release={2.4.3},
 		Template.Web.Dev={https://github.com/Template-Latex/Template-Reporte},
 		Template.Web.Manual={https://latex.ppizarror.com/reporte},
-		Universidad.Departamento={\pdfmetainfounidepto},
-		Universidad.Facultad={\pdfmetainfounifacultad},
-		Universidad.Nombre={\pdfmetainfouninombre},
-		Universidad.Ubicacion={\pdfmetainfouniubicacion}
+		University.Department={\pdfmetainfouniversitydepartment},
+		University.Faculty={\pdfmetainfouniversityfaculty},
+		University.Location={\pdfmetainfouniversitylocation},
+		University.Name={\pdfmetainfouniversity}
 	},
 	pdfkeywords={\cfgpdfkeywords},
 	pdfmenubar={\cfgpdfmenubar},
 	pdfpagelayout={\cfgpdflayout},
 	pdfpagemode={\cfgpdfpagemode},
-	pdfproducer={Template-Reporte v2.4.2 | (Pablo Pizarro R.) ppizarror.com},
+	pdfproducer={Template-Reporte v2.4.3 | (Pablo Pizarro R.) ppizarror.com},
 	pdfremotestartview={Fit},
 	pdfstartpage={1},
 	pdfstartview={\cfgpdfpageview},
-	pdfsubject={\pdfmetainfotema},
-	pdftitle={\pdfmetainfotitulo},
+	pdfsubject={\pdfmetainfotopic},
+	pdftitle={\pdfmetainfotitle},
 	pdftoolbar={\cfgpdftoolbar}
 }
 
@@ -5101,7 +5122,6 @@
 	labelfont={color=\captioncolor, \captiontextsubnumbold},
 	labelformat={\subcaptionlabelformat},
 	labelsep={\subcaptionlabelsep},
-	% listofformat={subparens},
 	lofdepth=1,
 	textfont={color=\captiontextcolor},
 	singlelinecheck=on
@@ -5111,7 +5131,6 @@
 	labelfont={color=\captioncolor, \captiontextsubnumbold},
 	labelformat={\subcaptionlabelformat},
 	labelsep={\subcaptionlabelsep},
-	% listofformat={subparens},
 	lofdepth=1,
 	textfont={color=\captiontextcolor},
 	singlelinecheck=on
@@ -5466,6 +5485,8 @@
 }{
 	\throwbadconfig{Formato reinicio numero footnote desconocido}{\footnoterestart}{none,chap,page,sec,ssec,sssec,ssssec}}}}}}}
 }
+% Previene footnote en otras páginas
+\interfootnotelinepenalty=10000
 
 % -----------------------------------------------------------------------------
 % Restauración número ecuación, NOTA: NO hace nada, sólo se modifica en title.tex
@@ -5590,15 +5611,21 @@
 % Parcha el entorno multicols
 % -----------------------------------------------------------------------------
 \let\SOURCEcaptionlrmargin\captionlrmargin
+\newcounter{multicoldepth}
+\setcounter{multicoldepth}{0}
 \BeforeBeginEnvironment{multicols}{%
 	\def\captionlrmargin {\captionlrmarginmc}%
 	\global\def\GLOBALenvmulticol {true}%
 	\setcaptionmargincm{\captionlrmargin}%
+	\addtocounter{multicoldepth}{1}%
 }
 \AfterEndEnvironment{multicols}{%
 	\def\captionlrmargin {\SOURCEcaptionlrmargin}%
-	\global\def\GLOBALenvmulticol {false}%
 	\setcaptionmargincm{\captionlrmargin}%
+	\addtocounter{multicoldepth}{-1}
+	\ifnumequal{\number\value{multicoldepth}}{0}{%
+		\global\def\GLOBALenvmulticol {false}
+	}{}
 }
 
 % -----------------------------------------------------------------------------
@@ -5619,9 +5646,9 @@
 % -----------------------------------------------------------------------------
 % Operaciones especiales Template-Reporte
 % -----------------------------------------------------------------------------
-\title{\titulodeldocumento}
-\author{\autordeldocumento}
-\date{\fechadocumento}
+\title{\documenttitle}
+\author{\documentauthor}
+\date{\documentdate}
 \def\predocpageromannumber {false}
 \def\predocresetpagenumber {false}
 \makeatletter
@@ -5640,7 +5667,7 @@
 		}{}
 		\ifthenelse{\equal{\titleshowcourse}{true}}{
 			\vskip 0.5em
-			{\normalsize \codigodelcurso\ \hfpdashcharstyle\ \nombredelcurso}
+			{\normalsize \coursecode\ \hfpdashcharstyle\ \coursename}
 		}{}
 		\ifthenelse{\equal{\titleshowdate}{true}}{
 			\vskip 1em
@@ -5734,20 +5761,20 @@
 				\fancyfoot[L]{
 					\begin{minipage}[t]{\hfwidthtitle\linewidth}
 						\begin{flushleft}
-							\small \textit{\titulodeldocumentohf}
+							\small \textit{\documenttitlehf}
 						\end{flushleft}
 					\end{minipage}
 				}
 				\fancyfoot[R]{
 					\begin{minipage}[t]{\hfwidthcourse\linewidth}
 						\begin{flushright}
-							\small \textit{\codigodelcurso \nombredelcurso}
+							\small \textit{\coursecode \coursename}
 						\end{flushright}
 					\end{minipage}
 				}
 			}{
-				\fancyfoot[L]{\small \textit{\titulodeldocumentohf}}
-				\fancyfoot[R]{\small \textit{\codigodelcurso \nombredelcurso}}
+				\fancyfoot[L]{\small \textit{\documenttitlehf}}
+				\fancyfoot[R]{\small \textit{\coursecode \coursename}}
 			}
 			\renewcommand{\headrulewidth}{0.5pt}
 			\renewcommand{\footrulewidth}{0.5pt}
@@ -5767,20 +5794,20 @@
 				\fancyfoot[L]{
 					\begin{minipage}[t]{\hfwidthtitle\linewidth}
 						\begin{flushleft}
-							\small \textit{\titulodeldocumentohf}
+							\small \textit{\documenttitlehf}
 						\end{flushleft}
 					\end{minipage}
 				}
 				\fancyfoot[R]{
 					\begin{minipage}[t]{\hfwidthcourse\linewidth}
 						\begin{flushright}
-							\small \textit{\codigodelcurso \nombredelcurso}
+							\small \textit{\coursecode \coursename}
 						\end{flushright}
 					\end{minipage}
 				}
 			}{
-				\fancyfoot[L]{\small \textit{\titulodeldocumentohf}}
-				\fancyfoot[R]{\small \textit{\codigodelcurso \nombredelcurso}}
+				\fancyfoot[L]{\small \textit{\documenttitlehf}}
+				\fancyfoot[R]{\small \textit{\coursecode \coursename}}
 			}
 			\renewcommand{\headrulewidth}{0.5pt}
 			\renewcommand{\footrulewidth}{0.5pt}
@@ -5800,20 +5827,20 @@
 				\fancyfoot[L]{
 					\begin{minipage}[t]{\hfwidthtitle\linewidth}
 						\begin{flushleft}
-							\small \textit{\titulodeldocumentohf}
+							\small \textit{\documenttitlehf}
 						\end{flushleft}
 					\end{minipage}
 				}
 				\fancyfoot[R]{
 					\begin{minipage}[t]{\hfwidthcourse\linewidth}
 						\begin{flushright}
-							\small \textit{\codigodelcurso \nombredelcurso}
+							\small \textit{\coursecode \coursename}
 						\end{flushright}
 					\end{minipage}
 				}
 			}{
-				\fancyfoot[L]{\small \textit{\titulodeldocumentohf}}
-				\fancyfoot[R]{\small \textit{\codigodelcurso \nombredelcurso}}
+				\fancyfoot[L]{\small \textit{\documenttitlehf}}
+				\fancyfoot[R]{\small \textit{\coursecode \coursename}}
 			}
 			\renewcommand{\headrulewidth}{0.5pt}
 			\renewcommand{\footrulewidth}{0.5pt}
@@ -5833,20 +5860,20 @@
 				\fancyfoot[L]{
 					\begin{minipage}[t]{\hfwidthtitle\linewidth}
 						\begin{flushleft}
-							\small \textit{\titulodeldocumentohf}
+							\small \textit{\documenttitlehf}
 						\end{flushleft}
 					\end{minipage}
 				}
 				\fancyfoot[R]{
 					\begin{minipage}[t]{\hfwidthcourse\linewidth}
 						\begin{flushright}
-							\small \textit{\codigodelcurso \nombredelcurso}
+							\small \textit{\coursecode \coursename}
 						\end{flushright}
 					\end{minipage}
 				}
 			}{
-				\fancyfoot[L]{\small \textit{\titulodeldocumentohf}}
-				\fancyfoot[R]{\small \textit{\codigodelcurso \nombredelcurso}}
+				\fancyfoot[L]{\small \textit{\documenttitlehf}}
+				\fancyfoot[R]{\small \textit{\coursecode \coursename}}
 			}
 			\renewcommand{\headrulewidth}{0.5pt}
 			\renewcommand{\footrulewidth}{0pt}
@@ -5866,20 +5893,20 @@
 				\fancyfoot[L]{
 					\begin{minipage}[t]{\hfwidthtitle\linewidth}
 						\begin{flushleft}
-							\small \textit{\titulodeldocumentohf}
+							\small \textit{\documenttitlehf}
 						\end{flushleft}
 					\end{minipage}
 				}
 				\fancyfoot[R]{
 					\begin{minipage}[t]{\hfwidthcourse\linewidth}
 						\begin{flushright}
-							\small \textit{\codigodelcurso \nombredelcurso}
+							\small \textit{\coursecode \coursename}
 						\end{flushright}
 					\end{minipage}
 				}
 			}{
-				\fancyfoot[L]{\small \textit{\titulodeldocumentohf}}
-				\fancyfoot[R]{\small \textit{\codigodelcurso \nombredelcurso}}
+				\fancyfoot[L]{\small \textit{\documenttitlehf}}
+				\fancyfoot[R]{\small \textit{\coursecode \coursename}}
 			}
 			\renewcommand{\headrulewidth}{0.5pt}
 			\renewcommand{\footrulewidth}{0pt}
@@ -5899,20 +5926,20 @@
 				\fancyfoot[L]{
 					\begin{minipage}[t]{\hfwidthtitle\linewidth}
 						\begin{flushleft}
-							\small \textit{\titulodeldocumentohf}
+							\small \textit{\documenttitlehf}
 						\end{flushleft}
 					\end{minipage}
 				}
 				\fancyfoot[R]{
 					\begin{minipage}[t]{\hfwidthcourse\linewidth}
 						\begin{flushright}
-							\small \textit{\codigodelcurso \nombredelcurso}
+							\small \textit{\coursecode \coursename}
 						\end{flushright}
 					\end{minipage}
 				}
 			}{
-				\fancyfoot[L]{\small \textit{\titulodeldocumentohf}}
-				\fancyfoot[R]{\small \textit{\codigodelcurso \nombredelcurso}}
+				\fancyfoot[L]{\small \textit{\documenttitlehf}}
+				\fancyfoot[R]{\small \textit{\coursecode \coursename}}
 			}
 			\renewcommand{\headrulewidth}{0.5pt}
 			\renewcommand{\footrulewidth}{0pt}
@@ -5928,15 +5955,15 @@
 				\fancyhead[L]{
 					\begin{minipage}[t]{\hfwidthtitle\linewidth}
 						\begin{flushleft}
-							\small \textit{\codigodelcurso \nombredelcurso}
+							\small \textit{\coursecode \coursename}
 						\end{flushleft}
 					\end{minipage}
 				}
 			}{
-				\fancyhead[L]{\small \textit{\codigodelcurso \nombredelcurso}}
+				\fancyhead[L]{\small \textit{\coursecode \coursename}}
 			}
 			\fancyhead[R]{%
-				\coreinsertkeyimage{\hfheaderimageparamsA}{\imagendepartamento}%
+				\coreinsertkeyimage{\hfheaderimageparamsA}{\universitydepartmentimage}%
 				\vspace{-0.15cm}%
 			}
 			\fancyfoot[C]{\thepage}
@@ -5968,7 +5995,7 @@
 				\fancyhead[L]{
 					\begin{minipage}[t]{\hfwidthcourse\linewidth}
 						\begin{flushleft}
-							\codigodelcurso \nombredelcurso
+							\coursecode \coursename
 						\end{flushleft}
 					\end{minipage}
 				}
@@ -5982,12 +6009,12 @@
 					}
 				}{}
 			}{
-				\fancyhead[L]{\codigodelcurso \nombredelcurso}
+				\fancyhead[L]{\coursecode \coursename}
 				\ifthenelse{\equal{\disablehfrightmark}{false}}{
 					\fancyhead[R]{\nouppercase{\rightmark}}
 				}{}
 			}
-			\fancyfoot[L]{\departamentouniversidad, \nombreuniversidad}
+			\fancyfoot[L]{\universitydepartment, \universityname}
 			\fancyfoot[R]{\small \thepage}
 			\renewcommand{\headrulewidth}{0pt}
 			\renewcommand{\footrulewidth}{0pt}
@@ -6003,7 +6030,7 @@
 				\fancyhead[L]{
 					\begin{minipage}[t]{\hfwidthcourse\linewidth}
 						\begin{flushleft}
-							\codigodelcurso \nombredelcurso
+							\coursecode \coursename
 						\end{flushleft}
 					\end{minipage}
 				}
@@ -6017,12 +6044,12 @@
 					}
 				}{}
 			}{
-				\fancyhead[L]{\codigodelcurso \nombredelcurso}
+				\fancyhead[L]{\coursecode \coursename}
 				\ifthenelse{\equal{\disablehfrightmark}{false}}{
 					\fancyhead[R]{\nouppercase{\rightmark}}
 				}{}
 			}
-			\fancyfoot[LO,RE]{\departamentouniversidad, \nombreuniversidad}
+			\fancyfoot[LO,RE]{\universitydepartment, \universityname}
 			\fancyfoot[RO,LE]{\small \thepage}
 			\renewcommand{\headrulewidth}{0pt}
 			\renewcommand{\footrulewidth}{0pt}
@@ -6038,7 +6065,7 @@
 				\fancyhead[L]{
 					\begin{minipage}[t]{\hfwidthcourse\linewidth}
 						\begin{flushleft}
-							\codigodelcurso \nombredelcurso
+							\coursecode \coursename
 						\end{flushleft}
 					\end{minipage}
 				}
@@ -6052,12 +6079,12 @@
 					}
 				}{}
 			}{
-				\fancyhead[L]{\codigodelcurso \nombredelcurso}
+				\fancyhead[L]{\coursecode \coursename}
 				\ifthenelse{\equal{\disablehfrightmark}{false}}{
 					\fancyhead[R]{\nouppercase{\rightmark}}
 				}{}
 			}
-			\fancyfoot[LE,RO]{\departamentouniversidad, \nombreuniversidad}
+			\fancyfoot[LE,RO]{\universitydepartment, \universityname}
 			\fancyfoot[RE,LO]{\small \thepage}
 			\renewcommand{\headrulewidth}{0pt}
 			\renewcommand{\footrulewidth}{0pt}
@@ -6069,9 +6096,9 @@
 		\pagestyle{fancy}
 		\newcommand{\COREstyledefinition}{
 			\fancyhf{}
-			\fancyfoot[L]{\departamentouniversidad}
+			\fancyfoot[L]{\universitydepartment}
 			\fancyfoot[C]{\thepage}
-			\fancyfoot[R]{\nombreuniversidad}
+			\fancyfoot[R]{\universityname}
 			\renewcommand{\headrulewidth}{0pt}
 			\renewcommand{\footrulewidth}{0pt}
 		}
@@ -6130,7 +6157,7 @@
 				\fancyhead[L]{\nouppercase{\rightmark}}
 			}{}
 			\fancyhead[R]{}
-			\fancyfoot[L]{\small \textit{\titulodeldocumentohf}}
+			\fancyfoot[L]{\small \textit{\documenttitlehf}}
 			\fancyfoot[R]{\small \thepage}
 			\renewcommand{\headrulewidth}{0.5pt}
 			\renewcommand{\footrulewidth}{0.5pt}
@@ -6146,7 +6173,7 @@
 				\fancyhead[L]{\nouppercase{\rightmark}}
 			}{}
 			\fancyhead[R]{}
-			\fancyfoot[RE,LO]{\small \textit{\titulodeldocumentohf}}
+			\fancyfoot[RE,LO]{\small \textit{\documenttitlehf}}
 			\fancyfoot[RO,LE]{\small \thepage}
 			\renewcommand{\headrulewidth}{0.5pt}
 			\renewcommand{\footrulewidth}{0.5pt}
@@ -6162,7 +6189,7 @@
 				\fancyhead[L]{\nouppercase{\rightmark}}
 			}{}
 			\fancyhead[R]{}
-			\fancyfoot[RO,LE]{\small \textit{\titulodeldocumentohf}}
+			\fancyfoot[RO,LE]{\small \textit{\documenttitlehf}}
 			\fancyfoot[RE,LO]{\small \thepage}
 			\renewcommand{\headrulewidth}{0.5pt}
 			\renewcommand{\footrulewidth}{0.5pt}
@@ -6187,7 +6214,7 @@
 				\fancyhead[R]{
 					\begin{minipage}[t]{\hfwidthcourse\linewidth}
 						\begin{flushright}
-							\small \textit{\titulodeldocumentohf}
+							\small \textit{\documenttitlehf}
 						\end{flushright}
 					\end{minipage}
 				}
@@ -6195,7 +6222,7 @@
 				\ifthenelse{\equal{\disablehfrightmark}{false}}{
 					\fancyhead[L]{\nouppercase{\rightmark}}
 				}{}
-				\fancyhead[R]{\small \textit{\titulodeldocumentohf}}
+				\fancyhead[R]{\small \textit{\documenttitlehf}}
 			}
 			\fancyfoot[L]{}
 			\fancyfoot[R]{\small \thepage}
@@ -6222,7 +6249,7 @@
 				\fancyhead[R]{
 					\begin{minipage}[t]{\hfwidthcourse\linewidth}
 						\begin{flushright}
-							\small \textit{\titulodeldocumentohf}
+							\small \textit{\documenttitlehf}
 						\end{flushright}
 					\end{minipage}
 				}
@@ -6230,7 +6257,7 @@
 				\ifthenelse{\equal{\disablehfrightmark}{false}}{
 					\fancyhead[L]{\nouppercase{\rightmark}}
 				}{}
-				\fancyhead[R]{\small \textit{\titulodeldocumentohf}}
+				\fancyhead[R]{\small \textit{\documenttitlehf}}
 			}
 			\fancyfoot[L]{}
 			\fancyfoot[RE,LO]{\small \thepage}
@@ -6257,7 +6284,7 @@
 				\fancyhead[R]{
 					\begin{minipage}[t]{\hfwidthcourse\linewidth}
 						\begin{flushright}
-							\small \textit{\titulodeldocumentohf}
+							\small \textit{\documenttitlehf}
 						\end{flushright}
 					\end{minipage}
 				}
@@ -6265,7 +6292,7 @@
 				\ifthenelse{\equal{\disablehfrightmark}{false}}{
 					\fancyhead[L]{\nouppercase{\rightmark}}
 				}{}
-				\fancyhead[R]{\small \textit{\titulodeldocumentohf}}
+				\fancyhead[R]{\small \textit{\documenttitlehf}}
 			}
 			\fancyfoot[L]{}
 			\fancyfoot[LE,RO]{\small \thepage}
@@ -6282,25 +6309,25 @@
 			\ifthenelse{\equal{\disablehfrightmark}{false}}{
 				\fancyhead[L]{\nouppercase{\rightmark}}
 			}{}
-			\fancyhead[R]{\small \thepage \nomnpageof \pageref{LastPage}}
+			\fancyhead[R]{\small \thepage \nomnpageof \pageref{TotPages}}
 			\ifthenelse{\equal{\hfwidthwrap}{true}}{
 				\fancyfoot[L]{
 					\begin{minipage}[t]{\hfwidthtitle\linewidth}
 						\begin{flushleft}
-							\small \textit{\titulodeldocumentohf}
+							\small \textit{\documenttitlehf}
 						\end{flushleft}
 					\end{minipage}
 				}
 				\fancyfoot[R]{
 					\begin{minipage}[t]{\hfwidthcourse\linewidth}
 						\begin{flushright}
-							\small \textit{\codigodelcurso \nombredelcurso}
+							\small \textit{\coursecode \coursename}
 						\end{flushright}
 					\end{minipage}
 				}
 			}{
-				\fancyfoot[L]{\small \textit{\titulodeldocumentohf}}
-				\fancyfoot[R]{\small \textit{\codigodelcurso \nombredelcurso}}
+				\fancyfoot[L]{\small \textit{\documenttitlehf}}
+				\fancyfoot[R]{\small \textit{\coursecode \coursename}}
 			}
 			\renewcommand{\headrulewidth}{0.5pt}
 			\renewcommand{\footrulewidth}{0.5pt}
@@ -6312,9 +6339,9 @@
 		\pagestyle{fancy}
 		\newcommand{\COREstyledefinition}{
 			\fancyhf{}
-			\fancyfoot[L]{\departamentouniversidad}
-			\fancyfoot[C]{\thepage \nomnpageof \pageref{LastPage}}
-			\fancyfoot[R]{\nombreuniversidad}
+			\fancyfoot[L]{\universitydepartment}
+			\fancyfoot[C]{\thepage \nomnpageof \pageref{TotPages}}
+			\fancyfoot[R]{\universityname}
 			\renewcommand{\headrulewidth}{0pt}
 			\renewcommand{\footrulewidth}{0pt}
 		}
@@ -6329,18 +6356,18 @@
 				\fancyhead[L]{
 					\begin{minipage}[t]{\hfwidthtitle\linewidth}
 						\begin{flushleft}
-							\small \textit{\codigodelcurso \nombredelcurso}
+							\small \textit{\coursecode \coursename}
 						\end{flushleft}
 					\end{minipage}
 				}
 			}{
-				\fancyhead[L]{\small \textit{\codigodelcurso \nombredelcurso}}
+				\fancyhead[L]{\small \textit{\coursecode \coursename}}
 			}
 			\fancyhead[R]{%
-				\coreinsertkeyimage{\hfheaderimageparamsA}{\imagendepartamento}%
+				\coreinsertkeyimage{\hfheaderimageparamsA}{\universitydepartmentimage}%
 				\vspace{-0.15cm}%
 			}
-			\fancyfoot[C]{\thepage \nomnpageof \pageref{LastPage}}
+			\fancyfoot[C]{\thepage \nomnpageof \pageref{TotPages}}
 			\renewcommand{\headrulewidth}{0.5pt}
 			\renewcommand{\footrulewidth}{0pt}
 		}
@@ -6354,7 +6381,7 @@
 				\fancyhead[L]{\nouppercase{\rightmark}}
 			}{}
 			\fancyhead[R]{}
-			\fancyfoot[C]{\small \thepage \nomnpageof \pageref{LastPage}}
+			\fancyfoot[C]{\small \thepage \nomnpageof \pageref{TotPages}}
 			\renewcommand{\headrulewidth}{0.5pt}
 			\renewcommand{\footrulewidth}{0pt}
 		}
@@ -6370,7 +6397,7 @@
 			}{}
 			\fancyhead[R]{}
 			\fancyfoot[L]{
-				\small \codigodelcurso \nombredelcurso
+				\small \coursecode \coursename
 			}
 			\fancyfoot[R]{
 				\small \thepage
