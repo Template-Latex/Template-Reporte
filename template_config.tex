@@ -1,6 +1,6 @@
 % Template:     Reporte LaTeX
 % Documento:    Configuraciones del template
-% Versión:      2.5.1 (21/09/2021)
+% Versión:      2.5.2 (27/09/2021)
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R.
@@ -22,8 +22,6 @@
 \def\pointdecimal {true}           % N° decimales con punto en vez de coma
 \def\showlayoutlines {false}       % Muestra el layout de la página
 \def\showlinenumbers {false}       % Muestra los números de línea del documento
-\def\useenglishbabel {false}       % Inglés, desactivar para otros idiomas
-\def\usespanishbabel {true}        % Español, desactivar para otros idiomas
 
 % ESTILO PORTADA Y HEADER-FOOTER
 \def\disablehfrightmark {false}    % Desactiva el rightmark del header-footer
@@ -91,13 +89,13 @@
 \def\apaciterefcitecharclose {]}   % Caracter final cita apacite
 \def\apaciterefcitecharopen {[}    % Caracter inicial cita apacite
 \def\apaciterefnumber {false}      % Lista de referencias con números
-\def\apaciterefsep {6}             % Separación entre refs. {apacite} [pt]
+\def\apaciterefsep {5}             % Separación entre refs. {apacite} [pt]
 \def\apaciteshowurl {false}        % Muestra las url en las referencias
 \def\apacitestyle {apacite}        % Formato refs. apacite {apa,ieeetr,etc..}
 \def\appendixindepobjnum {true}    % Anexo usa n° objetos independientes
 \def\backrefpagecite {false}       % Las citas en bibliografía poseen nº de pag.
 \def\bibtexenvrefsecnum {false}    % Entorno references es una sección numerada
-\def\bibtexrefsep {6}              % Separación entre refs. {bibtex} [pt]
+\def\bibtexrefsep {5}              % Separación entre refs. {bibtex} [pt]
 \def\bibtexstyle {ieeetr}          % Formato refs. bibtex {apa,ieeetr,etc...}
 \def\bibtextextalign {justify}     % Alineac. bibtex {justify,left,right,center}
 \def\fontsizerefbibl {\normalsize} % Tamaño fuente al usar \bibliography{file}
@@ -106,7 +104,7 @@
 \def\natbibrefcitecompress {true}  % Comprime refererencias al citar
 \def\natbibrefcitesepcomma {true}  % Separador en coma (,) o punto y coma (;)
 \def\natbibrefcitetype {numbers}   % Tipo citación {authoryear,numbers,super}
-\def\natbibrefsep {6}              % Separación entre referencia {natbib} [pt]
+\def\natbibrefsep {5}              % Separación entre referencia {natbib} [pt]
 \def\natbibrefstyle {natnumurl}    % Formato refs. natbib {apa,ieeetr,etc...}
 \def\stylecitereferences {natbib}  % Estilo refs. {apacite,bibtex,natbib,custom}
 \def\twocolumnreferences {false}   % Referencias en dos columnas
@@ -150,12 +148,15 @@
 \def\sitemizeii {\iitemdash}       % Estilo itemize nivel 2
 \def\sitemizeiii {\iitemcirc}      % Estilo itemize nivel 3
 \def\sitemizeiv {\iitembsquare}    % Estilo itemize nivel 4
+\def\sourcecodebtmargin {0}        % Margen superior e inferior del bloque [pt]
 \def\sourcecodefontf {\ttfamily}   % Tipo de letra código fuente
 \def\sourcecodefonts {\small}      % Tamaño letra código fuente
 \def\sourcecodeilfontf {\ttfamily} % Tipo de letra código fuente inline
 \def\sourcecodeilfonts {\small}    % Tamaño letra código fuente inline
 \def\sourcecodenumbersep {6}       % Separación entre número línea y código [pt]
 \def\sourcecodenumbersize {\tiny}  % Tamaño fuente número línea
+\def\sourcecodeskipabove {0.75}    % Espacio sobre recuadro código [em]
+\def\sourcecodeskipbelow {1}       % Espacio bajo recuadro código [em]
 \def\sourcecodetabsize {3}         % Tamaño tabulación código fuente
 \def\tabledefaultplacement {H}     % Posición por defecto de las tablas
 \def\tablenotesameline {true}      % Notas en tablas en una sola línea
@@ -250,6 +251,16 @@
 % NOMBRE DE OBJETOS
 \def\nameabstract {Resumen}           % Nombre del resumen-abstract
 \def\nameappendixsection {Anexos}     % Nombre de los anexos
+\def\namechapter {Capítulo}           % Nombre de los capítulos
+\def\nameltappendixsection {Anexo}    % Etiqueta sección en anexo/apéndices
+\def\nameltcont{Índice de Contenidos} % Nombre del índice de contenidos
+\def\namelteqn {Índice de Ecuaciones} % Nombre de la lista de ecuaciones
+\def\nameltfigure {Índice de Figuras} % Nombre de la lista de figuras
+\def\nameltsrc {Índice de Códigos}    % Nombre de la lista de código
+\def\namelttable {Índice de Tablas}   % Nombre de la lista de tablas
+\def\nameltwfigure {Figura}           % Etiqueta leyenda de las figuras
+\def\nameltwsrc {Código}              % Etiqueta leyenda del código fuente
+\def\nameltwtable {Tabla}             % Etiqueta leyenda de las tablas
 \def\namemathcol {Corolario}          % Nombre de los colorarios
 \def\namemathdefn {Definición}        % Nombre de las definiciones
 \def\namemathej {Ejemplo}             % Nombre de los ejemplos
@@ -257,15 +268,5 @@
 \def\namemathobs {Observación}        % Nombre de las observaciones
 \def\namemathprp {Proposición}        % Nombre de las proposiciones
 \def\namemaththeorem {Teorema}        % Nombre de los teoremas
+\def\namepageof { de }                % Etiqueta página # de #
 \def\namereferences {Referencias}     % Nombre de la sección de referencias
-\def\nomchapter {Capítulo}            % Nombre de los capítulos
-\def\nomltappendixsection {Anexo}     % Etiqueta sección en anexo/apéndices
-\def\nomltcont {Índice de Contenidos} % Nombre del índice de contenidos
-\def\nomlteqn {Índice de Ecuaciones}  % Nombre de la lista de ecuaciones
-\def\nomltfigure {Índice de Figuras}  % Nombre de la lista de figuras
-\def\nomltsrc {Índice de Códigos}     % Nombre de la lista de código
-\def\nomlttable {Índice de Tablas}    % Nombre de la lista de tablas
-\def\nomltwfigure {Figura}            % Etiqueta leyenda de las figuras
-\def\nomltwsrc {Código}               % Etiqueta leyenda del código fuente
-\def\nomltwtable {Tabla}              % Etiqueta leyenda de las tablas
-\def\nomnpageof { de }                % Etiqueta página # de #
