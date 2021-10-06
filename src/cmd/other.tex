@@ -1,6 +1,6 @@
 % Template:     Reporte LaTeX
 % Documento:    Funciones para insertar elementos
-% Versión:      2.5.4 (06/10/2021)
+% Versión:      2.5.5 (06/10/2021)
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R.
@@ -37,7 +37,6 @@
 \newcommand{\insertemptypage}{%
 	\clearpage
 	\thispagestyle{empty}
-	\addtocounter{page}{-1}
 	\null
 	\clearpage
 }
@@ -48,6 +47,17 @@
 	\null
 	\clearpage
 }
+
+% Función personalizada \cleardoublepage
+\def\corecleardoublepage {%
+	\clearpage %
+	\ifthenelse{\equal{\GLOBALtwoside}{true}}{%
+		\ifodd\thepage %
+		\else%
+			\emptypagespredocformat%
+		\fi%
+	}{}
+}%
 
 % Ejecuta una función dependiendo si la página es par o impar
 %	#1	Par
