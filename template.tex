@@ -1,6 +1,6 @@
 % Template:     Reporte LaTeX
 % Documento:    Núcleo del template
-% Versión:      2.5.8 (25/10/2021)
+% Versión:      2.5.9 (26/10/2021)
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R.
@@ -1040,7 +1040,10 @@
 % Inserta un espacio vertical en cm con una variación +/-
 %	#1	Espacio (en cm)
 \newcommand{\corevspacevarcm}[1]{%
-	\vspace{\dimexpr#1 cm plus #1\coregluevarcm minus #1\coregluevarcm}%
+	\ifthenelse{\equal{#1}{0}}{}{%
+	\ifthenelse{\equal{#1}{0.0}}{}{%
+		\vspace{\dimexpr#1 cm plus #1\coregluevarcm minus #1\coregluevarcm}%	
+	}}
 }
 
 % Agrega una carpeta al path de imágenes
@@ -2243,7 +2246,7 @@
 			\corevspacevarcm{\captionlessmarginimage}%
 		\else%
 			\hspace{0cm}%
-			\ifthenelse{\equal{\captionmarginimage}{0}}{}{\corevspacevarcm{\captionmarginimage}}%
+			\corevspacevarcm{\captionmarginimage}%
 			\ifthenelse{\equal{\GLOBALcaptiondefn}{EMPTY-VAR}}{\caption{#5 #1}}{\caption[\GLOBALcaptiondefn]{#5 #1}}%
 		\fi
 	\end{figure}
@@ -2319,7 +2322,7 @@
 			\corevspacevarcm{\captionlessmarginimage}%
 		\else%
 			\hspace{0cm}%
-			\ifthenelse{\equal{\captionmarginimage}{0}}{}{\corevspacevarcm{\captionmarginimage}}%
+			\corevspacevarcm{\captionmarginimage}%
 			\ifthenelse{\equal{\GLOBALcaptiondefn}{EMPTY-VAR}}{\caption{#7 #1}}{\caption[\GLOBALcaptiondefn]{#7 #1}}%
 		\fi
 	\end{figure}
@@ -2443,7 +2446,7 @@
 			\corevspacevarcm{\captionlessmarginimage}%
 		\else
 			\hspace{0cm}
-			\ifthenelse{\equal{\captionmarginimage}{0}}{}{\corevspacevarcm{\captionmarginimage}}%
+			\corevspacevarcm{\captionmarginimage}%
 			\ifthenelse{\equal{\GLOBALcaptiondefn}{EMPTY-VAR}}{\caption{#6 #1}}{\caption[\GLOBALcaptiondefn]{#6 #1}}
 		\fi
 	\end{figure*}
@@ -2542,7 +2545,7 @@
 		\ifx\hfuzz#5\hfuzz%
 			\corevspacevarcm{\captionlessmarginimage}%
 		\else%
-			\ifthenelse{\equal{\captionmarginimage}{0}}{}{\corevspacevarcm{\captionmarginimage}}%
+			\corevspacevarcm{\captionmarginimage}%
 			\ifthenelse{\equal{\GLOBALcaptiondefn}{EMPTY-VAR}}{\caption{#5 #1}}{\caption[\GLOBALcaptiondefn]{#5 #1}}%
 		\fi%
 	\end{wrapfigure}
@@ -2589,7 +2592,7 @@
 		\ifx\hfuzz#6\hfuzz%
 			\corevspacevarcm{\captionlessmarginimage}%
 		\else%
-			\ifthenelse{\equal{\captionmarginimage}{0}}{}{\corevspacevarcm{\captionmarginimage}}%
+			\corevspacevarcm{\captionmarginimage}%
 			\ifthenelse{\equal{\GLOBALcaptiondefn}{EMPTY-VAR}}{\caption{#6 #1}}{\caption[\GLOBALcaptiondefn]{#6 #1}}%
 		\fi
 	\end{wrapfigure}
@@ -2634,7 +2637,7 @@
 		\ifx\hfuzz#5\hfuzz%
 			\corevspacevarcm{\captionlessmarginimage}%
 		\else%
-			\ifthenelse{\equal{\captionmarginimage}{0}}{}{\corevspacevarcm{\captionmarginimage}}%
+			\corevspacevarcm{\captionmarginimage}%
 			\ifthenelse{\equal{\GLOBALcaptiondefn}{EMPTY-VAR}}{\caption{#5 #1}}{\caption[\GLOBALcaptiondefn]{#5 #1}}%
 		\fi%
 	\end{wrapfigure}
@@ -2682,7 +2685,7 @@
 		\ifx\hfuzz#6\hfuzz%
 			\corevspacevarcm{\captionlessmarginimage}%
 		\else%
-			\ifthenelse{\equal{\captionmarginimage}{0}}{}{\corevspacevarcm{\captionmarginimage}}%
+			\corevspacevarcm{\captionmarginimage}%
 			\ifthenelse{\equal{\GLOBALcaptiondefn}{EMPTY-VAR}}{\caption{#6 #1}}{\caption[\GLOBALcaptiondefn]{#6 #1}}%
 		\fi%
 	\end{wrapfigure}
@@ -2733,7 +2736,7 @@
 		\ifx\hfuzz#6\hfuzz%
 			\corevspacevarcm{\captionlessmarginimage}%
 		\else%
-			\ifthenelse{\equal{\captionmarginimage}{0}}{}{\corevspacevarcm{\captionmarginimage}}%
+			\corevspacevarcm{\captionmarginimage}%
 			\ifthenelse{\equal{\GLOBALcaptiondefn}{EMPTY-VAR}}{\caption{#6 #1}}{\caption[\GLOBALcaptiondefn]{#6 #1}}%
 		\fi%
 	\end{wrapfigure}
@@ -2784,7 +2787,7 @@
 		\ifx\hfuzz#7\hfuzz%
 			\corevspacevarcm{\captionlessmarginimage}%
 		\else%
-			\ifthenelse{\equal{\captionmarginimage}{0}}{}{\corevspacevarcm{\captionmarginimage}}%
+			\corevspacevarcm{\captionmarginimage}%
 			\ifthenelse{\equal{\GLOBALcaptiondefn}{EMPTY-VAR}}{\caption{#7 #1}}{\caption[\GLOBALcaptiondefn]{#7 #1}}%
 		\fi%
 	\end{wrapfigure}
@@ -2835,7 +2838,7 @@
 		\ifx\hfuzz#6\hfuzz%
 			\corevspacevarcm{\captionlessmarginimage}%
 		\else%
-			\ifthenelse{\equal{\captionmarginimage}{0}}{}{\corevspacevarcm{\captionmarginimage}}%
+			\corevspacevarcm{\captionmarginimage}%
 			\ifthenelse{\equal{\GLOBALcaptiondefn}{EMPTY-VAR}}{\caption{#6 #1}}{\caption[\GLOBALcaptiondefn]{#6 #1}}%
 		\fi%
 	\end{wrapfigure}
@@ -2886,7 +2889,7 @@
 		\ifx\hfuzz#7\hfuzz%
 			\corevspacevarcm{\captionlessmarginimage}%
 		\else%
-			\ifthenelse{\equal{\captionmarginimage}{0}}{}{\corevspacevarcm{\captionmarginimage}}%
+			\corevspacevarcm{\captionmarginimage}%
 			\ifthenelse{\equal{\GLOBALcaptiondefn}{EMPTY-VAR}}{\caption{#7 #1}}{\caption[\GLOBALcaptiondefn]{#7 #1}}%
 		\fi%
 	\end{wrapfigure}
@@ -4053,7 +4056,7 @@
 		\ifthenelse{\equal{\envimagescaptionvar}{}}{ % \ifx\hfuzz no sirve
 			\corevspacevarcm{\captionlessmarginimage}%
 		}{%
-			\ifthenelse{\equal{\captionmarginimages}{0}}{}{\corevspacevarcm{\captionmarginimages}}%
+			\corevspacevarcm{\captionmarginimages}%
 			\caption{\envimagescaptionvar\envimageslabelvar}%
 		}%
 	\end{figure}%
@@ -4100,7 +4103,7 @@
 		\ifthenelse{\equal{\envimagescaptionvar}{}}{ % \ifx\hfuzz no sirve
 			\corevspacevarcm{\captionlessmarginimage}%
 		}{%
-			\ifthenelse{\equal{\captionmarginimagesmc}{0}}{}{\corevspacevarcm{\captionmarginimagesmc}}
+			\corevspacevarcm{\captionmarginimagesmc}%
 			\caption{\envimagescaptionvar\envimageslabelvar}%
 		}%
 	\end{figure*}%
@@ -5311,16 +5314,16 @@
 		Template.Author.Email={pablo@ppizarror.com},
 		Template.Author.Web={https://ppizarror.com},
 		Template.Author={Pablo Pizarro R.},
-		Template.Date={25/10/2021},
+		Template.Date={26/10/2021},
 		Template.Encoding={UTF-8},
 		Template.Latex.Compiler={pdflatex},
 		Template.License.Type={MIT},
 		Template.License.Web={https://opensource.org/licenses/MIT},
 		Template.Name={Template-Reporte},
 		Template.Type={Normal},
-		Template.Version.Dev={2.5.8-1-REPT},
-		Template.Version.Hash={88B5A2FBDB46B4F20B1940EBE8185892},
-		Template.Version.Release={2.5.8},
+		Template.Version.Dev={2.5.9-REPT},
+		Template.Version.Hash={7FB74B5DFD69DF6B54869BC70C658568},
+		Template.Version.Release={2.5.9},
 		Template.Web.Dev={https://github.com/Template-Latex/Template-Reporte},
 		Template.Web.Manual={https://latex.ppizarror.com/reporte},
 		University.Department={\pdfmetainfouniversitydepartment},
@@ -5332,7 +5335,7 @@
 	pdfmenubar={\cfgpdfmenubar},
 	pdfpagelayout={\cfgpdflayout},
 	pdfpagemode={\cfgpdfpagemode},
-	pdfproducer={Template-Reporte v2.5.8 | (Pablo Pizarro R.) ppizarror.com},
+	pdfproducer={Template-Reporte v2.5.9 | (Pablo Pizarro R.) ppizarror.com},
 	pdfremotestartview={Fit},
 	pdfstartpage={1},
 	pdfstartview={\cfgpdfpageview},
