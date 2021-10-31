@@ -1,6 +1,6 @@
 % Template:     Reporte LaTeX
 % Documento:    Configuración inicial del template
-% Versión:      2.6.0 (26/10/2021)
+% Versión:      2.6.1 (31/10/2021)
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R.
@@ -102,16 +102,16 @@
 		Template.Author.Email={pablo@ppizarror.com},
 		Template.Author.Web={https://ppizarror.com},
 		Template.Author={Pablo Pizarro R.},
-		Template.Date={26/10/2021},
+		Template.Date={31/10/2021},
 		Template.Encoding={UTF-8},
 		Template.Latex.Compiler={pdflatex},
 		Template.License.Type={MIT},
 		Template.License.Web={https://opensource.org/licenses/MIT},
 		Template.Name={Template-Reporte},
 		Template.Type={Normal},
-		Template.Version.Dev={2.6.0-REPT},
-		Template.Version.Hash={2F765DBEACEE08F117D886AFD15BB571},
-		Template.Version.Release={2.6.0},
+		Template.Version.Dev={2.6.1-1-REPT},
+		Template.Version.Hash={AA143FD5C670DF76512BC5653709A01A},
+		Template.Version.Release={2.6.1},
 		Template.Web.Dev={https://github.com/Template-Latex/Template-Reporte},
 		Template.Web.Manual={https://latex.ppizarror.com/reporte},
 		University.Department={\pdfmetainfouniversitydepartment},
@@ -123,7 +123,7 @@
 	pdfmenubar={\cfgpdfmenubar},
 	pdfpagelayout={\cfgpdflayout},
 	pdfpagemode={\cfgpdfpagemode},
-	pdfproducer={Template-Reporte v2.6.0 | (Pablo Pizarro R.) ppizarror.com},
+	pdfproducer={Template-Reporte v2.6.1 | (Pablo Pizarro R.) ppizarror.com},
 	pdfremotestartview={Fit},
 	pdfstartpage={1},
 	pdfstartview={\cfgpdfpageview},
@@ -355,7 +355,7 @@
 \ifthenelse{\equal{\stylecitereferences}{apacite}}{
 	\ifthenelse{\equal{\apaciterefnumber}{true}}{
 		\newcounter{apaciteNumberCounter}
-		\renewcommand{\theapaciteNumberCounter}{% Formato de número
+		\renewcommand{\theapaciteNumberCounter}{ % Formato de número
 			\apaciterefcitecharopen\arabic{apaciteNumberCounter}\apaciterefcitecharclose
 		}
 		\patchcmd{\@lbibitem}{\item[}{\item[\stepcounter{apaciteNumberCounter}{\hss\llap{\theapaciteNumberCounter}\quad}}{}{}
@@ -498,11 +498,6 @@
 }{
 	\throwbadconfig{Compilador desconocido}{\compilertype}{pdf2latex,xelatex,lualatex}}}
 }
-
-% -----------------------------------------------------------------------------
-% Declaración caracteres unicode adicionales
-% -----------------------------------------------------------------------------
-\DeclareUnicodeCharacter{2212}{-}
 
 % -----------------------------------------------------------------------------
 % Crea las sub-sub-sub-secciones
