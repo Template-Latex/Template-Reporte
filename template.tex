@@ -1,6 +1,6 @@
 % Template:     Reporte LaTeX
 % Documento:    Núcleo del template
-% Versión:      3.0.1 (09/11/2021)
+% Versión:      3.0.2 (22/11/2021)
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R.
@@ -2121,7 +2121,7 @@
 	\setlength{\fboxsep}{0 pt}%
 	\setlength{\fboxrule}{#6 pt}%
 	\ifthenelse{\equal{\GLOBALenvimageadded}{true}}{%
-		\hspace{\dimexpr \marginimagemultright cm -\coreimageshspace}%
+		\hspace{\dimexpr \marginimagemultright cm - \coreimageshspace}%
 	}{}%
 	\ifthenelse{\equal{#7}{}}{ % Sin label
 		\ifthenelse{\equal{\animatedimageloop}{true}}{ % Con loop
@@ -3221,8 +3221,14 @@
 }
 
 % Crea un salto de columna en el entorno multicol
-\newcommand{\newcolumn}{%
-	\checkinsidemulticol\vfill\null\columnbreak%
+\ifthenelse{\isundefined{\newcolumn}}{
+	\newcommand{\newcolumn}{%
+		\checkinsidemulticol\vfill\null\columnbreak%
+	}
+}{
+	\renewcommand{\newcolumn}{%
+		\checkinsidemulticol\vfill\null\columnbreak%
+	}
 }
 
 % Salto de página en entorno multicol
@@ -5368,16 +5374,16 @@
 		Template.Author.Email={pablo@ppizarror.com},
 		Template.Author.Web={https://ppizarror.com},
 		Template.Author={Pablo Pizarro R.},
-		Template.Date={09/11/2021},
+		Template.Date={22/11/2021},
 		Template.Encoding={UTF-8},
 		Template.Latex.Compiler={pdflatex},
 		Template.License.Type={MIT},
 		Template.License.Web={https://opensource.org/licenses/MIT},
 		Template.Name={Template-Reporte},
 		Template.Type={Normal},
-		Template.Version.Dev={3.0.1-1-REPT},
-		Template.Version.Hash={EDBF4F46EC0BB741A1D432C65CC89B14},
-		Template.Version.Release={3.0.1},
+		Template.Version.Dev={3.0.2-REPT},
+		Template.Version.Hash={C800069E1B3470DA2626B3FE9F741C83},
+		Template.Version.Release={3.0.2},
 		Template.Web.Dev={https://github.com/Template-Latex/Template-Reporte},
 		Template.Web.Manual={https://latex.ppizarror.com/reporte},
 		University.Department={\pdfmetainfouniversitydepartment},
@@ -5389,7 +5395,7 @@
 	pdfmenubar={\cfgpdfmenubar},
 	pdfpagelayout={\cfgpdflayout},
 	pdfpagemode={\cfgpdfpagemode},
-	pdfproducer={Template-Reporte v3.0.1 | (Pablo Pizarro R.) ppizarror.com},
+	pdfproducer={Template-Reporte v3.0.2 | (Pablo Pizarro R.) ppizarror.com},
 	pdfremotestartview={Fit},
 	pdfstartpage={1},
 	pdfstartview={\cfgpdfpageview},
@@ -6715,7 +6721,7 @@
 \DeclareUnicodeCharacter{228F}{\ensuremath{\sqsubset}}
 \DeclareUnicodeCharacter{2290}{\ensuremath{\sqsupset}}
 \DeclareUnicodeCharacter{2291}{\ensuremath{\sqsubseteq}}
-\DeclareUnicodeCharacter{2292}{\ensuremath{\ensuremath{\to}}}
+\DeclareUnicodeCharacter{2292}{\ensuremath{\sqsupseteq}}
 \DeclareUnicodeCharacter{2293}{\ensuremath{\sqcap}}
 \DeclareUnicodeCharacter{2294}{\ensuremath{\sqcup}}
 \DeclareUnicodeCharacter{2295}{\ensuremath{\oplus}}
