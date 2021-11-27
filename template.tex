@@ -1,6 +1,6 @@
 % Template:     Reporte LaTeX
 % Documento:    Núcleo del template
-% Versión:      3.0.4 (26/11/2021)
+% Versión:      3.0.5 (27/11/2021)
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R.
@@ -3033,7 +3033,7 @@
 \def\corecheckchapterinitialized {%
 	\ifthenelse{\equal{\GLOBALtitlerequirechapter}{true}}{%
 		\ifthenelse{\equal{\GLOBALtitleinitchapter}{false}}{%
-			\throwwarning{Se requiere un nuevo capitulo para iniciar las secciones}%
+			\throwwarning{Se requiere un nuevo capitulo}%
 		}{}%
 	}{}%
 }
@@ -5485,16 +5485,16 @@
 		Template.Author.Email={pablo@ppizarror.com},
 		Template.Author.Web={https://ppizarror.com},
 		Template.Author={Pablo Pizarro R.},
-		Template.Date={26/11/2021},
+		Template.Date={27/11/2021},
 		Template.Encoding={UTF-8},
 		Template.Latex.Compiler={pdflatex},
 		Template.License.Type={MIT},
 		Template.License.Web={https://opensource.org/licenses/MIT},
 		Template.Name={Template-Reporte},
 		Template.Type={Normal},
-		Template.Version.Dev={3.0.4-REPT},
-		Template.Version.Hash={DF2CE3282DA06FF6060B574519E885F0},
-		Template.Version.Release={3.0.4},
+		Template.Version.Dev={3.0.5-REPT},
+		Template.Version.Hash={56DA2C1E2F371ACCE0B6B13D93B3ED07},
+		Template.Version.Release={3.0.5},
 		Template.Web.Dev={https://github.com/Template-Latex/Template-Reporte},
 		Template.Web.Manual={https://latex.ppizarror.com/reporte},
 		University.Department={\pdfmetainfouniversitydepartment},
@@ -5506,7 +5506,7 @@
 	pdfmenubar={\cfgpdfmenubar},
 	pdfpagelayout={\cfgpdflayout},
 	pdfpagemode={\cfgpdfpagemode},
-	pdfproducer={Template-Reporte v3.0.4 | (Pablo Pizarro R.) ppizarror.com},
+	pdfproducer={Template-Reporte v3.0.5 | (Pablo Pizarro R.) ppizarror.com},
 	pdfremotestartview={Fit},
 	pdfstartpage={1},
 	pdfstartview={\cfgpdfpageview},
@@ -8141,5 +8141,15 @@
 	% Establece el estilo de las sub-sub-sub-secciones
 	% -------------------------------------------------------------------------
 	\titleclass{\subsubsubsection}{straight}[\subsection]
+	
+	% -------------------------------------------------------------------------
+	% Reestablece los valores del estado de los títulos
+	% -------------------------------------------------------------------------
+	\global\def\GLOBALtitlerequirechapter {false}
+	\global\def\GLOBALtitleinitchapter {false}
+	\global\def\GLOBALtitleinitsection {false}
+	\global\def\GLOBALtitleinitsubsection {false}
+	\global\def\GLOBALtitleinitsubsubsection {false}
+	\global\def\GLOBALtitleinitsubsubsubsection {false}
 	
 }
