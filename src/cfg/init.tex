@@ -1,6 +1,6 @@
 % Template:     Reporte LaTeX
 % Documento:    Configuración inicial del template
-% Versión:      3.2.2 (12/03/2023)
+% Versión:      3.2.3 (03/04/2023)
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R.
@@ -34,6 +34,14 @@
 	\g@addto@macro\universitylocation\xspace
 	\g@addto@macro\universityname\xspace
 \makeatother
+
+% -----------------------------------------------------------------------------
+% Se crean variables si se borraron
+% -----------------------------------------------------------------------------
+\ifthenelse{\isundefined{\documentsubtitle}}{
+	\errmessage{LaTeX Warning: Se borro la variable \noexpand\documentsubtitle, creando una vacia}
+	\def\documentsubtitle {}}{
+}
 
 \ifthenelse{\equal{\documentsubtitle}{}}{
 	\def\documenttitlehf {\documenttitle}
@@ -99,16 +107,16 @@
 		Template.Author.Email={pablo@ppizarror.com},
 		Template.Author.Web={https://ppizarror.com},
 		Template.Author={Pablo Pizarro R.},
-		Template.Date={12/03/2023},
+		Template.Date={03/04/2023},
 		Template.Encoding={UTF-8},
 		Template.Latex.Compiler={pdflatex},
 		Template.License.Type={MIT},
 		Template.License.Web={https://opensource.org/licenses/MIT},
 		Template.Name={Template-Reporte},
 		Template.Type={Normal},
-		Template.Version.Dev={3.2.2-REPT},
-		Template.Version.Hash={353A9CFBE6F87A49ACD3504C8176FD25},
-		Template.Version.Release={3.2.2},
+		Template.Version.Dev={3.2.3-REPT},
+		Template.Version.Hash={EB36E2DFE31DEA815CB51941556FFAB8},
+		Template.Version.Release={3.2.3},
 		Template.Web.Dev={https://github.com/Template-Latex/Template-Reporte},
 		Template.Web.Manual={https://latex.ppizarror.com/reporte},
 		University.Department={\pdfmetainfouniversitydepartment},
@@ -120,7 +128,7 @@
 	pdfmenubar={\cfgpdfmenubar},
 	pdfpagelayout={\cfgpdflayout},
 	pdfpagemode={\cfgpdfpagemode},
-	pdfproducer={Template-Reporte v3.2.2 | (Pablo Pizarro R.) ppizarror.com},
+	pdfproducer={Template-Reporte v3.2.3 | (Pablo Pizarro R.) ppizarror.com},
 	pdfremotestartview={Fit},
 	pdfstartpage={1},
 	pdfstartview={\cfgpdfpageview},
