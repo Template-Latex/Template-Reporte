@@ -1,6 +1,6 @@
 % Template:     Reporte LaTeX
 % Documento:    Núcleo del template
-% Versión:      3.3.9 (06/09/2025)
+% Versión:      3.4.0 (08/09/2025)
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R.
@@ -182,6 +182,7 @@
 \usepackage{stfloats}      % Permite cambiar posición de flotantes con [b] y [t]
 \usepackage{subcaption}    % Permite agrupar imágenes
 \usepackage{textcomp}      % Simbología común
+\usepackage{totpages}      % Permite obtener número de páginas totales
 \usepackage{wrapfig}       % Posición de imágenes
 \usepackage{xspace}        % Administra espacios en párrafos y líneas
 \usepackage{xurl}          % Permite añadir enlaces
@@ -5684,16 +5685,16 @@
 		Template.Author.Email={pablo@ppizarror.com},
 		Template.Author.Web={https://ppizarror.com},
 		Template.Author={Pablo Pizarro R.},
-		Template.Date={06/09/2025},
+		Template.Date={08/09/2025},
 		Template.Encoding={UTF-8},
 		Template.Latex.Compiler={pdflatex},
 		Template.License.Type={MIT},
 		Template.License.Web={https://opensource.org/licenses/MIT},
 		Template.Name={Template-Reporte},
 		Template.Type={Normal},
-		Template.Version.Dev={3.3.9-REPT},
-		Template.Version.Hash={7BBB5CEA6B3CA5AF229E06696368866A},
-		Template.Version.Release={3.3.9},
+		Template.Version.Dev={3.4.0-REPT},
+		Template.Version.Hash={97B23BA0AC7A50B6D4E9C4A2DEC8FD87},
+		Template.Version.Release={3.4.0},
 		Template.Web.Dev={https://github.com/Template-Latex/Template-Reporte},
 		Template.Web.Manual={https://latex.ppizarror.com/reporte},
 		University.Department={\pdfmetainfouniversitydepartment},
@@ -5705,7 +5706,7 @@
 	pdfmenubar={\cfgpdfmenubar},
 	pdfpagelayout={\cfgpdflayout},
 	pdfpagemode={\cfgpdfpagemode},
-	pdfproducer={Template-Reporte v3.3.9 | (Pablo Pizarro R.) ppizarror.com},
+	pdfproducer={Template-Reporte v3.4.0 | (Pablo Pizarro R.) ppizarror.com},
 	pdfremotestartview={Fit},
 	pdfstartpage={1},
 	pdfstartview={\cfgpdfpageview},
@@ -7091,7 +7092,7 @@
 			\ifthenelse{\equal{\disablehfrightmark}{false}}{%
 				\fancyhead[L]{\nouppercase{\rightmark}}
 			}{}
-			\fancyhead[R]{\small \thepage \namepageof \pageref{TotPages}}
+			\fancyhead[R]{\small \thepage \namepageof \getpagerefnumber{TotPages}}
 			\ifthenelse{\equal{\hfwidthwrap}{true}}{%
 				\fancyfoot[L]{%
 					\begin{minipage}[t]{\hfwidthtitle\linewidth}
@@ -7122,7 +7123,7 @@
 		\newcommand{\COREstyledefinition}{%
 			\fancyhf{}
 			\fancyfoot[L]{\universitydepartment}
-			\fancyfoot[C]{\thepage \namepageof \pageref{TotPages}}
+			\fancyfoot[C]{\thepage \namepageof \getpagerefnumber{TotPages}}
 			\fancyfoot[R]{\universityname}
 			\renewcommand{\headrulewidth}{0pt}
 			\renewcommand{\footrulewidth}{0pt}
@@ -7149,7 +7150,7 @@
 				\coreinsertkeyimage{\hfheaderimageparamsA}{\universitydepartmentimage}%
 				\vspace{-0.15cm}%
 			}
-			\fancyfoot[C]{\thepage \namepageof \pageref{TotPages}}
+			\fancyfoot[C]{\thepage \namepageof \getpagerefnumber{TotPages}}
 			\renewcommand{\headrulewidth}{0.5pt}
 			\renewcommand{\footrulewidth}{0pt}
 		}
@@ -7163,7 +7164,7 @@
 				\fancyhead[L]{\nouppercase{\rightmark}}
 			}{}
 			\fancyhead[R]{}
-			\fancyfoot[C]{\small \thepage \namepageof \pageref{TotPages}}
+			\fancyfoot[C]{\small \thepage \namepageof \getpagerefnumber{TotPages}}
 			\renewcommand{\headrulewidth}{0.5pt}
 			\renewcommand{\footrulewidth}{0pt}
 		}
